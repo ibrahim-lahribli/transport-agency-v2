@@ -1,0 +1,99 @@
+{
+  "id": "timlalin-dunes",
+  "route": {
+    "startPoint": "Central Agadir",
+    "legs": [
+      { "from": "Central Agadir", "to": "Timlaline dunes near Tamri (N1 north)", "km": 68, "minutes": "60 to 80", "notes": "Coast road north past Anza, Tamraght and Tamri." },
+      { "from": "Dune area", "to": "Camel, quad and sandboarding points", "km": 5, "minutes": "10 to 20", "notes": "Short moves between the activity spots." },
+      { "from": "Timlaline", "to": "Central Agadir (return, N1 south)", "km": 68, "minutes": "60 to 80", "notes": "Same road back." }
+    ],
+    "roundTripKm": 141,
+    "drivingHoursTotal": "2 h 10 to 2 h 45"
+  },
+  "durationHours": 5.5,
+  "pickupWindow": "08:30 to 09:30",
+  "returnApprox": "13:45 to 14:45",
+  "itinerary": [
+    "Hotel pickup in Agadir and drive north toward Tamri (about 1 hour to 1 hour 15).",
+    "Camel ride through the dunes, with views toward the Atlantic.",
+    "Quad ride of about one hour over the sand, after a safety briefing.",
+    "Sandboarding on the dune slopes.",
+    "Photos and a short break in the dunes.",
+    "Return drive to Agadir, arriving about 13:45 to 14:45.",
+    "Sunset option: a late-afternoon start, returning shortly after sunset (seasonal)."
+  ],
+  "summary": {
+    "en": "Ride the coastal dunes on this timlalin dunes agadir activity. The dunes lie north of Agadir, past Tamri on the coast road, so plan on about an hour to an hour and a quarter each way. Once there you can ride a camel across the sand, drive a quad for about an hour after a safety briefing, and try sandboarding on the slopes that face the Atlantic. You choose which of these you want; they can also be combined. A sunset option runs in season, with a late-afternoon start and a return shortly after the sun goes down. Hotel pickup and drop-off are included.",
+    "fr": "Parcourez les dunes côtières lors de cette activité dunes timlalin agadir. Les dunes se trouvent au nord d'Agadir, après Tamri sur la route de la côte : comptez environ une heure à une heure et quart par trajet. Sur place, vous pouvez faire une balade à dos de dromadaire sur le sable, conduire un quad pendant environ une heure après un briefing de sécurité, et essayer le sandboard sur les pentes face à l'Atlantique. Vous choisissez les activités, qui peuvent aussi être combinées. Une option coucher de soleil est proposée en saison, avec un départ en fin d'après-midi et un retour peu après le coucher du soleil. Prise en charge et retour à l'hôtel inclus. (Draft for native review.)"
+  },
+  "highlights": {
+    "en": [
+      "Camel ride through Atlantic coastal dunes",
+      "Quad ride of about one hour, with briefing",
+      "Sandboarding on the dune slopes",
+      "Combine the activities if you wish",
+      "Sunset option in season",
+      "Hotel pickup and drop-off included"
+    ],
+    "fr": [
+      "Balade à dos de dromadaire dans les dunes côtières",
+      "Sortie en quad d'environ une heure, avec briefing",
+      "Sandboard sur les pentes des dunes",
+      "Combinez les activités si vous le souhaitez",
+      "Option coucher de soleil en saison",
+      "Prise en charge et retour à l'hôtel inclus"
+    ]
+  },
+  "seo": {
+    "en": {
+      "title": "Timlalin Dunes: Camel, Quad & Sandboarding",
+      "description": "Timlalin dunes agadir activity: camel ride, about an hour on a quad and sandboarding on coastal dunes north of Agadir, with a seasonal sunset option."
+    },
+    "fr": {
+      "title": "Dunes de Timlalin : dromadaire, quad et sandboard",
+      "description": "Dunes timlalin agadir : balade à dromadaire, environ une heure de quad et sandboard sur les dunes côtières au nord d'Agadir, option coucher de soleil."
+    }
+  },
+  "restrictions": [
+    "These are small coastal dunes, not desert or Sahara dunes.",
+    "The site is roughly 70 km north of Agadir, so about 1 hour to 1 hour 15 each way.",
+    "Quad driving is typically limited to older guests; younger guests usually ride as passengers. Confirm ages when you request.",
+    "Quad and camel riding are not recommended in pregnancy or with back or heart problems."
+  ],
+  "seasonalNotes": [
+    "Sand is very hot at midday in summer; mornings and late afternoons are more comfortable.",
+    "Sunset departures are seasonal; sunset is about 18:45 in winter and about 20:15 in summer.",
+    "Sand is firmer after rain."
+  ],
+  "bring": [
+    "Closed shoes",
+    "Sunglasses",
+    "Scarf or buff for the sand",
+    "Sunscreen",
+    "A light layer for the sunset option"
+  ],
+  "faq": [
+    { "q": "How far is Timlalin from Agadir?", "a": "About 70 km north, past Tamri, which is roughly 1 hour to 1 hour 15 each way. It is a half-day trip door to door." },
+    { "q": "Can I combine the camel ride, quad and sandboarding?", "a": "Yes. You can choose one activity or combine them. We confirm the combination and timing when you request." },
+    { "q": "Is there an age limit for the quad?", "a": "Usually you must be old enough to drive safely; younger guests often ride as passengers. We confirm the exact ages when you request." }
+  ],
+  "research": {
+    "confidence": {
+      "route": "verified",
+      "timings": "likely",
+      "seasonality": "likely"
+    },
+    "sources": [
+      { "url": "https://www.slowsightsoul-slowtravelblog.com/timlalin-dunes-guide-in-morocco/", "title": "Timlalin Dunes in Morocco: Complete Guide and Tips", "accessed": "2026-09-30", "supports": "70 km from Agadir on the N1" },
+      { "url": "https://ranchtamri.com/timlaline-dunes", "title": "Timlaline Dunes (Timlalin)", "accessed": "2026-09-30", "supports": "about an hour north, past Tamri" },
+      { "url": "https://www.agadirdunesadventures.com/", "title": "Things to Do in Agadir: Sandboarding, Quad Biking and Camel", "accessed": "2026-09-30", "supports": "about 45 km to Tamri, dunes just before it" },
+      { "url": "https://activities.marriott.com/africa/morocco/agadir/activities/timlalin_dunes_sandboarding_from_agadir-XG1FCU", "title": "Timlalin Dunes and Sandboarding From Agadir", "accessed": "2026-09-30", "supports": "dunes near Taboga Beach" },
+      { "url": "https://www.timeanddate.com/sun/morocco/agadir", "title": "Sunrise and sunset times in Agadir", "accessed": "2026-09-30", "supports": "sunset range for the sunset option" }
+    ],
+    "openQuestionsForOperator": [
+      "Is the ~70 km drive acceptable, or is a closer dune site used?",
+      "What are the minimum ages and the protective gear provided?",
+      "What are the sunset-option pickup and return times by season?"
+    ]
+  }
+}

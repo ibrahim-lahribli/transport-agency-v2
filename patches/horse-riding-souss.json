@@ -1,0 +1,93 @@
+{
+  "id": "horse-riding-souss",
+  "route": {
+    "startPoint": "Central Agadir",
+    "legs": [
+      { "from": "Central Agadir", "to": "Riding centre near the mouth of the Oued Souss", "km": 9, "minutes": "20 to 25", "notes": "Short transfer south of the city." },
+      { "from": "Riding centre", "to": "Souss river and eucalyptus trails (on horseback)", "km": 6, "minutes": "60 to 120", "notes": "Flat ground along the river and through the trees." },
+      { "from": "Riding centre", "to": "Central Agadir (return)", "km": 9, "minutes": "20 to 25", "notes": "Return transfer." }
+    ],
+    "roundTripKm": 24,
+    "drivingHoursTotal": "0 h 40 to 0 h 50"
+  },
+  "durationHours": 2.5,
+  "pickupWindow": "09:00 to 09:30",
+  "returnApprox": "11:15 to 11:45",
+  "itinerary": [
+    "Hotel pickup in Agadir.",
+    "Transfer to the riding centre near the Oued Souss, south of the city.",
+    "Meet your horse and your host; short safety briefing and mounting.",
+    "Ride along the Souss river area and the eucalyptus trails.",
+    "Return to the centre and transfer back to your hotel.",
+    "A late-afternoon ride is also possible; the timing is arranged when you request."
+  ],
+  "summary": {
+    "en": "Enjoy a calm ride on this horse riding agadir activity, in the green country along the Oued Souss. A short transfer takes you from your hotel to the centre, where you meet your horse and your host and go through a short safety briefing. The ride follows the river area and the eucalyptus belt on flat ground, so it suits both beginners and more confident riders. Helmets are usually provided. Both morning and cooler late-afternoon rides can be arranged. Tell us your riding experience when you request, so the host can pick a suitable horse and pace.",
+    "fr": "Profitez d'une balade tranquille lors de cette balade à cheval agadir, dans la verdure le long de l'oued Souss. Un court transfert vous emmène de votre hôtel au centre, où vous rencontrez votre cheval et votre hôte et suivez un bref briefing de sécurité. La balade longe la zone de l'oued et la ceinture d'eucalyptus, sur un terrain plat, ce qui convient aussi bien aux débutants qu'aux cavaliers plus à l'aise. Un casque est généralement fourni. Des balades le matin ou en fin d'après-midi, plus fraîches, sont possibles. Indiquez votre niveau lors de votre demande pour que l'hôte choisisse un cheval adapté. (Draft for native review.)"
+  },
+  "highlights": {
+    "en": [
+      "Ride along the Oued Souss near Agadir",
+      "Flat terrain, suitable for beginners",
+      "Horse and pace matched to your experience",
+      "Morning or cooler late-afternoon rides",
+      "Hotel pickup and drop-off included",
+      "Host with you throughout the ride"
+    ],
+    "fr": [
+      "Balade le long de l'oued Souss près d'Agadir",
+      "Terrain plat, adapté aux débutants",
+      "Cheval et rythme selon votre niveau",
+      "Balades le matin ou en fin d'après-midi",
+      "Prise en charge et retour à l'hôtel inclus",
+      "Un hôte vous accompagne pendant la balade"
+    ]
+  },
+  "seo": {
+    "en": {
+      "title": "Horse Riding near Agadir, Oued Souss",
+      "description": "Horse riding agadir: a calm ride along the Oued Souss and eucalyptus trails, suitable for beginners and experienced riders, with hotel pickup."
+    },
+    "fr": {
+      "title": "Balade à cheval au bord de l'oued Souss",
+      "description": "Balade à cheval agadir : une sortie calme le long de l'oued Souss et des pistes d'eucalyptus, pour débutants et cavaliers, avec transfert hôtel."
+    }
+  },
+  "restrictions": [
+    "Riding is not recommended in pregnancy or with back problems.",
+    "Minimum age and weight limits are set by the operator and confirmed when you request.",
+    "A helmet is normally provided; tell us in advance if you need a particular size."
+  ],
+  "seasonalNotes": [
+    "Late-afternoon rides are cooler in summer; mornings are better in the hottest months.",
+    "The Souss plain is dry and very hot in July and August."
+  ],
+  "bring": [
+    "Long trousers",
+    "Closed shoes",
+    "Sunscreen and hat",
+    "Water"
+  ],
+  "faq": [
+    { "q": "Is it suitable for beginners?", "a": "Yes. The route is on flat ground and suits beginners, as well as more confident riders, subject to the operator's safety requirements." },
+    { "q": "What do you need from us to arrange it?", "a": "Your hotel name, the full names of everyone riding, your preferred date and time, and your riding experience." },
+    { "q": "Is a helmet provided?", "a": "A helmet is normally offered. Tell us your head size in advance and we will confirm it with the operator." }
+  ],
+  "research": {
+    "confidence": {
+      "route": "likely",
+      "timings": "likely",
+      "seasonality": "likely"
+    },
+    "sources": [
+      { "url": "https://www.tripadvisor.com/AttractionProductReview-g293731-d34062410", "title": "Agadir Horse Riding Experience Along the Coast", "accessed": "2026-09-30", "supports": "ride about 7 km from the city, eucalyptus forest to the mouth of the Oued Souss" },
+      { "url": "https://www.viator.com/tours/Agadir/Horse-Riding-Agadir/d4383-244867P1", "title": "Horse Riding Agadir", "accessed": "2026-09-30", "supports": "about 2 h round trip including transfers" },
+      { "url": "https://lokalee.app/tours/agadir-horseback-riding-along-the-souss-river", "title": "Agadir Horseback Riding Along the Souss River", "accessed": "2026-09-30", "supports": "ride duration 1 h 40 to 2 h" }
+    ],
+    "openQuestionsForOperator": [
+      "Is the ride 1 hour or 2 hours, and what is the exact route?",
+      "What are the weight and minimum age limits?",
+      "Is cash payment at pickup accepted?"
+    ]
+  }
+}

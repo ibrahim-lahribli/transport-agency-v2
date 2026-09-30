@@ -1,0 +1,91 @@
+{
+  "id": "moroccan-evening",
+  "route": {
+    "startPoint": "Central Agadir",
+    "legs": [
+      { "from": "Central Agadir", "to": "Evening venue in the Agadir area", "km": 15, "minutes": "20 to 30", "notes": "Venue to be confirmed; distance varies with the site." },
+      { "from": "Evening venue", "to": "Central Agadir (return)", "km": 15, "minutes": "20 to 30", "notes": "Return transfer after the show." }
+    ],
+    "roundTripKm": 30,
+    "drivingHoursTotal": "0 h 40 to 1 h"
+  },
+  "durationHours": 4,
+  "pickupWindow": "19:00 to 19:30",
+  "returnApprox": "23:00 to 23:30",
+  "itinerary": [
+    "Evening hotel pickup in Agadir.",
+    "Arrival at the venue and a traditional Moroccan welcome.",
+    "Traditional Moroccan dinner.",
+    "Live Moroccan music and folklore performances.",
+    "Traditional dance performances.",
+    "Fantasia equestrian performance, subject to the venue's programme.",
+    "Return transfer to your hotel."
+  ],
+  "summary": {
+    "en": "Spend an evening of Moroccan food and performance on this Moroccan dinner show agadir night out. Your driver collects you from your hotel in the early evening and takes you to the venue, where dinner is served as the programme gets going. Across the evening you watch live Moroccan music, folklore and traditional dance, and a fantasia equestrian display in which riders in traditional dress perform in the arena. Depending on the venue's programme there may also be other entertainment. Hotel transfers are included in both directions. The exact venue, menu and programme are confirmed when you request.",
+    "fr": "Passez une soirée de gastronomie et de spectacle marocains lors de ce dîner spectacle agadir. Votre chauffeur vient vous chercher en début de soirée et vous emmène au lieu du spectacle, où le dîner est servi pendant que le programme commence. Tout au long de la soirée, vous assistez à de la musique marocaine, à des spectacles folkloriques et à des danses traditionnelles, ainsi qu'à une fantasia, spectacle équestre où des cavaliers en tenue traditionnelle évoluent dans l'arène. Selon le programme du lieu, d'autres animations sont possibles. Les transferts aller-retour depuis l'hôtel sont inclus. Le lieu exact, le menu et le programme sont confirmés lors de votre demande. (Draft for native review.)"
+  },
+  "highlights": {
+    "en": [
+      "Traditional Moroccan dinner and live music",
+      "Folklore and traditional dance performances",
+      "Fantasia equestrian display",
+      "Other entertainment depending on the venue",
+      "Hotel transfers both ways",
+      "Venue, menu and programme confirmed on request"
+    ],
+    "fr": [
+      "Dîner marocain traditionnel et musique live",
+      "Spectacles folkloriques et danses traditionnelles",
+      "Fantasia, spectacle équestre",
+      "Autres animations selon le lieu",
+      "Transferts aller-retour depuis l'hôtel",
+      "Lieu, menu et programme confirmés sur demande"
+    ]
+  },
+  "seo": {
+    "en": {
+      "title": "Moroccan Dinner & Fantasia Show, Agadir",
+      "description": "Moroccan dinner show agadir: a traditional dinner with live music, folklore, dance and a fantasia horse display, with hotel transfers both ways."
+    },
+    "fr": {
+      "title": "Dîner marocain et fantasia à Agadir",
+      "description": "Dîner spectacle agadir : dîner traditionnel avec musique live, folklore, danses et fantasia équestre, avec transferts aller-retour depuis l'hôtel."
+    }
+  },
+  "restrictions": [
+    "The venue, menu and programme vary and are confirmed when you request.",
+    "Some evening programmes change or pause during Ramadan.",
+    "Drinks beyond those served with dinner are usually extra."
+  ],
+  "seasonalNotes": [
+    "Outdoor performances depend on the weather; a light layer helps on winter evenings.",
+    "During Ramadan, programmes may change or not run.",
+    "Book early around Eid and school holidays, when demand is high."
+  ],
+  "bring": [
+    "A light layer for the evening",
+    "Cash for drinks and tips"
+  ],
+  "faq": [
+    { "q": "What is fantasia?", "a": "A traditional Moroccan equestrian display. Riders in traditional dress perform in a line in the arena, and muskets are fired into the air." },
+    { "q": "Are drinks included?", "a": "Water or a soft drink with dinner is often included, but it varies by venue. We confirm the drinks policy when you request." },
+    { "q": "Which venue is it, and what is the menu?", "a": "The venue and menu vary, so we confirm both at the time of your request, along with the current programme." }
+  ],
+  "research": {
+    "confidence": {
+      "route": "unverified",
+      "timings": "likely",
+      "seasonality": "likely"
+    },
+    "sources": [
+      { "url": "https://ich.unesco.org/en/RL/tbourida-01404", "title": "UNESCO: Tbourida", "accessed": "2026-09-30", "supports": "what fantasia/tbourida is and its heritage status" },
+      { "url": "https://www.viator.com/tours/Marrakech/Marrakech-Chez-Ali-Fantasia-Folklore-Show-and-Moroccan-Dinner/d5408-450108P1", "title": "Chez Ali Fantasia Folklore Show and Moroccan Dinner", "accessed": "2026-09-30", "supports": "typical evening format (Marrakech venue, comparison only)" }
+    ],
+    "openQuestionsForOperator": [
+      "Which venue in the Agadir area is used, and what is its address?",
+      "What exactly does the programme include, and on which nights?",
+      "What is included to drink, and is there a vegetarian or child option?"
+    ]
+  }
+}

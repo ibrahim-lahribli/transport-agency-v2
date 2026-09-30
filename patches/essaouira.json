@@ -1,0 +1,98 @@
+{
+  "id": "essaouira",
+  "route": {
+    "startPoint": "Central Agadir",
+    "legs": [
+      { "from": "Central Agadir", "to": "Tamri viewpoint", "km": 70, "minutes": "60 to 75", "notes": "N1 north along the coast." },
+      { "from": "Tamri", "to": "Argan cooperative area (Ida Ou Gourd / Tamri)", "km": 20, "minutes": "20 to 30", "notes": "Short stop on the same road." },
+      { "from": "Argan cooperative", "to": "Essaouira", "km": 85, "minutes": "75 to 95", "notes": "N1 north; goats in argan trees may be seen in season." },
+      { "from": "Essaouira", "to": "Central Agadir (return, N1 south)", "km": 175, "minutes": "150 to 180", "notes": "Same road back, arriving after dark in winter." }
+    ],
+    "roundTripKm": 350,
+    "drivingHoursTotal": "5 h to 6 h"
+  },
+  "durationHours": 12,
+  "pickupWindow": "07:00 to 08:00",
+  "returnApprox": "19:00 to 19:30",
+  "itinerary": [
+    "Hotel pickup in Agadir, suggested departure about 07:30.",
+    "Tamri: panoramic stop over the Atlantic coastline and river mouth.",
+    "Goats in argan trees may be visible, depending on the season; never guaranteed.",
+    "Argan oil cooperative: traditional production and local products.",
+    "Essaouira: fortified medina, city walls, fishing harbour, skala and historic cannons.",
+    "Free time for lunch, galleries, shops or a walk by the ocean.",
+    "Departure from Essaouira about 16:00; return to Agadir about 19:00 to 19:30."
+  ],
+  "summary": {
+    "en": "Travel north along the coast for a full day on this Essaouira day trip from Agadir. You stop first at Tamri for views over the Atlantic, then watch for goats in the argan trees, a sight that depends on the season and is never guaranteed. A visit to an argan oil cooperative explains how the oil is made. In Essaouira, a historic Atlantic port also known as Mogador, you walk the fortified medina, the ramparts, the skala and the working fishing harbour, with its old cannons and souks. Free time for lunch and galleries follows before the drive back. It is a long day, with about five to six hours on the road in total.",
+    "fr": "Partez vers le nord le long de la côte pour une journée complète lors de cette excursion à Essaouira depuis Agadir. Premier arrêt à Tamri, avec vue sur l'Atlantique, puis vous observez les chèvres dans les arganiers, un spectacle selon la saison et jamais garanti. La visite d'une coopérative d'huile d'argan explique la fabrication de l'huile. À Essaouira, ancien port atlantique aussi appelé Mogador, vous parcourez la médina fortifiée, les remparts, la skala et le port de pêche en activité, avec ses vieux canons et ses souks. Du temps libre pour le déjeuner et les galeries précède le retour. C'est une longue journée, avec environ cinq à six heures de route au total. (Draft for native review.)"
+  },
+  "highlights": {
+    "en": [
+      "Full day on the Atlantic coast from Agadir",
+      "Tamri panoramic stop over the coastline",
+      "Goats in argan trees, depending on the season",
+      "Argan oil cooperative visit",
+      "Fortified medina, ramparts, skala and harbour",
+      "Free time for lunch, galleries and shops"
+    ],
+    "fr": [
+      "Journée complète sur la côte atlantique depuis Agadir",
+      "Arrêt panoramique à Tamri sur le littoral",
+      "Chèvres dans les arganiers, selon la saison",
+      "Visite d'une coopérative d'huile d'argan",
+      "Médina fortifiée, remparts, skala et port",
+      "Temps libre pour déjeuner, galeries et boutiques"
+    ]
+  },
+  "seo": {
+    "en": {
+      "title": "Essaouira Day Trip from Agadir",
+      "description": "Essaouira day trip from agadir: Tamri viewpoint, argan cooperative, fortified medina, ramparts, harbour and free time. About 3 hours each way."
+    },
+    "fr": {
+      "title": "Excursion à Essaouira depuis Agadir",
+      "description": "Excursion à Essaouira depuis Agadir : point de vue de Tamri, coopérative d'argan, médina fortifiée, remparts, port et temps libre pour le déjeuner."
+    }
+  },
+  "restrictions": [
+    "Long day: about 5 to 6 hours in the vehicle in total.",
+    "Goats in argan trees are a spontaneous seasonal sight and are never guaranteed.",
+    "Essaouira is often windy; the sea wall and harbour edges need care in strong wind."
+  ],
+  "seasonalNotes": [
+    "Goats in argan trees are seen most reliably in the drier months, generally late morning to mid-afternoon.",
+    "Essaouira is windy year-round and especially in summer; a light jacket helps.",
+    "In winter the return drive finishes after dark."
+  ],
+  "bring": [
+    "Light jacket for the wind",
+    "Comfortable shoes",
+    "Hat and sunscreen",
+    "Cash for lunch, purchases and any monument entry"
+  ],
+  "faq": [
+    { "q": "How long is the drive?", "a": "About three hours each way on the coast road, so around five to six hours on the road in total. We build in stops." },
+    { "q": "Will we see goats in the argan trees?", "a": "Sometimes. It depends on the season and local conditions, and it is never guaranteed. The drier months are usually better." },
+    { "q": "Is lunch included?", "a": "No. Lunch is during your free time in Essaouira, so you can choose where and what to eat." }
+  ],
+  "research": {
+    "confidence": {
+      "route": "verified",
+      "timings": "likely",
+      "seasonality": "verified"
+    },
+    "sources": [
+      { "url": "https://www.rome2rio.com/s/Agadir/Essaouira", "title": "Agadir to Essaouira", "accessed": "2026-09-30", "supports": "175 km and driving time" },
+      { "url": "https://www.travelmath.com/driving-time/from/Agadir,+Morocco/to/Essaouira,+Morocco", "title": "Driving time from Agadir to Essaouira", "accessed": "2026-09-30", "supports": "about 3 hours driving time" },
+      { "url": "https://www.nationalgeographic.com/animals/article/moroccos-tree-climbing-goats", "title": "The real story behind Morocco's tree-climbing goats", "accessed": "2026-09-30", "supports": "when and where argan goats are seen" },
+      { "url": "https://marocmama.com/everything-need-know-essaouira/", "title": "Visiting Essaouira", "accessed": "2026-09-30", "supports": "Skala entry fee reports" },
+      { "url": "https://www.trip.com/moments/detail/essaouira-21788-120027886/", "title": "La Skala, Essaouira", "accessed": "2026-09-30", "supports": "Skala de la Ville opening hours" }
+    ],
+    "openQuestionsForOperator": [
+      "Which argan cooperative is the standard stop on the Essaouira road?",
+      "Is the Tamri stop a viewpoint or a longer riverside stop?",
+      "Is a 19:00 return realistic in high-season traffic?"
+    ]
+  }
+}

@@ -1,0 +1,1067 @@
+[
+  {
+    "id": "boat-cruise",
+    "category": "activity",
+    "status": "draft",
+    "order": 1,
+    "slug": {
+      "en": "agadir-boat-cruise-fishing-bbq-lunch",
+      "fr": "sortie-bateau-agadir-peche-barbecue"
+    },
+    "title": {
+      "en": "Agadir Boat Cruise with Fishing & Fish BBQ Lunch",
+      "fr": "Sortie en bateau à Agadir : pêche et barbecue de poisson"
+    },
+    "summary": {
+      "en": "Spend a half day at sea on this Agadir boat trip from the marina. After a short transfer from your hotel you board and head out along the Atlantic coast, with the city and its hills seen from the water. The crew stops for fishing, and equipment is available on board. Weather and sea conditions permitting, there is also a swim stop. Lunch is a Moroccan fish barbecue with a traditional salad, cooked and served on board. The boat then returns to Agadir Marina, where your transfer is waiting. Departures depend on weather and boat availability, so we check the day when you request.",
+      "fr": "Passez une demi-journée en mer lors de cette sortie en bateau agadir au départ de la marina. Après un court transfert depuis votre hôtel, vous embarquez et longez la côte atlantique, avec la ville et ses collines vues depuis l'eau. L'équipage fait une halte pêche, avec le matériel à bord. Si la météo et l'état de la mer le permettent, une pause baignade est aussi prévue. Le déjeuner est un barbecue de poisson marocain accompagné d'une salade traditionnelle, préparé et servi à bord. Le bateau revient ensuite à la marina d'Agadir, où votre transfert vous attend. Les départs dépendent de la météo et de la disponibilité du bateau. (Draft for native review.)"
+    },
+    "seo": {
+      "en": {
+        "title": "Agadir Boat Trip: Fishing & Fish BBQ",
+        "description": "Agadir boat trip from the marina: coastline views, a fishing stop, a swim stop when conditions allow and a Moroccan fish barbecue lunch."
+      },
+      "fr": {
+        "title": "Sortie en bateau à Agadir : pêche et BBQ",
+        "description": "Sortie en bateau à Agadir depuis la marina : vues sur la côte, arrêt pêche, baignade si la mer le permet et barbecue de poisson marocain."
+      }
+    },
+    "primaryKeyword": {
+      "en": "agadir boat trip",
+      "fr": "sortie en bateau agadir"
+    },
+    "durationHours": 4.75,
+    "departures": [
+      "09:15"
+    ],
+    "days": "Daily, subject to weather and boat availability",
+    "capacity": {
+      "min": 2,
+      "sharedMax": 20,
+      "privateAvailable": true
+    },
+    "price": {
+      "currency": "EUR",
+      "unit": "person",
+      "basis": "estimate",
+      "confirmed": false,
+      "options": [
+        {
+          "label": "Adult",
+          "amount": 35
+        },
+        {
+          "label": "Child 4 to 11",
+          "amount": 18
+        },
+        {
+          "label": "Child under 4",
+          "amount": 0
+        }
+      ],
+      "privateOnRequest": "Private cruise for groups: quoted by group size and boat availability"
+    },
+    "cancellationPolicy": "adventure",
+    "languages": [
+      "en",
+      "fr",
+      "ar"
+    ],
+    "host": "boat-crew",
+    "itinerary": [
+      "Hotel pickup and transfer to Agadir Marina.",
+      "Board and cruise along the Atlantic coast, with views of Agadir from the sea.",
+      "Fishing stop, with equipment available on board.",
+      "Swimming stop, if weather and sea conditions allow.",
+      "Moroccan fish barbecue with a traditional salad.",
+      "Return to the marina and transfer back to your hotel."
+    ],
+    "includedExtra": [
+      "Fishing equipment",
+      "Fish barbecue lunch with traditional salad",
+      "Marina transfers"
+    ],
+    "notIncluded": [
+      "Drinks (to be confirmed: water and soft drinks)",
+      "Tips"
+    ],
+    "bring": [
+      "Swimwear and towel",
+      "Sunscreen, hat and sunglasses",
+      "A light jacket for the water",
+      "Motion-sickness tablets if you are prone to seasickness"
+    ],
+    "suitableFor": [
+      "Couples",
+      "Families",
+      "Friends",
+      "Groups"
+    ],
+    "restrictions": [
+      "Departures depend on weather, sea conditions and boat availability.",
+      "The swim stop happens only when conditions allow.",
+      "Guests who cannot swim should stay on board or use a float; confirm with the crew."
+    ],
+    "seasonalNotes": [
+      "Winter swells can shorten or cancel trips; mornings are often calmer.",
+      "Summer offers calmer seas, with strong sun on land before and after the cruise."
+    ],
+    "faq": [
+      {
+        "q": "What happens if the sea is too rough?",
+        "a": "Departures depend on the weather and sea state. If the trip cannot run safely we offer another date, an alternative, or a refund of anything paid."
+      },
+      {
+        "q": "Do I need to know how to swim?",
+        "a": "No, but the swim stop is only for confident swimmers. Life jackets are available on board, and you can stay on the boat."
+      },
+      {
+        "q": "Can we take the boat privately?",
+        "a": "Yes, a private cruise can be arranged for groups, subject to boat capacity and availability. Ask us to check."
+      }
+    ],
+    "confirmFlags": [
+      "price and private cruise quote",
+      "drinks included",
+      "exact pickup time",
+      "boat capacity",
+      "life-jacket and safety equipment",
+      "operator licence and insurance"
+    ],
+    "route": {
+      "startPoint": "Central Agadir",
+      "legs": [
+        {
+          "from": "Central Agadir",
+          "to": "Agadir Marina",
+          "km": 4,
+          "minutes": "10 to 15",
+          "notes": "Short transfer from your hotel to the marina."
+        },
+        {
+          "from": "Agadir Marina",
+          "to": "Bay of Agadir (sea leg)",
+          "km": 0,
+          "minutes": "up to 120",
+          "notes": "Coastal cruise with a fishing stop and, conditions permitting, a swim stop."
+        },
+        {
+          "from": "Agadir Marina",
+          "to": "Central Agadir (return)",
+          "km": 4,
+          "minutes": "10 to 15",
+          "notes": "Transfer back to your hotel."
+        }
+      ],
+      "roundTripKm": 8,
+      "drivingHoursTotal": "0 h 20 to 0 h 30"
+    },
+    "pickupWindow": "08:00 to 08:45",
+    "returnApprox": "14:00 to 14:45",
+    "highlights": {
+      "en": [
+        "Half-day cruise from Agadir Marina",
+        "Coastline views of Agadir from the sea",
+        "Fishing stop with equipment on board",
+        "Swim stop when conditions allow",
+        "Moroccan fish barbecue with salad",
+        "Hotel pickup and return transfer included"
+      ],
+      "fr": [
+        "Croisière d'une demi-journée depuis la marina d'Agadir",
+        "Vues sur la côte d'Agadir depuis la mer",
+        "Arrêt pêche avec matériel à bord",
+        "Pause baignade lorsque les conditions le permettent",
+        "Barbecue de poisson marocain avec salade",
+        "Prise en charge et retour à l'hôtel inclus"
+      ]
+    }
+  },
+  {
+    "id": "timlalin-dunes",
+    "category": "activity",
+    "status": "draft",
+    "order": 2,
+    "slug": {
+      "en": "timlalin-dunes-quad-camel-sandboarding",
+      "fr": "dunes-timlalin-quad-dromadaire-sandboard"
+    },
+    "title": {
+      "en": "Timlalin Dunes: Quad, Camel Ride & Sandboarding",
+      "fr": "Dunes de Timlalin : quad, dromadaire et sandboard"
+    },
+    "summary": {
+      "en": "Ride the coastal dunes on this timlalin dunes agadir activity. The dunes lie north of Agadir, past Tamri on the coast road, so plan on about an hour to an hour and a quarter each way. Once there you can ride a camel across the sand, drive a quad for about an hour after a safety briefing, and try sandboarding on the slopes that face the Atlantic. You choose which of these you want; they can also be combined. A sunset option runs in season, with a late-afternoon start and a return shortly after the sun goes down. Hotel pickup and drop-off are included.",
+      "fr": "Parcourez les dunes côtières lors de cette activité dunes timlalin agadir. Les dunes se trouvent au nord d'Agadir, après Tamri sur la route de la côte : comptez environ une heure à une heure et quart par trajet. Sur place, vous pouvez faire une balade à dos de dromadaire sur le sable, conduire un quad pendant environ une heure après un briefing de sécurité, et essayer le sandboard sur les pentes face à l'Atlantique. Vous choisissez les activités, qui peuvent aussi être combinées. Une option coucher de soleil est proposée en saison, avec un départ en fin d'après-midi et un retour peu après le coucher du soleil. Prise en charge et retour à l'hôtel inclus. (Draft for native review.)"
+    },
+    "seo": {
+      "en": {
+        "title": "Timlalin Dunes: Camel, Quad & Sandboarding",
+        "description": "Timlalin dunes agadir activity: camel ride, about an hour on a quad and sandboarding on coastal dunes north of Agadir, with a seasonal sunset option."
+      },
+      "fr": {
+        "title": "Dunes de Timlalin : dromadaire, quad et sandboard",
+        "description": "Dunes timlalin agadir : balade à dromadaire, environ une heure de quad et sandboard sur les dunes côtières au nord d'Agadir, option coucher de soleil."
+      }
+    },
+    "primaryKeyword": {
+      "en": "timlalin dunes agadir",
+      "fr": "dunes timlalin agadir"
+    },
+    "durationHours": 5.5,
+    "schedule": "Morning, afternoon or sunset departures (sunset seasonal). Pickup and return above are for the morning option; the sunset option returns after sunset.",
+    "days": "Daily",
+    "capacity": {
+      "min": 2,
+      "sharedMax": 16,
+      "privateAvailable": true
+    },
+    "price": {
+      "currency": "EUR",
+      "basis": "estimate",
+      "confirmed": false,
+      "options": [
+        {
+          "label": "Camel ride (about 45 minutes)",
+          "amount": 15,
+          "unit": "person"
+        },
+        {
+          "label": "Sunset camel ride",
+          "amount": 20,
+          "unit": "person"
+        },
+        {
+          "label": "Quad, 1 hour, single rider",
+          "amount": 35,
+          "unit": "person"
+        },
+        {
+          "label": "Quad, 1 hour, two riders on one quad",
+          "amount": 50,
+          "unit": "quad"
+        },
+        {
+          "label": "Sandboarding add-on",
+          "amount": 10,
+          "unit": "person"
+        },
+        {
+          "label": "Dunes combo: quad 1 hour + camel ride + sandboarding",
+          "amount": 55,
+          "unit": "person"
+        }
+      ]
+    },
+    "cancellationPolicy": "adventure",
+    "languages": [
+      "en",
+      "fr",
+      "ar"
+    ],
+    "host": "operator-team",
+    "itinerary": [
+      "Hotel pickup in Agadir and drive north toward Tamri (about 1 hour to 1 hour 15).",
+      "Camel ride through the dunes, with views toward the Atlantic.",
+      "Quad ride of about one hour over the sand, after a safety briefing.",
+      "Sandboarding on the dune slopes.",
+      "Photos and a short break in the dunes.",
+      "Return drive to Agadir, arriving about 13:45 to 14:45.",
+      "Sunset option: a late-afternoon start, returning shortly after sunset (seasonal)."
+    ],
+    "includedExtra": [
+      "Safety briefing and equipment for quad",
+      "Hotel pickup and drop-off in Agadir zones"
+    ],
+    "notIncluded": [
+      "Activities you do not select",
+      "Tips"
+    ],
+    "bring": [
+      "Closed shoes",
+      "Sunglasses",
+      "Scarf or buff for the sand",
+      "Sunscreen",
+      "A light layer for the sunset option"
+    ],
+    "suitableFor": [
+      "Adventure lovers",
+      "Couples",
+      "Families",
+      "Groups",
+      "Photography"
+    ],
+    "restrictions": [
+      "These are small coastal dunes, not desert or Sahara dunes.",
+      "The site is roughly 70 km north of Agadir, so about 1 hour to 1 hour 15 each way.",
+      "Quad driving is typically limited to older guests; younger guests usually ride as passengers. Confirm ages when you request.",
+      "Quad and camel riding are not recommended in pregnancy or with back or heart problems."
+    ],
+    "seasonalNotes": [
+      "Sand is very hot at midday in summer; mornings and late afternoons are more comfortable.",
+      "Sunset departures are seasonal; sunset is about 18:45 in winter and about 20:15 in summer.",
+      "Sand is firmer after rain."
+    ],
+    "contentNote": "Camel and quad here are separate options on ONE page to avoid competing with the forest quad and buggy page.",
+    "faq": [
+      {
+        "q": "How far is Timlalin from Agadir?",
+        "a": "About 70 km north, past Tamri, which is roughly 1 hour to 1 hour 15 each way. It is a half-day trip door to door."
+      },
+      {
+        "q": "Can I combine the camel ride, quad and sandboarding?",
+        "a": "Yes. You can choose one activity or combine them. We confirm the combination and timing when you request."
+      },
+      {
+        "q": "Is there an age limit for the quad?",
+        "a": "Usually you must be old enough to drive safely; younger guests often ride as passengers. We confirm the exact ages when you request."
+      }
+    ],
+    "confirmFlags": [
+      "all option prices",
+      "drive time from Agadir",
+      "minimum ages",
+      "sunset schedule",
+      "operator licence and insurance",
+      "board and helmet provision"
+    ],
+    "route": {
+      "startPoint": "Central Agadir",
+      "legs": [
+        {
+          "from": "Central Agadir",
+          "to": "Timlaline dunes near Tamri (N1 north)",
+          "km": 68,
+          "minutes": "60 to 80",
+          "notes": "Coast road north past Anza, Tamraght and Tamri."
+        },
+        {
+          "from": "Dune area",
+          "to": "Camel, quad and sandboarding points",
+          "km": 5,
+          "minutes": "10 to 20",
+          "notes": "Short moves between the activity spots."
+        },
+        {
+          "from": "Timlaline",
+          "to": "Central Agadir (return, N1 south)",
+          "km": 68,
+          "minutes": "60 to 80",
+          "notes": "Same road back."
+        }
+      ],
+      "roundTripKm": 141,
+      "drivingHoursTotal": "2 h 10 to 2 h 45"
+    },
+    "pickupWindow": "08:30 to 09:30",
+    "returnApprox": "13:45 to 14:45",
+    "highlights": {
+      "en": [
+        "Camel ride through Atlantic coastal dunes",
+        "Quad ride of about one hour, with briefing",
+        "Sandboarding on the dune slopes",
+        "Combine the activities if you wish",
+        "Sunset option in season",
+        "Hotel pickup and drop-off included"
+      ],
+      "fr": [
+        "Balade à dos de dromadaire dans les dunes côtières",
+        "Sortie en quad d'environ une heure, avec briefing",
+        "Sandboard sur les pentes des dunes",
+        "Combinez les activités si vous le souhaitez",
+        "Option coucher de soleil en saison",
+        "Prise en charge et retour à l'hôtel inclus"
+      ]
+    }
+  },
+  {
+    "id": "quad-buggy-forest",
+    "category": "activity",
+    "status": "draft",
+    "order": 3,
+    "slug": {
+      "en": "agadir-quad-buggy-adventure-forest",
+      "fr": "quad-buggy-agadir-foret-dunes"
+    },
+    "title": {
+      "en": "Agadir Quad & Buggy Adventure through the Forest",
+      "fr": "Quad et buggy à Agadir : forêt et dunes"
+    },
+    "summary": {
+      "en": "Take an off-road ride on this quad buggy agadir activity. After a short transfer from your hotel you reach the base, where the team runs a safety briefing and fits your helmet. You then follow a driver on a route that moves between eucalyptus forest and open dune country, with a stop for a glass of traditional mint tea along the way. You can drive a quad, a four-wheeler with motorbike-style controls, or a two-seat buggy, a small off-road car that is easier to share. Riding lasts about 1.5 to 2 hours, and the whole outing takes around 3 hours door to door. Departures are at 09:00, 14:00 and 16:00.",
+      "fr": "Partez pour une sortie tout-terrain lors de cette activité quad buggy agadir. Après un court transfert depuis votre hôtel, vous rejoignez la base, où l'équipe donne un briefing de sécurité et vous équipe d'un casque. Vous suivez ensuite un conducteur sur un parcours alternant forêt d'eucalyptus et paysages de dunes, avec une pause pour un thé à la menthe traditionnel. Vous pouvez conduire un quad, un quatre-roues à commandes de moto, ou un buggy à deux places, une petite voiture tout-terrain plus facile à partager. La conduite dure environ 1h30 à 2h, et la sortie environ 3h au total. Départs à 09h00, 14h00 et 16h00. (Draft for native review.)"
+    },
+    "seo": {
+      "en": {
+        "title": "Agadir Quad & Buggy Ride in the Forest",
+        "description": "Quad buggy agadir adventure: an off-road ride through eucalyptus forest and dunes near Agadir, with a safety briefing and a mint tea break."
+      },
+      "fr": {
+        "title": "Quad et buggy à Agadir : forêt et dunes",
+        "description": "Quad buggy agadir : sortie tout-terrain en forêt d'eucalyptus et dans les dunes près d'Agadir, avec briefing de sécurité et pause thé à la menthe."
+      }
+    },
+    "primaryKeyword": {
+      "en": "quad buggy agadir",
+      "fr": "quad buggy agadir"
+    },
+    "durationHours": 3,
+    "departures": [
+      "09:00",
+      "14:00",
+      "16:00"
+    ],
+    "schedule": "Departures at 09:00, 14:00 and 16:00 are hotel pickup times; the ride starts about 20 to 30 minutes later. Pickup and return above are for the 09:00 departure.",
+    "days": "Daily, subject to availability and weather",
+    "capacity": {
+      "min": 1,
+      "sharedMax": 12,
+      "privateAvailable": true
+    },
+    "price": {
+      "currency": "EUR",
+      "basis": "estimate",
+      "confirmed": false,
+      "options": [
+        {
+          "label": "Quad, single rider",
+          "amount": 35,
+          "unit": "person"
+        },
+        {
+          "label": "Quad, two riders on one quad",
+          "amount": 50,
+          "unit": "quad"
+        },
+        {
+          "label": "Buggy, 2 seats",
+          "amount": 80,
+          "unit": "buggy"
+        }
+      ]
+    },
+    "cancellationPolicy": "adventure",
+    "languages": [
+      "en",
+      "fr",
+      "ar"
+    ],
+    "host": "operator-team",
+    "itinerary": [
+      "Hotel pickup by minibus or 4x4.",
+      "About 20 to 30 minutes transfer to the off-road base.",
+      "Safety briefing and equipment preparation.",
+      "Ride a quad or a buggy through eucalyptus forest and dune trails.",
+      "Traditional Moroccan mint tea break.",
+      "Return transfer to your hotel.",
+      "Departures at 09:00, 14:00 and 16:00."
+    ],
+    "includedExtra": [
+      "Safety briefing",
+      "Helmet and protective equipment",
+      "Mint tea break"
+    ],
+    "notIncluded": [
+      "Photos and video (if offered by operator)",
+      "Tips"
+    ],
+    "bring": [
+      "Closed shoes",
+      "Long trousers if possible",
+      "Sunglasses",
+      "Scarf or buff for dust"
+    ],
+    "suitableFor": [
+      "Adventure lovers",
+      "Couples",
+      "Friends",
+      "Groups"
+    ],
+    "restrictions": [
+      "Not recommended in pregnancy or with back or heart problems.",
+      "Minimum ages and driving rules for quad and buggy are set by the operator and confirmed when you request.",
+      "Helmets and protective equipment are provided; guests must follow the safety briefing.",
+      "The 16:00 departure may finish after dark in winter."
+    ],
+    "seasonalNotes": [
+      "Morning departures are usually cooler and less dusty.",
+      "In winter, sunset is about 18:30, so a 16:00 start can end after dark.",
+      "Sand and dust are heavier in long dry spells."
+    ],
+    "contentNote": "Distinct from the Timlalin dunes page. Emphasise forest route and buggy.",
+    "faq": [
+      {
+        "q": "What is the difference between the quad and the buggy?",
+        "a": "A quad is a four-wheeler with motorbike-style controls. A buggy is a small two-seat off-road car, often more comfortable to share."
+      },
+      {
+        "q": "How long does the activity last?",
+        "a": "About 1.5 to 2 hours of riding, plus transfers and the mint tea break. Around 3 hours door to door."
+      },
+      {
+        "q": "Is there a minimum age?",
+        "a": "Ages for driving and for riding as a passenger are set by the operator. We confirm them for your group when you request."
+      }
+    ],
+    "confirmFlags": [
+      "all prices",
+      "departure times by season",
+      "minimum ages and licence rules",
+      "operator licence and insurance",
+      "group size limit"
+    ],
+    "route": {
+      "startPoint": "Central Agadir",
+      "legs": [
+        {
+          "from": "Central Agadir",
+          "to": "Off-road base near Agadir",
+          "km": 22,
+          "minutes": "20 to 30",
+          "notes": "Exact site to be confirmed; operators describe a base south of the city, around Tifnit."
+        },
+        {
+          "from": "Base",
+          "to": "Forest and dune trails (on the machines)",
+          "km": 15,
+          "minutes": "45 to 60",
+          "notes": "Riding time within the 1.5 to 2 hours on the route."
+        },
+        {
+          "from": "Base",
+          "to": "Central Agadir (return)",
+          "km": 22,
+          "minutes": "20 to 30",
+          "notes": "Return transfer."
+        }
+      ],
+      "roundTripKm": 45,
+      "drivingHoursTotal": "0 h 40 to 1 h"
+    },
+    "pickupWindow": "08:45 to 09:00",
+    "returnApprox": "11:45 to 12:30",
+    "highlights": {
+      "en": [
+        "Off-road ride through eucalyptus forest and dunes",
+        "Choose a quad or a two-seat buggy",
+        "Safety briefing before you set off",
+        "About 1.5 to 2 hours of riding",
+        "Traditional mint tea break",
+        "Departures at 09:00, 14:00 and 16:00"
+      ],
+      "fr": [
+        "Sortie tout-terrain en forêt d'eucalyptus et dans les dunes",
+        "Au choix : quad ou buggy à deux places",
+        "Briefing de sécurité avant le départ",
+        "Environ 1h30 à 2h de conduite",
+        "Pause thé à la menthe traditionnel",
+        "Départs à 09h00, 14h00 et 16h00"
+      ]
+    }
+  },
+  {
+    "id": "horse-riding-souss",
+    "category": "activity",
+    "status": "draft",
+    "order": 4,
+    "slug": {
+      "en": "horse-riding-souss-river-agadir",
+      "fr": "balade-a-cheval-oued-souss-agadir"
+    },
+    "title": {
+      "en": "Horse Riding along the Souss River",
+      "fr": "Balade à cheval au bord de l'oued Souss"
+    },
+    "summary": {
+      "en": "Enjoy a calm ride on this horse riding agadir activity, in the green country along the Oued Souss. A short transfer takes you from your hotel to the centre, where you meet your horse and your host and go through a short safety briefing. The ride follows the river area and the eucalyptus belt on flat ground, so it suits both beginners and more confident riders. Helmets are usually provided. Both morning and cooler late-afternoon rides can be arranged. Tell us your riding experience when you request, so the host can pick a suitable horse and pace.",
+      "fr": "Profitez d'une balade tranquille lors de cette balade à cheval agadir, dans la verdure le long de l'oued Souss. Un court transfert vous emmène de votre hôtel au centre, où vous rencontrez votre cheval et votre hôte et suivez un bref briefing de sécurité. La balade longe la zone de l'oued et la ceinture d'eucalyptus, sur un terrain plat, ce qui convient aussi bien aux débutants qu'aux cavaliers plus à l'aise. Un casque est généralement fourni. Des balades le matin ou en fin d'après-midi, plus fraîches, sont possibles. Indiquez votre niveau lors de votre demande pour que l'hôte choisisse un cheval adapté. (Draft for native review.)"
+    },
+    "seo": {
+      "en": {
+        "title": "Horse Riding near Agadir, Oued Souss",
+        "description": "Horse riding agadir: a calm ride along the Oued Souss and eucalyptus trails, suitable for beginners and experienced riders, with hotel pickup."
+      },
+      "fr": {
+        "title": "Balade à cheval au bord de l'oued Souss",
+        "description": "Balade à cheval agadir : une sortie calme le long de l'oued Souss et des pistes d'eucalyptus, pour débutants et cavaliers, avec transfert hôtel."
+      }
+    },
+    "primaryKeyword": {
+      "en": "horse riding agadir",
+      "fr": "balade à cheval agadir"
+    },
+    "durationHours": 2.5,
+    "schedule": "Morning or late-afternoon rides, arranged when you request. Pickup and return above are for the morning ride.",
+    "days": "Daily, subject to availability",
+    "capacity": {
+      "min": 1,
+      "sharedMax": 8,
+      "privateAvailable": true
+    },
+    "price": {
+      "currency": "EUR",
+      "unit": "person",
+      "basis": "estimate",
+      "confirmed": false,
+      "options": [
+        {
+          "label": "1-hour guided ride",
+          "amount": 25
+        }
+      ]
+    },
+    "cancellationPolicy": "adventure",
+    "languages": [
+      "en",
+      "fr",
+      "ar"
+    ],
+    "host": "operator-team",
+    "bookingInfoNeeded": [
+      "Hotel name",
+      "Full names of participants",
+      "Preferred date and time"
+    ],
+    "paymentNote": "No deposit. Cash payment at pickup may be available depending on the operator.",
+    "itinerary": [
+      "Hotel pickup in Agadir.",
+      "Transfer to the riding centre near the Oued Souss, south of the city.",
+      "Meet your horse and your host; short safety briefing and mounting.",
+      "Ride along the Souss river area and the eucalyptus trails.",
+      "Return to the centre and transfer back to your hotel.",
+      "A late-afternoon ride is also possible; the timing is arranged when you request."
+    ],
+    "includedExtra": [
+      "1-hour guided ride",
+      "Safety helmet"
+    ],
+    "notIncluded": [
+      "Photos",
+      "Tips"
+    ],
+    "bring": [
+      "Long trousers",
+      "Closed shoes",
+      "Sunscreen and hat",
+      "Water"
+    ],
+    "suitableFor": [
+      "Beginners",
+      "Experienced riders",
+      "Couples",
+      "Friends"
+    ],
+    "restrictions": [
+      "Riding is not recommended in pregnancy or with back problems.",
+      "Minimum age and weight limits are set by the operator and confirmed when you request.",
+      "A helmet is normally provided; tell us in advance if you need a particular size."
+    ],
+    "seasonalNotes": [
+      "Late-afternoon rides are cooler in summer; mornings are better in the hottest months.",
+      "The Souss plain is dry and very hot in July and August."
+    ],
+    "faq": [
+      {
+        "q": "Is it suitable for beginners?",
+        "a": "Yes. The route is on flat ground and suits beginners, as well as more confident riders, subject to the operator's safety requirements."
+      },
+      {
+        "q": "What do you need from us to arrange it?",
+        "a": "Your hotel name, the full names of everyone riding, your preferred date and time, and your riding experience."
+      },
+      {
+        "q": "Is a helmet provided?",
+        "a": "A helmet is normally offered. Tell us your head size in advance and we will confirm it with the operator."
+      }
+    ],
+    "confirmFlags": [
+      "price",
+      "weight and age limits",
+      "helmet provision",
+      "cash payment at pickup",
+      "operator licence and insurance"
+    ],
+    "route": {
+      "startPoint": "Central Agadir",
+      "legs": [
+        {
+          "from": "Central Agadir",
+          "to": "Riding centre near the mouth of the Oued Souss",
+          "km": 9,
+          "minutes": "20 to 25",
+          "notes": "Short transfer south of the city."
+        },
+        {
+          "from": "Riding centre",
+          "to": "Souss river and eucalyptus trails (on horseback)",
+          "km": 6,
+          "minutes": "60 to 120",
+          "notes": "Flat ground along the river and through the trees."
+        },
+        {
+          "from": "Riding centre",
+          "to": "Central Agadir (return)",
+          "km": 9,
+          "minutes": "20 to 25",
+          "notes": "Return transfer."
+        }
+      ],
+      "roundTripKm": 24,
+      "drivingHoursTotal": "0 h 40 to 0 h 50"
+    },
+    "pickupWindow": "09:00 to 09:30",
+    "returnApprox": "11:15 to 11:45",
+    "highlights": {
+      "en": [
+        "Ride along the Oued Souss near Agadir",
+        "Flat terrain, suitable for beginners",
+        "Horse and pace matched to your experience",
+        "Morning or cooler late-afternoon rides",
+        "Hotel pickup and drop-off included",
+        "Host with you throughout the ride"
+      ],
+      "fr": [
+        "Balade le long de l'oued Souss près d'Agadir",
+        "Terrain plat, adapté aux débutants",
+        "Cheval et rythme selon votre niveau",
+        "Balades le matin ou en fin d'après-midi",
+        "Prise en charge et retour à l'hôtel inclus",
+        "Un hôte vous accompagne pendant la balade"
+      ]
+    }
+  },
+  {
+    "id": "crocoparc",
+    "category": "activity",
+    "status": "draft",
+    "order": 5,
+    "slug": {
+      "en": "crocoparc-agadir-private-transport",
+      "fr": "crocoparc-agadir-transport-prive"
+    },
+    "title": {
+      "en": "Crocoparc Agadir with Private Transport",
+      "fr": "Crocoparc Agadir avec transport privé"
+    },
+    "summary": {
+      "en": "Visit Crocoparc Agadir with private transport and no timetable of your own to keep. Your driver collects you at your hotel and takes you the short distance east to Drarga, where the park sits on the Agadir to Marrakech road. Inside you walk at your own pace past the Nile crocodiles and giant tortoises, along the botanical gardens and the outdoor spaces that suit families with children. Your driver waits during the visit, and then takes you back to your hotel. Entrance tickets are not included and are paid directly at the park, separately from the transport.",
+      "fr": "Visitez Crocoparc Agadir en transport privé, sans horaire imposé. Votre chauffeur vient vous chercher à votre hôtel et vous emmène à quelques kilomètres à l'est, à Drarga, où se trouve le parc sur la route d'Agadir à Marrakech. Sur place, vous avancez à votre rythme devant les crocodiles du Nil et les tortues géantes, le long des jardins botaniques et des espaces extérieurs adaptés aux familles avec enfants. Votre chauffeur vous attend pendant la visite, puis vous ramène à votre hôtel. Les billets d'entrée ne sont pas inclus et se paient directement au parc, séparément du transport. (Draft for native review.)"
+    },
+    "seo": {
+      "en": {
+        "title": "Crocoparc Agadir with Private Transport",
+        "description": "Crocoparc agadir visit with private hotel transport: crocodiles, tortoises and botanical gardens, with waiting time and return transfer included."
+      },
+      "fr": {
+        "title": "Crocoparc Agadir avec transport privé",
+        "description": "Visite du crocoparc agadir avec transport privé depuis l'hôtel : crocodiles, tortues et jardins botaniques, temps d'attente et retour inclus."
+      }
+    },
+    "primaryKeyword": {
+      "en": "crocoparc agadir",
+      "fr": "crocoparc agadir"
+    },
+    "durationHours": 3,
+    "days": "Daily, according to park opening hours",
+    "capacity": {
+      "min": 1,
+      "sharedMax": 7,
+      "privateAvailable": true
+    },
+    "price": {
+      "currency": "EUR",
+      "basis": "estimate",
+      "confirmed": false,
+      "options": [
+        {
+          "label": "Private car, up to 3 guests, round trip with about 2.5 hours waiting",
+          "amount": 25,
+          "unit": "vehicle"
+        },
+        {
+          "label": "Private van, 4 to 7 guests, round trip with about 2.5 hours waiting",
+          "amount": 35,
+          "unit": "vehicle"
+        },
+        {
+          "label": "Extra waiting time",
+          "amount": 5,
+          "unit": "30 minutes"
+        }
+      ],
+      "separateCost": "Entrance tickets are not included and are paid at the park. Show them clearly separate from transport."
+    },
+    "cancellationPolicy": "transfer",
+    "languages": [
+      "en",
+      "fr",
+      "ar"
+    ],
+    "host": "driver",
+    "itinerary": [
+      "Hotel pickup in Agadir.",
+      "Private transport to Crocoparc in Drarga, east of the city.",
+      "Visit at your own pace: Nile crocodiles, giant tortoises and other reptiles.",
+      "Walk the botanical gardens and family-friendly outdoor spaces.",
+      "Your driver waits for you during the visit.",
+      "Return transfer to your hotel."
+    ],
+    "includedExtra": [
+      "Hotel pickup",
+      "Transport to the park",
+      "Waiting time during your visit",
+      "Return transfer"
+    ],
+    "notIncluded": [
+      "Entrance tickets (paid at the park)",
+      "Food and drinks at the park"
+    ],
+    "bring": [
+      "Hat and sunscreen",
+      "Comfortable shoes",
+      "Cash or card for entrance tickets",
+      "Water"
+    ],
+    "suitableFor": [
+      "Families",
+      "Children",
+      "Nature lovers"
+    ],
+    "restrictions": [
+      "Entrance tickets are not included and are paid directly at the park.",
+      "The visit is at your own pace within the included waiting time; extra waiting may be available on request."
+    ],
+    "seasonalNotes": [
+      "The park is open all year and is outdoors; mornings are cooler in summer.",
+      "Midday heat in July and August is strong; bring water and sun protection."
+    ],
+    "faq": [
+      {
+        "q": "Are entrance tickets included?",
+        "a": "No. Transport and tickets are separate. You pay the park directly for entry, and your driver waits while you visit."
+      },
+      {
+        "q": "How long can we stay?",
+        "a": "The included waiting time is about 2.5 hours. Longer visits may be possible on request, sometimes with a small supplement."
+      },
+      {
+        "q": "Is it suitable for young children?",
+        "a": "Yes. The paths are easy, and the park is designed for families. A pushchair is manageable on most of the route."
+      }
+    ],
+    "confirmFlags": [
+      "transport prices",
+      "waiting time included",
+      "current park ticket prices and opening hours",
+      "whether entrance is sold as a package"
+    ],
+    "route": {
+      "startPoint": "Central Agadir",
+      "legs": [
+        {
+          "from": "Central Agadir",
+          "to": "Crocoparc, Drarga (RN8)",
+          "km": 14,
+          "minutes": "15 to 20",
+          "notes": "East of the city on the Agadir to Marrakech road."
+        },
+        {
+          "from": "Crocoparc",
+          "to": "Central Agadir (return)",
+          "km": 14,
+          "minutes": "15 to 25",
+          "notes": "Return transfer after your visit."
+        }
+      ],
+      "roundTripKm": 28,
+      "drivingHoursTotal": "0 h 30 to 0 h 45"
+    },
+    "pickupWindow": "09:45 to 10:30",
+    "returnApprox": "13:00 to 14:00",
+    "highlights": {
+      "en": [
+        "Private transport to Crocoparc, east of Agadir",
+        "Nile crocodiles and giant tortoises",
+        "Other reptiles and botanical gardens",
+        "Family-friendly outdoor spaces",
+        "Your driver waits during the visit",
+        "Entrance fee not included; paid at the park"
+      ],
+      "fr": [
+        "Transport privé jusqu'à Crocoparc, à l'est d'Agadir",
+        "Crocodiles du Nil et tortues géantes",
+        "Autres reptiles et jardins botaniques",
+        "Espaces extérieurs adaptés aux familles",
+        "Votre chauffeur vous attend pendant la visite",
+        "Entrée non incluse ; à payer au parc"
+      ]
+    }
+  },
+  {
+    "id": "moroccan-evening",
+    "category": "activity",
+    "status": "draft",
+    "order": 6,
+    "slug": {
+      "en": "moroccan-dinner-fantasia-show-agadir",
+      "fr": "diner-marocain-spectacle-fantasia-agadir"
+    },
+    "title": {
+      "en": "Moroccan Evening: Dinner, Fantasia & Cultural Show",
+      "fr": "Soirée marocaine : dîner, fantasia et spectacle"
+    },
+    "summary": {
+      "en": "Spend an evening of Moroccan food and performance on this Moroccan dinner show agadir night out. Your driver collects you from your hotel in the early evening and takes you to the venue, where dinner is served as the programme gets going. Across the evening you watch live Moroccan music, folklore and traditional dance, and a fantasia equestrian display in which riders in traditional dress perform in the arena. Depending on the venue's programme there may also be other entertainment. Hotel transfers are included in both directions. The exact venue, menu and programme are confirmed when you request.",
+      "fr": "Passez une soirée de gastronomie et de spectacle marocains lors de ce dîner spectacle agadir. Votre chauffeur vient vous chercher en début de soirée et vous emmène au lieu du spectacle, où le dîner est servi pendant que le programme commence. Tout au long de la soirée, vous assistez à de la musique marocaine, à des spectacles folkloriques et à des danses traditionnelles, ainsi qu'à une fantasia, spectacle équestre où des cavaliers en tenue traditionnelle évoluent dans l'arène. Selon le programme du lieu, d'autres animations sont possibles. Les transferts aller-retour depuis l'hôtel sont inclus. Le lieu exact, le menu et le programme sont confirmés lors de votre demande. (Draft for native review.)"
+    },
+    "seo": {
+      "en": {
+        "title": "Moroccan Dinner & Fantasia Show, Agadir",
+        "description": "Moroccan dinner show agadir: a traditional dinner with live music, folklore, dance and a fantasia horse display, with hotel transfers both ways."
+      },
+      "fr": {
+        "title": "Dîner marocain et fantasia à Agadir",
+        "description": "Dîner spectacle agadir : dîner traditionnel avec musique live, folklore, danses et fantasia équestre, avec transferts aller-retour depuis l'hôtel."
+      }
+    },
+    "primaryKeyword": {
+      "en": "moroccan dinner show agadir",
+      "fr": "dîner spectacle agadir"
+    },
+    "durationHours": 4,
+    "pickupWindow": "19:00 to 19:30",
+    "returnApprox": "23:00 to 23:30",
+    "days": "Daily, subject to the venue's programme and season",
+    "capacity": {
+      "min": 2,
+      "sharedMax": 30,
+      "privateAvailable": true
+    },
+    "price": {
+      "currency": "EUR",
+      "unit": "person",
+      "basis": "estimate",
+      "confirmed": false,
+      "options": [
+        {
+          "label": "Adult (dinner, show and transfers)",
+          "amount": 40
+        },
+        {
+          "label": "Child 4 to 11",
+          "amount": 20
+        },
+        {
+          "label": "Child under 4",
+          "amount": 0
+        }
+      ]
+    },
+    "cancellationPolicy": "excursion",
+    "languages": [
+      "en",
+      "fr",
+      "ar"
+    ],
+    "host": "venue-team",
+    "itinerary": [
+      "Evening hotel pickup in Agadir.",
+      "Arrival at the venue and a traditional Moroccan welcome.",
+      "Traditional Moroccan dinner.",
+      "Live Moroccan music and folklore performances.",
+      "Traditional dance performances.",
+      "Fantasia equestrian performance, subject to the venue's programme.",
+      "Return transfer to your hotel."
+    ],
+    "includedExtra": [
+      "Traditional dinner",
+      "Show",
+      "Hotel transfers"
+    ],
+    "notIncluded": [
+      "Drinks beyond those served with dinner",
+      "Tips"
+    ],
+    "bring": [
+      "A light layer for the evening",
+      "Cash for drinks and tips"
+    ],
+    "suitableFor": [
+      "Couples",
+      "Families",
+      "Friends",
+      "Groups"
+    ],
+    "restrictions": [
+      "The venue, menu and programme vary and are confirmed when you request.",
+      "Some evening programmes change or pause during Ramadan.",
+      "Drinks beyond those served with dinner are usually extra."
+    ],
+    "seasonalNotes": [
+      "Outdoor performances depend on the weather; a light layer helps on winter evenings.",
+      "During Ramadan, programmes may change or not run.",
+      "Book early around Eid and school holidays, when demand is high."
+    ],
+    "faq": [
+      {
+        "q": "What is fantasia?",
+        "a": "A traditional Moroccan equestrian display. Riders in traditional dress perform in a line in the arena, and muskets are fired into the air."
+      },
+      {
+        "q": "Are drinks included?",
+        "a": "Water or a soft drink with dinner is often included, but it varies by venue. We confirm the drinks policy when you request."
+      },
+      {
+        "q": "Which venue is it, and what is the menu?",
+        "a": "The venue and menu vary, so we confirm both at the time of your request, along with the current programme."
+      }
+    ],
+    "confirmFlags": [
+      "venue and programme",
+      "menu",
+      "drinks policy",
+      "price",
+      "pickup and return times",
+      "Ramadan and season availability"
+    ],
+    "route": {
+      "startPoint": "Central Agadir",
+      "legs": [
+        {
+          "from": "Central Agadir",
+          "to": "Evening venue in the Agadir area",
+          "km": 15,
+          "minutes": "20 to 30",
+          "notes": "Venue to be confirmed; distance varies with the site."
+        },
+        {
+          "from": "Evening venue",
+          "to": "Central Agadir (return)",
+          "km": 15,
+          "minutes": "20 to 30",
+          "notes": "Return transfer after the show."
+        }
+      ],
+      "roundTripKm": 30,
+      "drivingHoursTotal": "0 h 40 to 1 h"
+    },
+    "highlights": {
+      "en": [
+        "Traditional Moroccan dinner and live music",
+        "Folklore and traditional dance performances",
+        "Fantasia equestrian display",
+        "Other entertainment depending on the venue",
+        "Hotel transfers both ways",
+        "Venue, menu and programme confirmed on request"
+      ],
+      "fr": [
+        "Dîner marocain traditionnel et musique live",
+        "Spectacles folkloriques et danses traditionnelles",
+        "Fantasia, spectacle équestre",
+        "Autres animations selon le lieu",
+        "Transferts aller-retour depuis l'hôtel",
+        "Lieu, menu et programme confirmés sur demande"
+      ]
+    }
+  }
+]

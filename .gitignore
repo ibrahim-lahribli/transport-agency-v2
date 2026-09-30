@@ -1,0 +1,11 @@
+# Local tooling and IDE state
+.freebuff/
+
+# Pre-merge snapshots of the content files.
+# Superseded by git history from the first commit onward; kept on disk for now.
+.backup-originals/
+
+# Dependencies and build output (for the future tools/ check command)
+node_modules/
+dist/
+*.log
