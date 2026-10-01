@@ -69,4 +69,17 @@
     font-family: var(--font-sans);
     -webkit-text-size-adjust: 100%;
   }
+
+  body {
+    /* Explicit page background and text colour from the tokens, so the page
+       never flashes white before styles load. */
+    background-color: var(--canvas);
+    color: var(--ink);
+    min-block-size: 100dvh;
+    /* viewport-fit=cover pushes the layout under the notch and home indicator;
+       these insets keep content readable. Logical properties keep it RTL-safe. */
+    padding-block: env(safe-area-inset-top) env(safe-area-inset-bottom);
+    padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+    text-wrap: pretty;
+  }
 }
