@@ -5,8 +5,8 @@ export default function Home() {
         Agadir tours, excursions and transfers
       </h1>
       <p className="text-lg">
-        Placeholder home page. The catalogue of boat trips, desert excursions and private
-        transfers is on the way.
+        Placeholder home page. The catalogue of boat trips, desert excursions and private transfers
+        is on the way.
       </p>
     </main>
   );

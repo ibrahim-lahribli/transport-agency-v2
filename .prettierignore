@@ -1,0 +1,24 @@
+# Dependencies and build output
+node_modules
+.next
+out
+build
+
+# Generated and vendored files
+pnpm-lock.yaml
+next-env.d.ts
+
+# Test and CI artefacts
+coverage
+playwright-report
+test-results
+blob-report
+.lighthouseci
+
+# Source content is owned by the data pipeline, not Prettier
+data
+research
+activities.json
+excursions.json
+transfers.json
+*.txt
