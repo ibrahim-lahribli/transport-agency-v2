@@ -5,6 +5,7 @@ import { inter } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: "Agadir Tours, Excursions & Transfers",
   description:
     "Mobile-first booking for Agadir boat trips, desert excursions and private transfers with a local Souss-Massa travel agency.",
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:ps-4 focus:pe-4 focus:py-2 focus:text-on-accent"
+          className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:inset-bs-4 focus:z-50 focus:rounded-md focus:bg-accent focus:ps-4 focus:pe-4 focus:py-2 focus:text-on-accent"
         >
           Skip to content
         </a>
