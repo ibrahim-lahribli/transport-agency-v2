@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const moroccanEvening: Service = {
   id: "moroccan-evening",
   category: "activity",
-  status: "draft",
+  status: "published",
   order: 6,
   slug: "diner-marocain-spectacle-fantasia-agadir",
   title: "Soirée marocaine : dîner, fantasia et spectacle culturel",

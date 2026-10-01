@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const timlalinDunes: Service = {
   id: "timlalin-dunes",
   category: "activity",
-  status: "draft",
+  status: "published",
   order: 2,
   slug: "dunes-timlalin-quad-dromadaire-sandboard",
   title: "Dunes de Timlalin : quad, dromadaire et sandboard",
@@ -33,6 +33,7 @@ export const timlalinDunes: Service = {
         label: "Balade à dromadaire (environ 45 min)",
         amount: 15,
         unit: "person",
+        isBase: true,
       },
       {
         label: "Balade à dromadaire au coucher du soleil",

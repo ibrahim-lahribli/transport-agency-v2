@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const quadBuggyForest: Service = {
   id: "quad-buggy-forest",
   category: "activity",
-  status: "draft",
+  status: "published",
   order: 3,
   slug: "quad-buggy-agadir-foret-dunes",
   title: "Quad et buggy à Agadir : aventure entre forêt et dunes",

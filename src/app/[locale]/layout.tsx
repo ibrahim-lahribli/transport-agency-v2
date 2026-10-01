@@ -1,7 +1,10 @@
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
-import { LOCALES, isRtlLocale } from "@/i18n/locales";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { LOCALES, isAppLocale, isRtlLocale } from "@/i18n/locales";
+import { getSlugAlternates } from "@/seo/content";
 import { inter } from "../fonts";
 import "../globals.css";
 import { TravelAgencyJsonLd } from "@/components/json-ld";
@@ -30,11 +33,17 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  if (!LOCALES.includes(locale as any)) {
+  if (!isAppLocale(locale)) {
     notFound();
   }
 
+  // Enables static rendering for this locale across the whole subtree.
+  setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: "nav" });
+  const messages = await getMessages();
   const dir = isRtlLocale(locale) ? "rtl" : "ltr";
+  const slugAlternates = getSlugAlternates();
 
   return (
     <html lang={locale} dir={dir} className={inter.variable}>
@@ -42,17 +51,19 @@ export default async function LocaleLayout({
         <TravelAgencyJsonLd />
       </head>
       <body className="flex flex-col min-h-screen bg-canvas text-ink">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:inset-bs-4 focus:z-50 focus:rounded-md focus:bg-accent focus:ps-4 focus:pe-4 focus:py-2 focus:text-on-accent"
-        >
-          {locale === "fr" ? "Aller au contenu" : "Skip to content"}
-        </a>
-        <Header locale={locale} />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer locale={locale} />
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:inset-bs-4 focus:z-50 focus:rounded-md focus:bg-accent focus:ps-4 focus:pe-4 focus:py-2 focus:text-on-accent"
+          >
+            {t("skipToContent")}
+          </a>
+          <Header locale={locale} slugAlternates={slugAlternates} />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <Footer locale={locale} />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

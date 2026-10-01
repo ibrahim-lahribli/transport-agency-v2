@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const paradiseValley: Service = {
   id: "paradise-valley",
   category: "excursion",
-  status: "draft",
+  status: "published",
   order: 7,
   slug: "excursion-vallee-du-paradis-depuis-agadir",
   title: "Excursion d'une journée à Paradise Valley depuis Agadir",

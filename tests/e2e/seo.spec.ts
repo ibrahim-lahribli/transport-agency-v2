@@ -1,5 +1,16 @@
 import { test, expect } from "@playwright/test";
 
+interface JsonLd {
+  "@type"?: string;
+  duration?: string;
+  offers?: {
+    "@type"?: string;
+    priceCurrency?: string;
+    price?: number;
+  };
+  [key: string]: unknown;
+}
+
 test.describe("SEO Requirements Suite", () => {
   let sitemapUrls: string[] = [];
 
@@ -101,11 +112,11 @@ test.describe("SEO Requirements Suite", () => {
       const jsonLdCount = await jsonLdScripts.count();
       expect(jsonLdCount, `Expected at least one JSON-LD script on ${path}`).toBeGreaterThanOrEqual(1);
 
-      const parsedSchemas: any[] = [];
+      const parsedSchemas: JsonLd[] = [];
       for (let i = 0; i < jsonLdCount; i++) {
         const raw = await jsonLdScripts.nth(i).textContent();
         expect(raw).toBeTruthy();
-        let parsed: any;
+        let parsed: JsonLd = {};
         expect(() => {
           parsed = JSON.parse(raw!);
         }, `Invalid JSON-LD on ${path}: ${raw}`).not.toThrow();
@@ -130,21 +141,31 @@ test.describe("SEO Requirements Suite", () => {
         const touristTrip = parsedSchemas.find((s) => s["@type"] === "TouristTrip");
         expect(touristTrip, `TouristTrip JSON-LD missing on product page ${path}`).toBeTruthy();
 
-        // ISO 8601 duration check (e.g. PT6H, PT4H15M)
-        expect(touristTrip.duration).toMatch(/^PT(\d+H)?(\d+M)?$/);
+        // ISO 8601 duration is only present on timed products (never transfers).
+        // When present it must be a valid, normalized ISO 8601 duration.
+        if (touristTrip!.duration !== undefined) {
+          expect(touristTrip!.duration).toMatch(/^PT(\d+H)?(\d+M)?$/);
+          expect(touristTrip!.duration).not.toMatch(/60M/);
+        }
 
         // Offer check
-        expect(touristTrip.offers).toBeTruthy();
-        expect(touristTrip.offers["@type"]).toBe("Offer");
-        expect(touristTrip.offers.priceCurrency).toBe("EUR");
-        expect(typeof touristTrip.offers.price).toBe("number");
-        expect(touristTrip.offers.price).toBeGreaterThan(0);
+        const offers = touristTrip!.offers;
+        expect(offers).toBeTruthy();
+        expect(offers!["@type"]).toBe("Offer");
+        expect(offers!.priceCurrency).toBe("EUR");
+        expect(typeof offers!.price).toBe("number");
+        expect(offers!.price).toBeGreaterThan(0);
 
-        // RULE: Visible price matches JSON-LD price
+        // RULE: Visible price matches JSON-LD price as a whole number token
+        // (a plain substring check would let 5 pass against 250).
         const visiblePriceEl = page.locator('[data-testid="quick-facts-price"]');
         await expect(visiblePriceEl).toBeVisible();
-        const visiblePriceText = await visiblePriceEl.textContent();
-        expect(visiblePriceText).toContain(touristTrip.offers.price.toString());
+        const visiblePriceText = (await visiblePriceEl.textContent()) ?? "";
+        const pricePattern = new RegExp(`(^|\\D)${offers!.price}(\\D|$)`);
+        expect(
+          visiblePriceText,
+          `Visible price "${visiblePriceText}" does not contain ${offers!.price} on ${path}`,
+        ).toMatch(pricePattern);
       }
     }
   });

@@ -54,6 +54,8 @@ export const PriceOptionSchema = z.object({
   amount: z.number().min(0),
   unit: PriceUnitSchema.optional(),
   note: z.string().optional(),
+  /** Marks the option as a bookable base price for the service's "from" price. */
+  isBase: z.boolean().optional(),
 });
 export type PriceOption = z.infer<typeof PriceOptionSchema>;
 

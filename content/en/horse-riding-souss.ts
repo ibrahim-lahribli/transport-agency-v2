@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const horseRidingSouss: Service = {
   id: "horse-riding-souss",
   category: "activity",
-  status: "draft",
+  status: "published",
   order: 4,
   slug: "horse-riding-souss-river-agadir",
   title: "Horse Riding along the Souss River",

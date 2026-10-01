@@ -6,23 +6,39 @@ export type HubKey = "excursions" | "activities" | "transfers";
 
 export const HUB_KEYS: HubKey[] = ["excursions", "activities", "transfers"];
 
+/**
+ * Publish gate: only services explicitly marked `published` are ever exposed to
+ * pages, metadata, the sitemap or internal links. Drafts and archived content
+ * are filtered out here, at the single entry point for catalogue reads.
+ */
+function isPublished(service: Service): boolean {
+  return service.status === "published";
+}
+
+function byOrder(a: Service, b: Service): number {
+  return a.order - b.order;
+}
+
 export function getServices(locale: string): Service[] {
-  return locale === "fr" ? frServices : enServices;
+  const all = locale === "fr" ? frServices : enServices;
+  return all.filter(isPublished).sort(byOrder);
 }
 
 export function getServiceById(id: string, locale: string): Service | undefined {
-  return locale === "fr" ? frServicesById[id] : enServicesById[id];
+  const service = locale === "fr" ? frServicesById[id] : enServicesById[id];
+  return service && isPublished(service) ? service : undefined;
 }
 
 export function getServiceBySlug(slug: string, locale: string): Service | undefined {
-  const list = getServices(locale);
-  return list.find((s) => s.slug === slug);
+  return getServices(locale).find((s) => s.slug === slug);
 }
 
-export function findServiceByAnySlug(slug: string): { service: Service; locale: "en" | "fr" } | undefined {
-  const enMatch = enServices.find((s) => s.slug === slug);
+export function findServiceByAnySlug(
+  slug: string,
+): { service: Service; locale: "en" | "fr" } | undefined {
+  const enMatch = getServices("en").find((s) => s.slug === slug);
   if (enMatch) return { service: enMatch, locale: "en" };
-  const frMatch = frServices.find((s) => s.slug === slug);
+  const frMatch = getServices("fr").find((s) => s.slug === slug);
   if (frMatch) return { service: frMatch, locale: "fr" };
   return undefined;
 }
@@ -34,6 +50,22 @@ export function getReciprocalSlugs(serviceId: string): { enSlug: string; frSlug:
     enSlug: enS?.slug || serviceId,
     frSlug: frS?.slug || serviceId,
   };
+}
+
+/**
+ * Bidirectional slug map (EN slug <-> FR slug) for published services. Used by
+ * the locale switcher so switching language keeps the visitor on the same page.
+ */
+export function getSlugAlternates(): Record<string, string> {
+  const alternates: Record<string, string> = {};
+  for (const en of getServices("en")) {
+    const fr = frServicesById[en.id];
+    if (fr && isPublished(fr)) {
+      alternates[en.slug] = fr.slug;
+      alternates[fr.slug] = en.slug;
+    }
+  }
+  return alternates;
 }
 
 export function categoryToHub(category: Service["category"]): HubKey {
@@ -63,8 +95,7 @@ export function hubToCategory(hub: string): Service["category"] | undefined {
 }
 
 export function getServicesByCategory(category: Service["category"], locale: string): Service[] {
-  const all = getServices(locale);
-  return all.filter((s) => s.category === category);
+  return getServices(locale).filter((s) => s.category === category);
 }
 
 export function getRelatedServices(

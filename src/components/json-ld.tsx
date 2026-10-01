@@ -88,7 +88,9 @@ export function TouristTripJsonLd({
     description: service.summary,
     url: canonicalUrl,
     touristType: "Tourists",
-    duration,
+    // Transfers and other untimed services have no duration; omit it rather
+    // than publishing a fabricated "PT1H".
+    ...(duration ? { duration } : {}),
     provider: {
       "@type": "TravelAgency",
       name: businessProfile.tradingName || businessProfile.legalName,

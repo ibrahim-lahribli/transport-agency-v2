@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const timlalinDunes: Service = {
   id: "timlalin-dunes",
   category: "activity",
-  status: "draft",
+  status: "published",
   order: 2,
   slug: "timlalin-dunes-quad-camel-sandboarding",
   title: "Timlalin Dunes: Quad, Camel Ride & Sandboarding",
@@ -33,6 +33,7 @@ export const timlalinDunes: Service = {
         label: "Camel ride (about 45 minutes)",
         amount: 15,
         unit: "person",
+        isBase: true,
       },
       {
         label: "Sunset camel ride",

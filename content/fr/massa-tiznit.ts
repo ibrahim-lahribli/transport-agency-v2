@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const massaTiznit: Service = {
   id: "massa-tiznit",
   category: "excursion",
-  status: "draft",
+  status: "published",
   order: 9,
   slug: "excursion-massa-tiznit-dunes-depuis-agadir",
   title: "Massa et Tiznit : côte, nature et dunes en une journée",

@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const essaouira: Service = {
   id: "essaouira",
   category: "excursion",
-  status: "draft",
+  status: "published",
   order: 10,
   slug: "essaouira-day-trip-from-agadir",
   title: "Essaouira (Mogador) Day Trip from Agadir",

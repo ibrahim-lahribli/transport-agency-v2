@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const marrakech: Service = {
   id: "marrakech",
   category: "excursion",
-  status: "draft",
+  status: "published",
   order: 12,
   slug: "marrakech-day-trip-from-agadir",
   title: "Marrakech Day Trip from Agadir",

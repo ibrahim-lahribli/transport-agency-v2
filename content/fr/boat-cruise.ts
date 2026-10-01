@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const boatCruise: Service = {
   id: "boat-cruise",
   category: "activity",
-  status: "draft",
+  status: "published",
   order: 1,
   slug: "sortie-bateau-agadir-peche-barbecue",
   title: "Sortie en bateau à Agadir : pêche et barbecue de poisson",

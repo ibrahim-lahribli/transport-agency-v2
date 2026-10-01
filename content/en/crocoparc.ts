@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const crocoparc: Service = {
   id: "crocoparc",
   category: "activity",
-  status: "draft",
+  status: "published",
   order: 5,
   slug: "crocoparc-agadir-private-transport",
   title: "Crocoparc Agadir with Private Transport",
@@ -32,6 +32,7 @@ export const crocoparc: Service = {
         label: "Private car, up to 3 guests, round trip with about 2.5 hours waiting",
         amount: 25,
         unit: "vehicle",
+        isBase: true,
       },
       {
         label: "Private van, 4 to 7 guests, round trip with about 2.5 hours waiting",

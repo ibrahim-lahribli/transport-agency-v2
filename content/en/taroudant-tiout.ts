@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const taroudantTiout: Service = {
   id: "taroudant-tiout",
   category: "excursion",
-  status: "draft",
+  status: "published",
   order: 11,
   slug: "taroudant-tiout-oasis-day-trip-from-agadir",
   title: "Taroudant & Tiout Oasis Day Trip from Agadir",

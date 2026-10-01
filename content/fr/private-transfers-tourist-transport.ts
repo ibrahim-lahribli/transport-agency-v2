@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const privateTransfersTouristTransport: Service = {
   id: "private-transfers-tourist-transport",
   category: "transfer",
-  status: "draft",
+  status: "published",
   order: 15,
   slug: "transferts-prives-transport-touristique-agadir",
   title: "Transferts privés et transport touristique depuis Agadir",

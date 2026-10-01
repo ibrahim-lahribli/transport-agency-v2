@@ -3,7 +3,7 @@ import type { Service } from "@/schemas/service";
 export const airportAgadir: Service = {
   id: "airport-agadir",
   category: "transfer",
-  status: "draft",
+  status: "published",
   order: 13,
   slug: "agadir-airport-transfer-to-agadir-hotels",
   title: "Agadir Airport Transfer to Agadir Hotels",
