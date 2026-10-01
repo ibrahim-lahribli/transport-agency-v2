@@ -22,7 +22,7 @@ widgets or map embeds.
 
 ```bash
 pnpm install
-cp .env.example .env.local
+cp .env.example .env.local   # Windows: copy .env.example .env.local
 pnpm dev          # http://localhost:3000
 ```
 
@@ -58,18 +58,18 @@ and nothing pulls in a UI kit, animation library or client-side tracker.
 
 **Tooling (dev)**
 
-| Package                                                                       | Why                                                                              |
-| ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `typescript`                                                                  | Strict type checking.                                                            |
-| `@types/node`, `@types/react`, `@types/react-dom`                             | Type definitions for Node and React.                                             |
-| `tailwindcss`, `@tailwindcss/postcss`, `postcss`                              | Utility CSS and its build step (Tailwind v4, CSS-first config in `globals.css`). |
-| `eslint`, `eslint-config-next`                                                | Linting with Next's `core-web-vitals` and TypeScript rules.                      |
-| `eslint-config-prettier`                                                      | Turns off ESLint rules that would fight Prettier.                                |
-| `prettier`                                                                    | Formatting.                                                                      |
-| `vitest`, `@vitejs/plugin-react`, `jsdom`                                     | Test runner, JSX transform and DOM environment for unit tests.                   |
-| `@testing-library/react`, `@testing-library/dom`, `@testing-library/jest-dom` | Component assertions and accessible-role queries.                                |
-| `@playwright/test`                                                            | End-to-end smoke tests on a 375px viewport.                                      |
-| `@lhci/cli`                                                                   | Lighthouse CI runner that enforces the performance/SEO/accessibility budgets.    |
+| Package                                                                       | Why                                                                                                                           |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `typescript`                                                                  | Strict type checking.                                                                                                         |
+| `@types/node`, `@types/react`, `@types/react-dom`                             | Type definitions for Node and React.                                                                                          |
+| `tailwindcss`, `@tailwindcss/postcss`                                         | Utility CSS and its build step (Tailwind v4, CSS-first config in `globals.css`; `postcss` itself is a transitive dependency). |
+| `eslint`, `eslint-config-next`                                                | Linting with Next's `core-web-vitals` and TypeScript rules.                                                                   |
+| `eslint-config-prettier`                                                      | Turns off ESLint rules that would fight Prettier.                                                                             |
+| `prettier`                                                                    | Formatting.                                                                                                                   |
+| `vitest`, `@vitejs/plugin-react`, `jsdom`                                     | Test runner, JSX transform and DOM environment for unit tests.                                                                |
+| `@testing-library/react`, `@testing-library/dom`, `@testing-library/jest-dom` | Component assertions and accessible-role queries.                                                                             |
+| `@playwright/test`                                                            | End-to-end smoke tests on a 375px viewport.                                                                                   |
+| `@lhci/cli`                                                                   | Lighthouse CI runner that enforces the performance/SEO/accessibility budgets.                                                 |
 
 ## Design system
 
@@ -83,12 +83,18 @@ and nothing pulls in a UI kit, animation library or client-side tracker.
 - **CSS logical properties only.** Use `ms-`/`me-`/`ps-`/`pe-`,
   `start-`/`end-` and `text-start`/`text-end` — never `ml-`/`mr-`/`pl-`/`pr-`,
   `left-`/`right-` or `text-left`/`text-right`. This keeps the codebase ready for
-  the Arabic RTL locale without a rewrite. The only physical values are the
-  `env(safe-area-inset-*)` insets, which are physical by definition.
+  the Arabic RTL locale without a rewrite. Symmetric two-axis shorthands
+  (`mx-*`, `my-*`, `px-*`, `py-*`) are exempt: in Tailwind v4 they compile to
+  `margin-inline`/`margin-block`/`padding-inline`/`padding-block` and are
+  direction-safe. Positioning must use logical insets (`start-*`, `inset-s-*`,
+  `inset-bs-*`/`inset-be-*`) — never physical `top-`/`left-`/`right-`/`bottom-`
+  (except `env(safe-area-inset-*)`, which is physical by definition).
 - **One self-hosted variable font.** Inter Variable (SIL OFL 1.1, see
   `src/app/fonts/OFL.txt`) is served from our own origin via `next/font/local`
   with `font-display: swap` and `preload`, so there is no render-blocking request
-  to a third party and no flash of invisible text on slow connections.
+  to a third party and no flash of invisible text on slow connections. The
+  vendored file is a ~48 KB latin subset; an Arabic-capable second font (e.g.
+  Noto Naskh / IBM Plex Sans Arabic) is required when the RTL locale lands.
 - **Safe areas.** The root layout sets `viewport-fit=cover` and adds
   `env(safe-area-inset-*)` padding, with an explicit token-based body background.
 
