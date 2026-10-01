@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "brand": "Agadir Tourisme",
+    "home": "Accueil",
+    "excursions": "Excursions",
+    "activities": "Activités",
+    "transfers": "Transferts",
+    "book": "Réserver",
+    "skipToContent": "Aller au contenu",
+    "switchLocale": "English"
+  },
+  "hubs": {
+    "excursions": {
+      "title": "Excursions au départ d'Agadir",
+      "description": "Excursions guidées d'une journée ou demi-journée au départ d'Agadir à travers la région Souss-Massa, Marrakech et Essaouira."
+    },
+    "activities": {
+      "title": "Activités & Aventures à Agadir",
+      "description": "Sorties en mer en bateau, quad sur les dunes côtières, balades à dos de dromadaire, équitation et loisirs en plein air."
+    },
+    "transfers": {
+      "title": "Transferts privés & Transport touristique",
+      "description": "Transferts aéroport fiables entre Agadir-Al Massira, Taghazout, et transport touristique interurbain avec chauffeur."
+    }
+  },
+  "product": {
+    "quickFacts": "Points clés",
+    "duration": "Durée",
+    "pickup": "Prise en charge",
+    "priceFrom": "À partir de",
+    "minGroup": "Groupe min.",
+    "languages": "Langues",
+    "itinerary": "Itinéraire",
+    "included": "Ce qui est inclus",
+    "notIncluded": "Non inclus",
+    "goodToKnow": "Bon à savoir",
+    "whatToBring": "À apporter",
+    "suitableFor": "Idéal pour",
+    "restrictions": "Restrictions",
+    "cancellation": "Conditions d'annulation",
+    "faq": "Questions fréquentes",
+    "related": "Expériences similaires",
+    "bookCta": "Réserver cette expérience",
+    "viewDetails": "Voir les détails",
+    "person": "personne",
+    "vehicle": "véhicule",
+    "quad": "quad",
+    "buggy": "buggy"
+  },
+  "book": {
+    "title": "Réserver votre excursion ou transfert",
+    "subtitle": "Demande directe de réservation auprès de notre agence locale à Agadir.",
+    "serviceLabel": "Service sélectionné",
+    "nameLabel": "Nom complet",
+    "emailLabel": "Adresse email",
+    "phoneLabel": "Téléphone ou WhatsApp",
+    "dateLabel": "Date souhaitée",
+    "partyLabel": "Nombre de personnes",
+    "notesLabel": "Demandes particulières ou nom de votre hôtel",
+    "submit": "Envoyer la demande",
+    "phoneContact": "Ou contactez-nous directement sur WhatsApp :"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  },
+  "footer": {
+    "tagline": "Agence de voyages locale agréée à Agadir, Souss-Massa.",
+    "rights": "Tous droits réservés.",
+    "legalLicence": "Licence",
+    "legalIce": "ICE",
+    "contact": "Contact"
+  }
+}

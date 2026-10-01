@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "brand": "Agadir Tourisme",
+    "home": "Home",
+    "excursions": "Excursions",
+    "activities": "Activities",
+    "transfers": "Transfers",
+    "book": "Book",
+    "skipToContent": "Skip to content",
+    "switchLocale": "Français"
+  },
+  "hubs": {
+    "excursions": {
+      "title": "Excursions from Agadir",
+      "description": "Full-day and half-day guided excursions from Agadir across the Souss-Massa region, Marrakech and Essaouira."
+    },
+    "activities": {
+      "title": "Activities & Adventures in Agadir",
+      "description": "Ocean boat cruises, coastal dunes quad biking, camel rides, horse riding and local outdoor experiences."
+    },
+    "transfers": {
+      "title": "Private Transfers & Tourist Transport",
+      "description": "Reliable airport transfers between Agadir-Al Massira, Taghazout, and intercity tourist transport."
+    }
+  },
+  "product": {
+    "quickFacts": "Quick facts",
+    "duration": "Duration",
+    "pickup": "Pickup",
+    "priceFrom": "From",
+    "minGroup": "Min. group",
+    "languages": "Languages",
+    "itinerary": "Itinerary",
+    "included": "What is included",
+    "notIncluded": "Not included",
+    "goodToKnow": "Good to know",
+    "whatToBring": "What to bring",
+    "suitableFor": "Suitable for",
+    "restrictions": "Restrictions",
+    "cancellation": "Cancellation policy",
+    "faq": "Frequently Asked Questions",
+    "related": "Related experiences",
+    "bookCta": "Book this experience",
+    "viewDetails": "View details",
+    "person": "person",
+    "vehicle": "vehicle",
+    "quad": "quad",
+    "buggy": "buggy"
+  },
+  "book": {
+    "title": "Book Your Tour or Transfer",
+    "subtitle": "Direct reservation request with our local licensed team in Agadir.",
+    "serviceLabel": "Selected service",
+    "nameLabel": "Full name",
+    "emailLabel": "Email address",
+    "phoneLabel": "Phone or WhatsApp",
+    "dateLabel": "Preferred date",
+    "partyLabel": "Number of guests",
+    "notesLabel": "Additional requests or hotel name",
+    "submit": "Send Booking Inquiry",
+    "phoneContact": "Or reach us directly on WhatsApp:"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist or has been moved.",
+    "backHome": "Back to Home"
+  },
+  "footer": {
+    "tagline": "Licensed local travel agency in Agadir, Souss-Massa.",
+    "rights": "All rights reserved.",
+    "legalLicence": "Licence",
+    "legalIce": "ICE",
+    "contact": "Contact"
+  }
+}

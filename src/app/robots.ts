@@ -1,0 +1,13 @@
+import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/seo/metadata";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/book", "/*/book"],
+    },
+    sitemap: `${SITE_URL}/sitemap.xml`,
+  };
+}

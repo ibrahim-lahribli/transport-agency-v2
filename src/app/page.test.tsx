@@ -1,11 +1,13 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import Home from "@/app/page";
+import HomePage from "@/app/[locale]/page";
 
-describe("Home page", () => {
-  it("renders a single level-one heading", () => {
-    render(<Home />);
+describe("Localized Home page", () => {
+  it("renders a single level-one heading in English", async () => {
+    const ui = await HomePage({ params: Promise.resolve({ locale: "en" }) });
+    render(ui);
 
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
     expect(
@@ -13,9 +15,13 @@ describe("Home page", () => {
     ).toBeInTheDocument();
   });
 
-  it("exposes exactly one main landmark", () => {
-    render(<Home />);
+  it("renders a single level-one heading in French", async () => {
+    const ui = await HomePage({ params: Promise.resolve({ locale: "fr" }) });
+    render(ui);
 
-    expect(screen.getAllByRole("main")).toHaveLength(1);
+    expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+    expect(
+      screen.getByRole("heading", { level: 1, name: /tours, excursions et transferts à agadir/i }),
+    ).toBeInTheDocument();
   });
 });

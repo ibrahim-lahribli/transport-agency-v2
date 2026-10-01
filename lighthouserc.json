@@ -1,7 +1,14 @@
 {
   "ci": {
     "collect": {
-      "url": ["http://localhost:3000/"],
+      "url": [
+        "http://localhost:3000/en",
+        "http://localhost:3000/fr",
+        "http://localhost:3000/en/excursions",
+        "http://localhost:3000/fr/excursions",
+        "http://localhost:3000/en/agadir-boat-cruise-fishing-bbq-lunch",
+        "http://localhost:3000/fr/sortie-bateau-agadir-peche-barbecue"
+      ],
       "startServerCommand": "pnpm start",
       "startServerReadyPattern": "Ready in",
       "startServerReadyTimeout": 60000,

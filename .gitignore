@@ -1,5 +1,6 @@
 # Local tooling and IDE state
 .freebuff/
+pnpm.cmd
 
 # Pre-merge snapshots of the content files.
 # Superseded by git history from the first commit onward; kept on disk for now.
