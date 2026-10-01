@@ -5,9 +5,45 @@
 # Superseded by git history from the first commit onward; kept on disk for now.
 .backup-originals/
 
-# Dependencies and build output (for the future tools/ check command)
-node_modules/
-dist/
-*.log
-
+# Prompt scratch space (local only)
 ai-prompts/
+
+# Dependencies
+node_modules/
+
+# Build and bundler output
+dist/
+build/
+.next/
+out/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Test, coverage and browser automation output
+coverage/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Lighthouse CI
+.lighthouseci/
+
+# Environment files (commit .env.example, ignore the rest)
+.env
+.env.*
+!.env.example
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Vercel
+.vercel
+
+# OS
+.DS_Store
