@@ -1,1 +1,72 @@
 @import "tailwindcss";
+
+/* ==========================================================================
+   Design tokens
+   Warm neutrals with a single terracotta accent. Light is the default; dark
+   follows the operating-system preference. Every value is a plain CSS custom
+   property so it can be reused anywhere and overridden later (manual theme
+   switch, per-locale tweaks) without touching component code.
+   ========================================================================== */
+:root {
+  color-scheme: light;
+
+  /* Warm neutral ramp */
+  --canvas: #fbf7f2;
+  --surface: #ffffff;
+  --surface-muted: #f3ece3;
+  --line: #e4d9cc;
+  --ink: #1f1b16;
+  --ink-muted: #6a5f55;
+
+  /* Single accent */
+  --accent: #c2410c;
+  --accent-strong: #9a3412;
+  --on-accent: #ffffff;
+  --focus-ring: #9a3412;
+
+  /* Rhythm */
+  --measure: 65ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --canvas: #17130f;
+    --surface: #211b16;
+    --surface-muted: #2b241d;
+    --line: #3a3128;
+    --ink: #f5efe7;
+    --ink-muted: #b6a899;
+
+    --accent: #fb923c;
+    --accent-strong: #fdba74;
+    --on-accent: #17130f;
+    --focus-ring: #fdba74;
+  }
+}
+
+/* Map the tokens onto Tailwind so utilities such as bg-surface, text-ink or
+   border-line resolve to the variables above instead of hard-coded colours. */
+@theme {
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+    sans-serif;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-on-accent: var(--on-accent);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+  }
+}
