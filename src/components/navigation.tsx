@@ -29,22 +29,13 @@ export async function Header({
           aria-label={t("mainNavigation")}
           className="flex items-center gap-3 sm:gap-4 text-sm font-medium"
         >
-          <Link
-            href="/excursions"
-            className="text-ink-muted hover:text-ink transition-colors py-2"
-          >
+          <Link href="/excursions" className="text-ink-muted hover:text-ink transition-colors py-2">
             {t("excursions")}
           </Link>
-          <Link
-            href="/activities"
-            className="text-ink-muted hover:text-ink transition-colors py-2"
-          >
+          <Link href="/activities" className="text-ink-muted hover:text-ink transition-colors py-2">
             {t("activities")}
           </Link>
-          <Link
-            href="/transfers"
-            className="text-ink-muted hover:text-ink transition-colors py-2"
-          >
+          <Link href="/transfers" className="text-ink-muted hover:text-ink transition-colors py-2">
             {t("transfers")}
           </Link>
           <Link

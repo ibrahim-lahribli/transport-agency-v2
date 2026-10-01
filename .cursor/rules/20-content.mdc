@@ -1,0 +1,35 @@
+---
+description: Content model, catalogue rules and translations.
+globs: content/**, messages/**, src/schemas/**, src/validation/**
+alwaysApply: false
+---
+
+# Content model
+
+Each service is a `Service` (see `src/schemas/service.ts`) with a matching file
+per locale in `content/en` and `content/fr`, exported from the locale `index.ts`.
+A service appears in both locales under the same `id`; its `slug` is localized.
+
+## Hard rules (enforced by `pnpm validate:data`)
+
+- `seo.title` ≤ **60** characters and `seo.description` ≤ **160** characters.
+- `primaryKeyword` must appear in `seo.title`.
+- Every price must declare a unit, either at the top level or on every option.
+- The word **"Sahara"** must not appear anywhere in copy.
+- FR must not be missing `title`, `slug`, `summary`, `seo`, `primaryKeyword` or
+  (for non-transfers) `highlights`.
+- Slugs are unique within a locale.
+
+## Publishing & ordering
+
+- `status` gates exposure: only `"published"` ships. Flip a service to
+  `"published"` to go live; `draft`/`archived` are excluded from pages,
+  metadata, the sitemap and internal links.
+- `order` (unique positive integer) is the catalogue sort order.
+- Mark the bookable base price option with `isBase: true`; add-ons must not be
+  picked as the "From" price.
+
+## Translations
+
+UI copy is keyed in `messages/{en,fr}.json` and never hardcoded in components.
+When adding a key, add it to **both** locales.

@@ -8,10 +8,10 @@ export default function RootNotFound() {
     <html lang="en" className={inter.variable}>
       <body className="flex min-h-screen flex-col items-center justify-center bg-canvas text-ink ps-4 pe-4 text-center">
         <p className="text-sm font-semibold tracking-wide uppercase text-accent">404 Error</p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink sm:text-4xl">Page Not Found</h1>
-        <p className="mt-3 text-base text-ink-muted">
-          The page you requested could not be found.
-        </p>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          Page Not Found
+        </h1>
+        <p className="mt-3 text-base text-ink-muted">The page you requested could not be found.</p>
         <div className="mt-6">
           <Link
             href="/en"

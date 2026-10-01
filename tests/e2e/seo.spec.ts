@@ -110,7 +110,9 @@ test.describe("SEO Requirements Suite", () => {
       // 4. Valid JSON-LD scripts
       const jsonLdScripts = page.locator('script[type="application/ld+json"]');
       const jsonLdCount = await jsonLdScripts.count();
-      expect(jsonLdCount, `Expected at least one JSON-LD script on ${path}`).toBeGreaterThanOrEqual(1);
+      expect(jsonLdCount, `Expected at least one JSON-LD script on ${path}`).toBeGreaterThanOrEqual(
+        1,
+      );
 
       const parsedSchemas: JsonLd[] = [];
       for (let i = 0; i < jsonLdCount; i++) {

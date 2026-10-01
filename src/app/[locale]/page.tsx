@@ -33,11 +33,7 @@ export async function generateMetadata({
   });
 }
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
 
   if (!isAppLocale(locale)) {
@@ -64,9 +60,7 @@ export default async function HomePage({
       >
         <div>
           <p className="text-xs font-medium uppercase text-accent mb-1">
-            {service.durationHours
-              ? `${service.durationHours} ${tc("hoursLabel")}`
-              : badge}
+            {service.durationHours ? `${service.durationHours} ${tc("hoursLabel")}` : badge}
           </p>
           <h3 className="text-base font-bold text-ink hover:text-accent transition-colors">
             <Link href={slugHref}>{service.title}</Link>
@@ -91,9 +85,7 @@ export default async function HomePage({
 
       {/* Hero Section */}
       <section className="mb-14 text-start">
-        <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">
-          {t("kicker")}
-        </p>
+        <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">{t("kicker")}</p>
         <h1 className="text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-5xl">
           {t("title")}
         </h1>

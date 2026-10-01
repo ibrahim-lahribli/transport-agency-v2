@@ -16,14 +16,14 @@ is a pricing bug that silently publishes misleading "from" prices and a matching
 
 ## Verification evidence
 
-| Check | Command | Result |
-| --- | --- | --- |
-| Types | `tsc --noEmit` | pass (exit 0) |
-| Unit tests | `vitest run` | 31/31 pass |
-| Production build | `next build` | 44 static pages, exit 0 |
-| E2E (mobile 375px) | `playwright test` | 5/5 pass |
-| **Lint** | `eslint .` | **FAIL — 5 errors / 4 warnings** |
-| Content validator | `node scripts/validate-data.mjs` | pass |
+| Check              | Command                          | Result                           |
+| ------------------ | -------------------------------- | -------------------------------- |
+| Types              | `tsc --noEmit`                   | pass (exit 0)                    |
+| Unit tests         | `vitest run`                     | 31/31 pass                       |
+| Production build   | `next build`                     | 44 static pages, exit 0          |
+| E2E (mobile 375px) | `playwright test`                | 5/5 pass                         |
+| **Lint**           | `eslint .`                       | **FAIL — 5 errors / 4 warnings** |
+| Content validator  | `node scripts/validate-data.mjs` | pass                             |
 
 Live output confirmed:
 
@@ -110,7 +110,7 @@ UI copy: messages/*.json (loaded, unused)  ∥  inline isFr ternaries per page
 ```
 
 One **catalog** concern should own content loading, publish gating and ordering,
-slug ↔ alternate resolution, and the price *selection policy*; `seo/` consumes it
+slug ↔ alternate resolution, and the price _selection policy_; `seo/` consumes it
 for metadata/JSON-LD, and pages, sitemap and pricing consume it too. The "from"
 rule must be explicit — the cheapest **base** unit, never an add-on.
 

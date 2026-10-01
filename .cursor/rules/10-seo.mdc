@@ -1,0 +1,26 @@
+---
+description: SEO invariants for pages, metadata and structured data.
+globs: src/app/**, src/seo/**, src/components/**, src/i18n/**
+alwaysApply: false
+---
+
+# SEO invariants
+
+Every indexable page must render **exactly one `<h1>`**, **one canonical** link,
+and **reciprocal** `hreflang` (`en`, `fr`, `x-default` = the English URL). The
+`/book` page is `noindex` and is excluded from the sitemap.
+
+- Metadata is built with `buildPageMetadata` in `src/seo/metadata.ts`; pass
+  `pathname`, `enPath` and `frPath` so canonical + alternates stay reciprocal.
+- Product pages must pass the **translated** reciprocal slugs
+  (`getReciprocalSlugs`) — never reuse the English slug on the French URL.
+- JSON-LD lives in `src/components/json-ld.tsx`: `TravelAgency` (layout),
+  `BreadcrumbList` (all pages), `TouristTrip` + `Offer` (products),
+  `FAQPage` (products with FAQ).
+- `Offer.price` must equal the visible "From" price, and a transfer must **not**
+  emit a `duration`. Durations come from `formatIsoDuration` and are omitted when
+  there is none.
+- The sitemap is generated from the publish-gated catalogue, never from raw
+  content imports.
+- Keep pages statically rendered: call `setRequestLocale(locale)` in each page
+  and hub route before translating.

@@ -17,11 +17,7 @@ export async function generateMetadata({
   return generateHubMetadata("excursions", locale);
 }
 
-export default async function ExcursionsPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function ExcursionsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   return <HubPageView hub="excursions" locale={locale} />;

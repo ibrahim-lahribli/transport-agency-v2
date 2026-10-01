@@ -149,3 +149,24 @@ tests/e2e      Playwright smoke tests
 ## Commit convention
 
 This repository uses [Conventional Commits](https://www.conventionalcommits.org/).
+
+## Working with AI agents
+
+This repository carries first-class context for AI coding agents, following the
+open [AGENTS.md](https://agents.md/) standard and the [Agent Skills](https://agentskills.io/specification)
+format:
+
+- **[AGENTS.md](AGENTS.md)** — the canonical, tool-agnostic contract (project,
+  commands, non-negotiable rules, where things live). Thin adapters point to it:
+  [CLAUDE.md](CLAUDE.md), [GEMINI.md](GEMINI.md) and
+  [.github/copilot-instructions.md](.github/copilot-instructions.md), plus
+  scoped [Cursor rules](.cursor/rules).
+- **[docs/](docs/README.md)** — the knowledge base: architecture, conventions,
+  content model, SEO, pricing, i18n and testing.
+- **[docs/adr/](docs/adr/README.md)** — decision records explaining _why_.
+- **[specs/](specs/README.md)** — feature specifications and the roadmap.
+- **[.agents/skills/](.agents/skills)** — reusable `SKILL.md` workflows
+  (review, architect, seo-audit, add-service).
+
+If you use Claude Code, link its skills directory once:
+`ln -s ../.agents/skills .claude/skills`.

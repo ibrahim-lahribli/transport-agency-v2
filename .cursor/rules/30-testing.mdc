@@ -1,0 +1,20 @@
+---
+description: Testing expectations for unit and end-to-end tests.
+globs: "**/*.test.ts, **/*.test.tsx, tests/**"
+alwaysApply: false
+---
+
+# Testing
+
+- Unit/component tests are **Vitest** in `src/**` and `config/**`
+  (`*.test.ts(x)`), jsdom + Testing Library. Assertions use accessible roles
+  (`getByRole`) rather than implementation details.
+- End-to-end tests are **Playwright** in `tests/e2e`, with a 375px mobile
+  viewport and a production server (`pnpm build && pnpm start`). The SEO suite
+  walks every sitemap URL and checks one `<h1>`, one canonical, reciprocal
+  hreflang and valid JSON-LD.
+- When you change prices, durations or structured data, assert against an
+  **independently declared expected value** — do not only compare the visible
+  price to the JSON-LD price, since both come from the same function.
+- Keep `pnpm test` fast and deterministic; avoid network access in unit tests.
+- Never weaken or delete a failing assertion to make a change pass.

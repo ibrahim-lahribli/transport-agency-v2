@@ -1,0 +1,34 @@
+---
+description: Project context, commands and core rules for the Agadir tourism site.
+alwaysApply: true
+---
+
+# Project
+
+Canonical context: [AGENTS.md](../../AGENTS.md). Read it before larger changes.
+Detail: [docs/](../../docs/README.md); planned work: [specs/](../../specs/README.md).
+
+Mobile-first, SEO-first booking site for an Agadir (Souss-Massa, Morocco) travel
+agency: a static catalogue of 15 services across **excursions**, **activities**
+and **transfers**, in **English and French** (Arabic planned, RTL). Next.js 16
+App Router, React 19, TypeScript strict, next-intl, zod, Tailwind CSS v4, pnpm.
+
+# Core rules
+
+- Exactly one `<h1>`, one canonical and reciprocal `en`/`fr`/`x-default`
+  hreflang, and valid JSON-LD per indexable page. `/book` is `noindex`.
+- Never invent a price or duration; use `getServiceDisplayPrice` and
+  `formatIsoDuration`. Never bypass the publish gate (`status: "published"`).
+- UI copy lives in `messages/{en,fr}.json` via next-intl; service copy in
+  `content/{en,fr}`. Do not hardcode user-visible strings.
+- CSS logical properties only (`ms/me/ps/pe`, `start/end`, `text-start`).
+- Keep dependencies tiny; ask before adding one.
+- Leave the tree green: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`.
+  Add `pnpm test:e2e` when routes/metadata/i18n change.
+- Never commit, push or open PRs unless asked.
+
+# Commands
+
+`pnpm dev`, `pnpm build`, `pnpm start`, `pnpm lint`, `pnpm typecheck`,
+`pnpm test`, `pnpm test:e2e`, `pnpm validate:data`, `pnpm lighthouse`.
+Use `corepack pnpm …`, or `node_modules/.bin/<tool>` when pnpm is unavailable.

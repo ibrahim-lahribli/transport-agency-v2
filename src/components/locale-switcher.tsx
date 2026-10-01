@@ -30,17 +30,14 @@ export function LocaleSwitcher({
   // Strip the current locale prefix and any leading slash:
   // "/en/excursions" -> "excursions", "/en" -> "".
   const rest = (
-    pathname.startsWith(`/${currentLocale}`)
-      ? pathname.slice(currentLocale.length + 1)
-      : pathname
+    pathname.startsWith(`/${currentLocale}`) ? pathname.slice(currentLocale.length + 1) : pathname
   ).replace(/^\/+/, "");
 
   let targetPath = `/${targetLocale}`;
 
   if (rest.length > 0) {
     const [head, ...tail] = rest.split("/");
-    const resolvedHead =
-      tail.length === 0 && slugAlternates[head] ? slugAlternates[head] : head;
+    const resolvedHead = tail.length === 0 && slugAlternates[head] ? slugAlternates[head] : head;
     targetPath = `/${targetLocale}/${[resolvedHead, ...tail].join("/")}`;
   }
 

@@ -41,10 +41,13 @@ vi.mock("next-intl/server", () => ({
         : await import("../../messages/en.json");
     const all = loaded.default as Record<string, unknown>;
     const base = namespace
-      ? (namespace.split(".").reduce<unknown>(
-          (acc, key) => (acc && typeof acc === "object" ? (acc as Record<string, unknown>)[key] : undefined),
-          all,
-        ) as Record<string, unknown> | undefined)
+      ? (namespace
+          .split(".")
+          .reduce<unknown>(
+            (acc, key) =>
+              acc && typeof acc === "object" ? (acc as Record<string, unknown>)[key] : undefined,
+            all,
+          ) as Record<string, unknown> | undefined)
       : all;
 
     return (key: string) => {

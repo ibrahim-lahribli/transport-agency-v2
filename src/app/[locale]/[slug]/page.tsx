@@ -186,9 +186,7 @@ export default async function ProductPage({
             <span className="text-xs font-medium text-ink-muted block">{t("minGroup")}</span>
             <span className="text-sm font-bold text-ink mt-0.5 block">
               {service.capacity?.min
-                ? `${service.capacity.min} ${
-                    service.capacity.min > 1 ? tc("guests") : tc("guest")
-                  }`
+                ? `${service.capacity.min} ${service.capacity.min > 1 ? tc("guests") : tc("guest")}`
                 : `1 ${tc("guest")}`}
             </span>
           </div>
@@ -439,7 +437,9 @@ export default async function ProductPage({
                     <p className="mt-2 text-xs text-ink-muted line-clamp-3">{rel.summary}</p>
                   </div>
                   <div className="mt-4 pt-4 border-t border-line flex items-center justify-between text-xs">
-                    <span className="font-bold text-accent-strong">{relPrice.formatted[locale]}</span>
+                    <span className="font-bold text-accent-strong">
+                      {relPrice.formatted[locale]}
+                    </span>
                     <Link
                       href={relHref}
                       className="font-semibold text-accent-strong hover:underline inline-block py-2 ps-2"

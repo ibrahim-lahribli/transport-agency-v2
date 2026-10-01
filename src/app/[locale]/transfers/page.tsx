@@ -17,11 +17,7 @@ export async function generateMetadata({
   return generateHubMetadata("transfers", locale);
 }
 
-export default async function TransfersPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function TransfersPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   return <HubPageView hub="transfers" locale={locale} />;
