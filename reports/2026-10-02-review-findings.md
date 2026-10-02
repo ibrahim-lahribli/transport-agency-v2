@@ -19,7 +19,11 @@ This document records the state of the work as reviewed.
 - **D4 — fixed.** Every French catalogue field is translated, the draft marker is
   gone, `validateTranslation` now fails the build on English-in-a-French-field or
   a shipped editorial marker, and an E2E test proves FR copy is not the EN text.
-- **D5–D9 — still open.** See §2 and §6.
+- **D7 — fixed.** `findChildOption` now excludes the free infant option structurally
+  (a zero amount) instead of matching an English word, so it is locale- and
+  order-independent. Four unit tests pin it, including the French labels
+  ("Enfant de moins de 4 ans" vs "Enfant 4 à 11 ans") and a reversed options array.
+- **D5, D6, D8, D9 — still open.** See §2 and §6.
 
 The defect descriptions below are kept as written at review time.
 
@@ -184,8 +188,17 @@ is the documented hatch and is wired into both `playwright.config.ts` and CI.
 - **Impact:** low (the page is `noindex`), but it is a defect.
 - **Fix:** drop the brand from the message, or exempt it from the template.
 
-### D7 — Free-child detection is English-only and order-dependent · **P2**
+### D7 — Free-child detection is English-only and order-dependent · **P2** · ✅ FIXED
 
+- **Fixed:** `findChildOption` matches `child|enfant` **and `amount > 0`**, dropping the
+  `!/under/i` test entirely. The free option is now identified by its zero amount, so
+  neither the label wording ("under" vs "moins de") nor the array order can select it;
+  the robust pin is an order-independence test (reversed options) that fails against
+  the old regex (70 € vs 88 €). **Out of scope, noted:** if a service ever carries two
+  *positive* child options (e.g. child and teen), `find` still returns the first and
+  order would matter again; flagging options explicitly (`isChild`/`isInfant`) is the
+  durable cure. No such service exists today (verified across all 16 EN/FR child-
+  labelled services).
 - **Area:** pricing logic (latent)
 - **Location:** `src/pricing/quote.ts:51` (`findChildOption`)
 - **Evidence:** the exclusion is `!/under/i.test(o.label)`. The French free option is

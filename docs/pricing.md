@@ -21,6 +21,16 @@ quote(service, party, options?, locale?): QuoteResult
 - The EUR→MAD rate is read from config/env (`EUR_TO_MAD_RATE`, default 10.8) and
   never hardcoded in the calculation.
 
+### Adult / child selection
+
+For a per-person service without an explicit `optionLabel`, the engine bills adults
+and children separately when both an adult and a paid child option exist. Options are
+identified by label (`adult|adulte`, `child|enfant`) **and** a positive amount: the
+free infant option ("Child under 4" / "Enfant de moins de 4 ans") is excluded by its
+zero amount, never by its wording or its position in the array. Do not reintroduce a
+label- or order-based test — reordering options or translating a label must not change
+the quote.
+
 ## Display price — `src/seo/price.ts`
 
 `getServiceDisplayPrice(service)` returns the "From" amount, unit and formatted

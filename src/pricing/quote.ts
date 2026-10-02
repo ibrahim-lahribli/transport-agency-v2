@@ -48,8 +48,17 @@ function findAdultOption(options: QuoteService["price"]["options"]) {
   return options?.find((o) => /adult|adulte/i.test(o.label));
 }
 
+/**
+ * Locate the paid child rate for a per-person service.
+ *
+ * The free infant option is excluded structurally, by its zero amount, never
+ * by matching an English word like "under". French labels read "Enfant de
+ * moins de 4 ans", and option ordering is data, not a contract, so relying on
+ * either the wording or the array order would silently bill infants at the
+ * child rate after a reorder or a translation change.
+ */
 function findChildOption(options: QuoteService["price"]["options"]) {
-  return options?.find((o) => /child|enfant/i.test(o.label) && !/under/i.test(o.label));
+  return options?.find((o) => /child|enfant/i.test(o.label) && o.amount > 0);
 }
 
 /**
