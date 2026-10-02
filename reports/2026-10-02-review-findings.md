@@ -26,7 +26,12 @@ This document records the state of the work as reviewed.
 - **D8 — fixed.** The booking form now exposes the variant, route and vehicle
   selectors the quote engine already supported (party-priced services collect a
   party instead), submits the selection, validates it server-side, and renders the
-  per-field errors in the visitor's locale. Six E2E tests cover it.
+  per-field errors in the visitor's locale. Seven E2E tests cover it.
+- **D8a — fixed (found in review).** React resets a form after its server action
+  runs, so a failed submit wiped the typed fields and knocked the controlled
+  `<select>` back to its first option while the quote still showed the old choice —
+  a resubmit would then send the *default* option. The action now carries an
+  `attempt` id and the form remounts on it, re-applying the visitor's values.
 - **D5, D6, D9 — still open.** See §2 and §6.
 
 The defect descriptions below are kept as written at review time.
@@ -224,6 +229,12 @@ is the documented hatch and is wired into both `playwright.config.ts` and CI.
   added to the operator notification. `state.fieldErrors` is now rendered next to
   each field with locale-aware messages (`errName` …), so a French visitor sees
   French guidance.
+- **Follow-up fix:** because React 19 resets a form after its action completes, a
+  validation error cleared `name`/`email`/`phone` and reset the `optionLabel`
+  select to its first option while the live quote stayed on the chosen one; fixing
+  the highlighted field and resubmitting would have sent the wrong option. All
+  fields are now controlled and the `<form>` is keyed on the action's `attempt` id,
+  so a failed submit preserves input and keeps the fields and quote in sync.
 - **Area:** booking UX
 - **Location:** `src/components/book-form.tsx` (form fields); `:70` (error render);
   `src/booking/actions.ts` (builds `fieldErrors`)

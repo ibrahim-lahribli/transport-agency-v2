@@ -41,4 +41,15 @@ export const HONEYPOT_FIELD = "company";
 export type InquiryState =
   | { status: "idle" }
   | { status: "success"; message: string }
-  | { status: "error"; message: string; fieldErrors?: Record<string, string> };
+  | {
+      status: "error";
+      message: string;
+      fieldErrors?: Record<string, string>;
+      /**
+       * Increments on every failed submit. React resets a form after its action
+       * runs, so the form uses this as a remount key to re-apply the visitor's
+       * controlled values instead of losing them or drifting out of sync with
+       * the live quote.
+       */
+      attempt: number;
+    };

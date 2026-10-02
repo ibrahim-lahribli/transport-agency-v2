@@ -22,6 +22,15 @@ const VEHICLE_LABEL_KEY: Record<VehicleClass, "vehicleSedan" | "vehicleVan" | "v
   minibus: "vehicleMinibus",
 };
 
+const EMPTY_TEXTS = {
+  name: "",
+  email: "",
+  phone: "",
+  date: "",
+  hotel: "",
+  notes: "",
+};
+
 function FieldError({ id, message }: { id: string; message?: string }) {
   if (!message) return null;
   return (
@@ -51,8 +60,16 @@ export function BookForm({
   const [optionLabel, setOptionLabel] = useState("");
   const [routeIndex, setRouteIndex] = useState(0);
   const [vehicle, setVehicle] = useState<VehicleClass | "">("");
+  const [texts, setTexts] = useState(EMPTY_TEXTS);
 
   const [state, formAction, pending] = useActionState(action, initialState);
+
+  // React resets a form after its action runs, wiping uncontrolled fields and
+  // knocking a controlled <select> back to its first option while the quote
+  // still reflects the old choice. Remounting on the action's `attempt` id
+  // re-applies every controlled value, so the visitor keeps their input and the
+  // visible fields cannot disagree with what would be submitted.
+  const formKey = state.status === "error" ? state.attempt : 0;
 
   const selected = services.find((s) => s.id === serviceId);
   const fieldErrors = state.status === "error" ? state.fieldErrors ?? {} : {};
@@ -80,8 +97,7 @@ export function BookForm({
     routes.length > 0 ? Math.min(Math.max(routeIndex, 0), routes.length - 1) : 0;
 
   const vehicleChoices = selected?.vehicles ?? (["sedan", "van", "minibus"] as VehicleClass[]);
-  const effectiveVehicle =
-    vehicle && vehicleChoices.includes(vehicle) ? vehicle : undefined;
+  const effectiveVehicle = vehicle && vehicleChoices.includes(vehicle) ? vehicle : undefined;
 
   const liveQuote = useMemo(() => {
     if (!selected) return null;
@@ -102,6 +118,10 @@ export function BookForm({
     setVehicle("");
   }
 
+  function onTextChange(key: keyof typeof EMPTY_TEXTS, value: string) {
+    setTexts((prev) => ({ ...prev, [key]: value }));
+  }
+
   if (state.status === "success") {
     return (
       <div className="rounded-xl border border-line bg-surface p-6 text-center">
@@ -120,7 +140,11 @@ export function BookForm({
   }
 
   return (
-    <form action={formAction} className="grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]">
+    <form
+      key={formKey}
+      action={formAction}
+      className="grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]"
+    >
       <input type="hidden" name="locale" value={locale} />
       {/* Honeypot: hidden from humans, tempting for bots. */}
       <div aria-hidden="true" className="hidden">
@@ -246,6 +270,8 @@ export function BookForm({
               id="name"
               name="name"
               required
+              value={texts.name}
+              onChange={(event) => onTextChange("name", event.target.value)}
               aria-invalid={Boolean(fieldErrors.name)}
               aria-describedby={fieldErrors.name ? "name-error" : undefined}
               className={inputClass}
@@ -262,6 +288,8 @@ export function BookForm({
               name="email"
               type="email"
               required
+              value={texts.email}
+              onChange={(event) => onTextChange("email", event.target.value)}
               aria-invalid={Boolean(fieldErrors.email)}
               aria-describedby={fieldErrors.email ? "email-error" : undefined}
               className={inputClass}
@@ -276,6 +304,8 @@ export function BookForm({
               id="phone"
               name="phone"
               required
+              value={texts.phone}
+              onChange={(event) => onTextChange("phone", event.target.value)}
               aria-invalid={Boolean(fieldErrors.phone)}
               aria-describedby={fieldErrors.phone ? "phone-error" : undefined}
               className={inputClass}
@@ -286,7 +316,14 @@ export function BookForm({
             <label className={labelClass} htmlFor="date">
               {t("dateLabel")}
             </label>
-            <input id="date" name="date" type="date" className={inputClass} />
+            <input
+              id="date"
+              name="date"
+              type="date"
+              value={texts.date}
+              onChange={(event) => onTextChange("date", event.target.value)}
+              className={inputClass}
+            />
           </div>
           <div>
             <label className={labelClass} htmlFor="adults">
@@ -328,14 +365,29 @@ export function BookForm({
           <label className={labelClass} htmlFor="hotel">
             {t("hotelLabel")}
           </label>
-          <input id="hotel" name="hotel" className={inputClass} placeholder={t("hotelPlaceholder")} />
+          <input
+            id="hotel"
+            name="hotel"
+            value={texts.hotel}
+            onChange={(event) => onTextChange("hotel", event.target.value)}
+            className={inputClass}
+            placeholder={t("hotelPlaceholder")}
+          />
         </div>
 
         <div>
           <label className={labelClass} htmlFor="notes">
             {t("notesLabel")}
           </label>
-          <textarea id="notes" name="notes" rows={3} className={inputClass} placeholder={t("notesPlaceholder")} />
+          <textarea
+            id="notes"
+            name="notes"
+            rows={3}
+            value={texts.notes}
+            onChange={(event) => onTextChange("notes", event.target.value)}
+            className={inputClass}
+            placeholder={t("notesPlaceholder")}
+          />
         </div>
       </div>
 

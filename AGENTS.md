@@ -54,6 +54,20 @@ SKIP_ENV_VALIDATION=true NEXT_PUBLIC_SITE_URL=http://localhost:3100 \
   needing one triggers Next's `using "http://localhost:0"` build warning.
 - The booking form selects a service by **id** (e.g. `paradise-valley`), not slug;
   “Book this” links must be `/book?service=<id>`.
+- **React 19 resets a `<form>` after its server action runs.** That clears
+  uncontrolled inputs and knocks a controlled `<select>` back to its first option
+  while React state (and any quote derived from it) keeps the old value — a silent
+  wrong-submit on the retry. Keep fields controlled and key the `<form>` on a
+  per-attempt id the action returns (`InquiryState.attempt`), never on a value that
+  changes as the visitor types.
+- ESLint enforces `react-hooks/set-state-in-effect`: don't bump a remount key from
+  an effect — derive it from the action state during render.
+- Server actions (`src/booking/actions.ts`) import `next/headers`/`getTranslations`
+  and can't be unit-tested directly; keep their pure logic in sibling modules
+  (`src/booking/selection.ts`) so Vitest can import it.
+- Whether a service shows a variant selector, a route+vehicle selector, or just a
+  party size is decided by `usesTieredPricing()` in `src/pricing/quote.ts`, shared
+  with the quote engine so the form and the engine can't disagree.
 
 ## Where things live
 

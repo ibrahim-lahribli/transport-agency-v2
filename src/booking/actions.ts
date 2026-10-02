@@ -6,7 +6,8 @@ import { getTranslations } from "next-intl/server";
 import { getServiceById } from "@/catalogue";
 import { isAppLocale } from "@/i18n/locales";
 
-import { notifyInquiry, type InquirySelection } from "./notify";
+import { notifyInquiry } from "./notify";
+import { resolveSelection } from "./selection";
 import { HONEYPOT_FIELD, InquirySchema, type InquiryState } from "./types";
 
 /** Locale-aware messages for the fields the form renders; falls back to `invalid`. */
@@ -35,6 +36,16 @@ function isRateLimited(key: string): boolean {
   return recent.length > MAX_PER_WINDOW;
 }
 
+/** Build an error state, bumping `attempt` so the form knows to re-apply values. */
+function errorState(
+  prev: InquiryState,
+  message: string,
+  fieldErrors?: Record<string, string>,
+): InquiryState {
+  const attempt = (prev.status === "error" ? prev.attempt : 0) + 1;
+  return { status: "error", message, fieldErrors, attempt };
+}
+
 export async function submitInquiry(
   _prev: InquiryState,
   formData: FormData,
@@ -51,7 +62,7 @@ export async function submitInquiry(
   const headerList = await headers();
   const ip = headerList.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
   if (isRateLimited(ip)) {
-    return { status: "error", message: t("error") };
+    return errorState(_prev, t("error"));
   }
 
   const parsed = InquirySchema.safeParse({
@@ -77,40 +88,25 @@ export async function submitInquiry(
       const messageKey = FIELD_ERROR_KEY[key];
       fieldErrors[key] = messageKey ? t(messageKey) : t("invalid");
     }
-    return { status: "error", message: t("invalid"), fieldErrors };
+    return errorState(_prev, t("invalid"), fieldErrors);
   }
 
   const service = getServiceById(parsed.data.serviceId, locale);
   if (!service) {
-    return { status: "error", message: t("invalid"), fieldErrors: { serviceId: t("errService") } };
+    return errorState(_prev, t("invalid"), { serviceId: t("errService") });
   }
 
   // Validate the selection against the chosen service; never trust the client.
-  const selection: InquirySelection = {};
-  if (parsed.data.optionLabel) {
-    const known = service.price.options?.some((o) => o.label === parsed.data.optionLabel);
-    if (!known) {
-      return { status: "error", message: t("invalid"), fieldErrors: { optionLabel: t("errOption") } };
-    }
-    selection.optionLabel = parsed.data.optionLabel;
-  }
-  if (parsed.data.routeIndex !== undefined) {
-    const routes = service.routes ?? [];
-    const route = routes[parsed.data.routeIndex];
-    if (!route) {
-      return { status: "error", message: t("invalid"), fieldErrors: { routeIndex: t("errRoute") } };
-    }
-    selection.routeLabel = `${route.from} → ${route.to}`;
-  }
-  if (parsed.data.vehicle) {
-    const allowed = service.vehicles ?? [];
-    if (!service.routes?.length || !allowed.includes(parsed.data.vehicle)) {
-      return { status: "error", message: t("invalid"), fieldErrors: { vehicle: t("errVehicle") } };
-    }
-    selection.vehicle = parsed.data.vehicle;
+  const resolved = resolveSelection(service, {
+    optionLabel: parsed.data.optionLabel,
+    vehicle: parsed.data.vehicle,
+    routeIndex: parsed.data.routeIndex,
+  });
+  if (!resolved.ok) {
+    return errorState(_prev, t("invalid"), { [resolved.field]: t(FIELD_ERROR_KEY[resolved.field]) });
   }
 
-  await notifyInquiry(parsed.data, service.title, selection);
+  await notifyInquiry(parsed.data, service.title, resolved.selection);
 
   return { status: "success", message: t("success") };
 }

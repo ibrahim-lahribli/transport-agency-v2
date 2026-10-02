@@ -43,7 +43,9 @@ exposes its price options and re-quotes when one is chosen; a transfer exposes i
 route and vehicle selectors and re-quotes on both; a party-priced service (boat
 cruise) exposes neither because people, not a variant, drive its price. Invalid
 input surfaces the localized per-field message (`errName` etc.) next to the field,
-and a valid inquiry reaches the success panel. The live quote total is read from
+and a valid inquiry reaches the success panel. A failed submit must **preserve**
+the visitor's input and selection — React resets a form after its action, so this
+is asserted, not assumed. The live quote total is read from
 `[data-testid="quote-total"]` and asserted against an independently declared value.
 
 ## Writing tests

@@ -1,3 +1,4 @@
+import type { ResolvedSelection } from "./selection";
 import type { Inquiry } from "./types";
 
 export interface NotifyResult {
@@ -6,18 +7,10 @@ export interface NotifyResult {
   reason?: string;
 }
 
-/** The resolved selection shown to the operator, plain-text. */
-export interface InquirySelection {
-  optionLabel?: string;
-  vehicle?: string;
-  /** A transfer route, rendered as "from → to". */
-  routeLabel?: string;
-}
-
 function formatMessage(
   inquiry: Inquiry,
   serviceTitle: string,
-  selection: InquirySelection,
+  selection: ResolvedSelection,
 ): string {
   return [
     `New booking inquiry: ${serviceTitle} (${inquiry.serviceId})`,
@@ -44,7 +37,7 @@ function formatMessage(
 export async function notifyInquiry(
   inquiry: Inquiry,
   serviceTitle: string,
-  selection: InquirySelection = {},
+  selection: ResolvedSelection = {},
 ): Promise<NotifyResult> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.BOOKING_NOTIFY_EMAIL;
