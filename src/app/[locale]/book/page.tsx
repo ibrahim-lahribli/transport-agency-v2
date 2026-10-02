@@ -51,6 +51,7 @@ export default async function BookPage({
     category: s.category,
     price: s.price,
     routes: s.routes,
+    vehicles: s.vehicles,
   }));
 
   const initialServiceId =

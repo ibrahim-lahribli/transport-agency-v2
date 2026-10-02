@@ -62,6 +62,20 @@ function findChildOption(options: QuoteService["price"]["options"]) {
 }
 
 /**
+ * True when a service's options are age tiers (adult / child / infant) rather
+ * than a set of mutually exclusive variants. Tiered services are quoted from
+ * the party size, so a booking form should collect people, not an option; the
+ * rest expose a variant selector. Defined next to the selection logic so the
+ * form and the engine can never disagree about which kind of service it is.
+ */
+export function usesTieredPricing(service: QuoteService): boolean {
+  const options = service.price.options;
+  if (!options || options.length === 0) return false;
+  const base = service.price.unit ?? "person";
+  return Boolean(findAdultOption(options) && findChildOption(options) && base === "person");
+}
+
+/**
  * A pure quote for a service and party, independent of React. Returns a
  * breakdown plus an indicative MAD conversion; never mutates its input.
  */

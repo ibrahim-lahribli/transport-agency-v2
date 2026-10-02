@@ -1,11 +1,18 @@
 import { z } from "zod";
 
+import type { Service } from "@/schemas/service";
 import type { QuoteService } from "@/pricing/types";
 
-/** A service as shipped to the booking form for live quoting. */
+/** A service as shipped to the booking form for live quoting and selection. */
 export interface BookingServiceOption extends QuoteService {
   title: string;
+  /** Vehicle classes a transfer supports; drives the form's vehicle selector. */
+  vehicles?: Service["vehicles"];
 }
+
+/** The selected price option / route / vehicle, as carried on an inquiry. */
+export const VehicleSchema = z.enum(["sedan", "van", "minibus"]);
+export type InquiryVehicle = z.infer<typeof VehicleSchema>;
 
 /** A validated booking inquiry submitted from the booking form. */
 export const InquirySchema = z.object({
@@ -18,6 +25,12 @@ export const InquirySchema = z.object({
   children: z.coerce.number().int().min(0),
   hotel: z.string().optional(),
   notes: z.string().optional(),
+  /** Variant price option label (activities), as offered by the form. */
+  optionLabel: z.string().optional(),
+  /** Chosen vehicle class for a transfer. */
+  vehicle: VehicleSchema.optional(),
+  /** Index into a transfer service's `routes`. */
+  routeIndex: z.coerce.number().int().min(0).optional(),
 });
 
 export type Inquiry = z.infer<typeof InquirySchema>;

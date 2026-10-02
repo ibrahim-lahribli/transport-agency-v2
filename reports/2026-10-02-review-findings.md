@@ -23,7 +23,11 @@ This document records the state of the work as reviewed.
   (a zero amount) instead of matching an English word, so it is locale- and
   order-independent. Four unit tests pin it, including the French labels
   ("Enfant de moins de 4 ans" vs "Enfant 4 à 11 ans") and a reversed options array.
-- **D5, D6, D8, D9 — still open.** See §2 and §6.
+- **D8 — fixed.** The booking form now exposes the variant, route and vehicle
+  selectors the quote engine already supported (party-priced services collect a
+  party instead), submits the selection, validates it server-side, and renders the
+  per-field errors in the visitor's locale. Six E2E tests cover it.
+- **D5, D6, D9 — still open.** See §2 and §6.
 
 The defect descriptions below are kept as written at review time.
 
@@ -211,8 +215,15 @@ is the documented hatch and is wired into both `playwright.config.ts` and CI.
 - **Fix:** make the rule label- and locale-agnostic — exclude zero-amount options and
   match both `under`/`moins de`, ideally by flagging options explicitly.
 
-### D8 — The booking form cannot select options, and hides field errors · **P2**
+### D8 — The booking form cannot select options, and hides field errors · **P2** · ✅ FIXED
 
+- **Fixed:** the form renders an option selector for variant services, route and
+  vehicle selectors for transfers, and nothing extra for party-priced services,
+  feeding all three into `quote()`. The selection is posted, re-validated against
+  the service in `submitInquiry` (option label, route index, vehicle class) and
+  added to the operator notification. `state.fieldErrors` is now rendered next to
+  each field with locale-aware messages (`errName` …), so a French visitor sees
+  French guidance.
 - **Area:** booking UX
 - **Location:** `src/components/book-form.tsx` (form fields); `:70` (error render);
   `src/booking/actions.ts` (builds `fieldErrors`)

@@ -6,7 +6,19 @@ export interface NotifyResult {
   reason?: string;
 }
 
-function formatMessage(inquiry: Inquiry, serviceTitle: string): string {
+/** The resolved selection shown to the operator, plain-text. */
+export interface InquirySelection {
+  optionLabel?: string;
+  vehicle?: string;
+  /** A transfer route, rendered as "from → to". */
+  routeLabel?: string;
+}
+
+function formatMessage(
+  inquiry: Inquiry,
+  serviceTitle: string,
+  selection: InquirySelection,
+): string {
   return [
     `New booking inquiry: ${serviceTitle} (${inquiry.serviceId})`,
     `Name: ${inquiry.name}`,
@@ -14,6 +26,9 @@ function formatMessage(inquiry: Inquiry, serviceTitle: string): string {
     `Phone: ${inquiry.phone}`,
     inquiry.date ? `Date: ${inquiry.date}` : null,
     `Adults: ${inquiry.adults} / Children: ${inquiry.children}`,
+    selection.optionLabel ? `Option: ${selection.optionLabel}` : null,
+    selection.routeLabel ? `Route: ${selection.routeLabel}` : null,
+    selection.vehicle ? `Vehicle: ${selection.vehicle}` : null,
     inquiry.hotel ? `Hotel: ${inquiry.hotel}` : null,
     inquiry.notes ? `Notes: ${inquiry.notes}` : null,
   ]
@@ -29,10 +44,11 @@ function formatMessage(inquiry: Inquiry, serviceTitle: string): string {
 export async function notifyInquiry(
   inquiry: Inquiry,
   serviceTitle: string,
+  selection: InquirySelection = {},
 ): Promise<NotifyResult> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.BOOKING_NOTIFY_EMAIL;
-  const text = formatMessage(inquiry, serviceTitle);
+  const text = formatMessage(inquiry, serviceTitle, selection);
 
   if (!apiKey || !to) {
     console.log(`[booking] inquiry received (no provider configured):\n${text}`);

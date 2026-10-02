@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { getServiceById } from "@/catalogue";
 import type { Service } from "@/schemas/service";
 
-import { quote, vehicleForParty } from "./quote";
+import { quote, usesTieredPricing, vehicleForParty } from "./quote";
 
 function service(id: string, locale = "en"): Service {
   const found = getServiceById(id, locale);
@@ -78,6 +78,24 @@ describe("quote", () => {
     });
     expect(result.valid).toBe(true);
     expect(result.totalEur).toBe(80);
+  });
+});
+
+describe("usesTieredPricing", () => {
+  it("treats adult/child services as party-priced in both locales", () => {
+    expect(usesTieredPricing(service("boat-cruise"))).toBe(true);
+    expect(usesTieredPricing(service("boat-cruise", "fr"))).toBe(true);
+    expect(usesTieredPricing(service("agadir-city-tour"))).toBe(true);
+  });
+
+  it("treats mutually exclusive variant services as not tiered", () => {
+    expect(usesTieredPricing(service("quad-buggy-forest"))).toBe(false);
+    expect(usesTieredPricing(service("timlalin-dunes"))).toBe(false);
+    expect(usesTieredPricing(service("crocoparc"))).toBe(false);
+  });
+
+  it("is false for transfers, which are priced by route and vehicle", () => {
+    expect(usesTieredPricing(service("airport-agadir"))).toBe(false);
   });
 });
 
