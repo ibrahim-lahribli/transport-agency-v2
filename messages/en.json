@@ -17,6 +17,11 @@
     "activities": "Activities & Adventures",
     "transfers": "Airport & Intercity Transfers",
     "book": "Booking Inquiry",
+    "places": "Places we serve",
+    "guides": "Travel guides",
+    "about": "About us",
+    "contact": "Contact",
+    "faq": "FAQ",
     "legal": "Legal & Contact",
     "rights": "All rights reserved.",
     "priceNote": "Prices in EUR with indicative MAD equivalent."
@@ -143,9 +148,100 @@
     "notesLabel": "Notes or Special Requests",
     "notesPlaceholder": "Baby seat, surfboards, flight number...",
     "submit": "Submit Booking Inquiry",
+    "sending": "Sending…",
+    "successTitle": "Request received",
+    "success": "Thank you — your request has been sent. Our local team will confirm availability on WhatsApp within 30 minutes.",
+    "error": "Something went wrong. Please try again, or message us on WhatsApp.",
+    "invalid": "Please check the highlighted fields and try again.",
+    "quoteTitle": "Your estimate",
+    "quoteTotal": "Estimated total",
+    "indicativeMad": "Indicative in MAD",
+    "quoteEmpty": "Choose a service and your party size to see an estimate.",
     "paymentNote": "Pay on the day of the excursion in cash (EUR or MAD). Free cancellation.",
     "metaTitle": "Book a Tour or Private Transfer | Agadir Tourisme",
     "metaDescription": "Direct booking request with our local Agadir travel agency. Fast confirmation and 7/7 assistance."
+  },
+  "guides": {
+    "metaTitle": "Travel Guides for Agadir and Souss-Massa",
+    "metaDescription": "First-hand guides from a local Agadir agency: when to visit, what to pack, and how to plan excursions, activities and transfers.",
+    "title": "Travel guides",
+    "lead": "Practical, first-hand advice written by the people who run these trips, not copied from a brochure.",
+    "minutes": "min read",
+    "related": "Experiences in this guide",
+    "published": "Published",
+    "read": "Read guide →"
+  },
+  "places": {
+    "metaTitle": "Places We Serve in Souss-Massa",
+    "metaDescription": "Explore Agadir, Taghazout, Tiznit, Taroudant and Essaouira with a licensed local agency: tours, activities and private transfers to each.",
+    "title": "Places we serve",
+    "lead": "From our base in Agadir we run day trips, activities and private transfers across the Souss-Massa region and beyond.",
+    "related": "Tours, activities and transfers for",
+    "browse": "View place →"
+  },
+  "about": {
+    "metaTitle": "About Our Agadir Travel Agency",
+    "metaDescription": "A licensed local agency in Agadir with more than 20 years in the Souss-Massa region: our story, our drivers and our promise on prices and honesty.",
+    "kicker": "Local since the beginning",
+    "title": "A Souss-Massa agency, run by people who live here",
+    "lead": "We are a licensed travel and tourist-transport agency based in Agadir. For more than twenty years we have driven this coast — from Taghazout to Tiznit, from the Souss valley to the dunes north of Tamri — and we still plan every route ourselves.",
+    "story1": "Our founder began with a single vehicle and a phone. Season after season, guests returned and asked for the same driver, the same honest advice about when the pools at Paradise Valley run low, or which mornings the swell keeps the boats in the marina. That is still how we work: a small local team, not a call centre.",
+    "story2": "We publish fixed prices in euros, with an indicative dirham equivalent, and we do not add hidden stops or commissions. If a price is an estimate while a partner confirms it, we say so. If something depends on the season, we say that too.",
+    "story3": "Every excursion, activity and transfer on this site is one we run ourselves or with a partner operator we know personally, with licensed drivers and insured vehicles.",
+    "valuesTitle": "What we stand for",
+    "value1Title": "Local knowledge",
+    "value1Body": "Real pickup windows, real driving times and honest seasonal notes — because we drive these roads every week.",
+    "value2Title": "Transparent pricing",
+    "value2Body": "Fixed EUR prices with an indicative MAD equivalent, fuel and tolls included, and no forced shopping stops.",
+    "value3Title": "A human on WhatsApp",
+    "value3Body": "You reach a member of our local team, before and during your stay, seven days a week.",
+    "ctaTitle": "Plan your trip with us",
+    "ctaBody": "Browse the catalogue or send a request; we confirm availability and answer your questions directly."
+  },
+  "contact": {
+    "metaTitle": "Contact Our Agadir Travel Agency",
+    "metaDescription": "Contact details for our licensed Agadir agency: WhatsApp, email and office address, with a straight answer about tours, activities and transfers.",
+    "title": "Contact us",
+    "lead": "Tell us your dates and what you would like to do. We answer quickly, and always with a real person.",
+    "whatsappLabel": "WhatsApp",
+    "emailLabel": "Email",
+    "addressLabel": "Office",
+    "hoursLabel": "Office hours",
+    "hours": "08:00 to 22:00 daily; WhatsApp monitored for transfers 24/7",
+    "ctaTitle": "Prefer to book directly?",
+    "ctaBody": "Send a booking request and get an instant estimate before you submit."
+  },
+  "faq": {
+    "metaTitle": "Frequently Asked Questions",
+    "metaDescription": "Answers about booking, prices, payment, pickup and cancellation for tours, activities and transfers with our Agadir agency.",
+    "title": "Frequently asked questions",
+    "lead": "The questions we are asked most, answered plainly. If yours is not here, message us on WhatsApp.",
+    "items": [
+      {
+        "q": "How do I book?",
+        "a": "Choose a service, send a request with your date and party size, and we confirm availability on WhatsApp. Payment is in cash (EUR or MAD) at pickup; there is no online prepayment."
+      },
+      {
+        "q": "Are the prices per person or per vehicle?",
+        "a": "Tours and activities are per person, and transfers are per vehicle — car for up to 3 passengers, van for 4 to 7, minibus for 8 to 15. Each page states its unit clearly."
+      },
+      {
+        "q": "What is included in the price?",
+        "a": "Hotel pickup and drop-off where stated, transport in an air-conditioned vehicle, fuel, tolls and parking. Entrance fees, meals and tips are usually not included and are listed on each page."
+      },
+      {
+        "q": "Can I cancel?",
+        "a": "Transfers are free to cancel up to 12 hours before pickup, and excursions up to 24 hours before departure. Late cancellations may be chargeable on bookings that carry a deposit."
+      },
+      {
+        "q": "Do you pick up from Taghazout and Tamraght?",
+        "a": "Yes. Guests in Taghazout, Taghazout Bay, Tamraght and Aourir are collected en route on north-bound excursions, and other tours can add a small pickup supplement on request."
+      },
+      {
+        "q": "Is everything suitable for children?",
+        "a": "Most services welcome families; each page lists age guidance and restrictions. Child seats are free on request with 24 hours' notice for transfers."
+      }
+    ]
   },
   "notFound": {
     "code": "404 Error",

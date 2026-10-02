@@ -14,6 +14,9 @@ concurrency:
 
 env:
   NEXT_TELEMETRY_DISABLED: "1"
+  # CI has no real business secrets; skip the production placeholder check here.
+  # Real deployments enforce it (see config/business.ts).
+  SKIP_ENV_VALIDATION: "true"
 
 jobs:
   ci:
@@ -46,6 +49,12 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+      - name: Validate content
+        run: pnpm validate:data
+
+      - name: Check docs
+        run: pnpm check:docs
 
       - name: Build
         run: pnpm build

@@ -17,6 +17,11 @@
     "activities": "Activités et aventures",
     "transfers": "Transferts aéroport & interurbains",
     "book": "Demande de réservation",
+    "places": "Lieux desservis",
+    "guides": "Guides de voyage",
+    "about": "À propos",
+    "contact": "Contact",
+    "faq": "FAQ",
     "legal": "Informations légales",
     "rights": "Tous droits réservés.",
     "priceNote": "Prix en EUR avec équivalent indicatif en MAD."
@@ -143,9 +148,100 @@
     "notesLabel": "Remarques ou demandes particulières",
     "notesPlaceholder": "Siège bébé, surfs, horaires de vol...",
     "submit": "Envoyer ma demande de réservation",
+    "sending": "Envoi…",
+    "successTitle": "Demande reçue",
+    "success": "Merci — votre demande a bien été envoyée. Notre équipe locale confirme la disponibilité sur WhatsApp sous 30 minutes.",
+    "error": "Une erreur est survenue. Réessayez ou écrivez-nous sur WhatsApp.",
+    "invalid": "Vérifiez les champs indiqués puis réessayez.",
+    "quoteTitle": "Votre estimation",
+    "quoteTotal": "Total estimé",
+    "indicativeMad": "Indicatif en MAD",
+    "quoteEmpty": "Choisissez un service et le nombre de voyageurs pour voir une estimation.",
     "paymentNote": "Paiement le jour de l'excursion en espèces (EUR ou MAD). Annulation gratuite.",
     "metaTitle": "Réserver une excursion ou un transfert | Agadir Tourisme",
     "metaDescription": "Demande de réservation directe auprès de notre agence locale à Agadir. Confirmation rapide et assistance 7j/7."
+  },
+  "guides": {
+    "metaTitle": "Guides de voyage pour Agadir et le Souss-Massa",
+    "metaDescription": "Guides de première main d'une agence locale à Agadir : quand venir, quoi emporter et comment planifier excursions, activités et transferts.",
+    "title": "Guides de voyage",
+    "lead": "Des conseils pratiques et vécus, écrits par ceux qui organisent ces sorties, pas recopiés d'une brochure.",
+    "minutes": "min de lecture",
+    "related": "Expériences citées dans ce guide",
+    "published": "Publié le",
+    "read": "Lire le guide →"
+  },
+  "places": {
+    "metaTitle": "Les lieux que nous desservons au Souss-Massa",
+    "metaDescription": "Découvrez Agadir, Taghazout, Tiznit, Taroudant et Essaouira avec une agence locale agréée : excursions, activités et transferts privés.",
+    "title": "Les lieux que nous desservons",
+    "lead": "Depuis notre base à Agadir, nous organisons excursions, activités et transferts privés dans tout le Souss-Massa et au-delà.",
+    "related": "Excursions, activités et transferts pour",
+    "browse": "Voir le lieu →"
+  },
+  "about": {
+    "metaTitle": "À propos de notre agence de voyages à Agadir",
+    "metaDescription": "Agence locale agréée à Agadir, plus de 20 ans dans la région du Souss-Massa : notre histoire, nos chauffeurs et nos engagements de prix et d'honnêteté.",
+    "kicker": "Locaux depuis toujours",
+    "title": "Une agence du Souss-Massa, animée par des gens d'ici",
+    "lead": "Nous sommes une agence de voyages et de transport touristique agréée à Agadir. Depuis plus de vingt ans, nous parcourons cette côte — de Taghazout à Tiznit, de la vallée du Souss aux dunes au nord de Tamri — et nous planifions encore chaque itinéraire nous-mêmes.",
+    "story1": "Notre fondateur a commencé avec un seul véhicule et un téléphone. Saison après saison, les voyageurs sont revenus et ont redemandé le même chauffeur, le même conseil honnête sur la période où les bassins de la Vallée du Paradis sont à sec, ou sur les matins où la houle garde les bateaux à la marina. C'est encore notre façon de travailler : une petite équipe locale, pas un centre d'appels.",
+    "story2": "Nous affichons des prix fixes en euros, avec un équivalent indicatif en dirhams, sans arrêts imposés ni commissions cachées. Si un prix reste une estimation le temps qu'un partenaire confirme, nous le disons. Si quelque chose dépend de la saison, nous le disons aussi.",
+    "story3": "Chaque excursion, activité et transfert de ce site est organisé par nous ou par un opérateur partenaire que nous connaissons personnellement, avec des chauffeurs agréés et des véhicules assurés.",
+    "valuesTitle": "Nos engagements",
+    "value1Title": "Connaissance locale",
+    "value1Body": "De vraies heures de prise en charge, de vrais temps de route et des notes saisonnières honnêtes — parce que nous conduisons ces routes chaque semaine.",
+    "value2Title": "Prix transparents",
+    "value2Body": "Prix fixes en euros avec équivalent indicatif en dirhams, carburant et péages inclus, sans arrêts commerciaux imposés.",
+    "value3Title": "Un humain sur WhatsApp",
+    "value3Body": "Vous joignez un membre de notre équipe locale, avant et pendant votre séjour, sept jours sur sept.",
+    "ctaTitle": "Préparez votre voyage avec nous",
+    "ctaBody": "Parcourez le catalogue ou envoyez une demande ; nous confirmons les disponibilités et répondons directement à vos questions."
+  },
+  "contact": {
+    "metaTitle": "Contacter notre agence de voyages à Agadir",
+    "metaDescription": "Coordonnées de notre agence agréée à Agadir : WhatsApp, email et adresse, avec une réponse claire sur les excursions, activités et transferts.",
+    "title": "Nous contacter",
+    "lead": "Indiquez vos dates et ce que vous aimeriez faire. Nous répondons vite, et toujours avec une vraie personne.",
+    "whatsappLabel": "WhatsApp",
+    "emailLabel": "Email",
+    "addressLabel": "Bureau",
+    "hoursLabel": "Horaires",
+    "hours": "08h00 à 22h00 tous les jours ; WhatsApp suivi 24h/24 pour les transferts",
+    "ctaTitle": "Vous préférez réserver directement ?",
+    "ctaBody": "Envoyez une demande de réservation et obtenez une estimation instantanée avant de valider."
+  },
+  "faq": {
+    "metaTitle": "Questions fréquentes",
+    "metaDescription": "Réponses sur la réservation, les prix, le paiement, la prise en charge et l'annulation pour les excursions, activités et transferts de notre agence à Agadir.",
+    "title": "Questions fréquentes",
+    "lead": "Les questions qu'on nous pose le plus, expliquées simplement. Si la vôtre n'y figure pas, écrivez-nous sur WhatsApp.",
+    "items": [
+      {
+        "q": "Comment réserver ?",
+        "a": "Choisissez un service, envoyez une demande avec votre date et le nombre de voyageurs, et nous confirmons la disponibilité sur WhatsApp. Le paiement se fait en espèces (EUR ou MAD) à la prise en charge ; aucun prépaiement en ligne."
+      },
+      {
+        "q": "Les prix sont-ils par personne ou par véhicule ?",
+        "a": "Les excursions et activités sont par personne, et les transferts par véhicule — voiture jusqu'à 3 passagers, van de 4 à 7, minibus de 8 à 15. Chaque page indique clairement son unité."
+      },
+      {
+        "q": "Qu'est-ce qui est inclus dans le prix ?",
+        "a": "La prise en charge et le retour à l'hôtel quand indiqué, le transport en véhicule climatisé, le carburant, les péages et le parking. Les entrées, repas et pourboires ne sont en général pas inclus et sont listés sur chaque page."
+      },
+      {
+        "q": "Puis-je annuler ?",
+        "a": "Les transferts sont annulables gratuitement jusqu'à 12 heures avant la prise en charge, et les excursions jusqu'à 24 heures avant le départ. Les annulations tardives peuvent être facturées sur les réservations avec acompte."
+      },
+      {
+        "q": "Prenez-vous en charge à Taghazout et Tamraght ?",
+        "a": "Oui. Les voyageurs de Taghazout, Taghazout Bay, Tamraght et Aourir sont pris en route sur les excursions vers le nord ; d'autres sorties peuvent ajouter un léger supplément sur demande."
+      },
+      {
+        "q": "Tout convient-il aux enfants ?",
+        "a": "La plupart des services accueillent les familles ; chaque page indique l'âge conseillé et les restrictions. Les sièges enfant sont gratuits sur demande, 24 heures à l'avance, pour les transferts."
+      }
+    ]
   },
   "notFound": {
     "code": "Erreur 404",

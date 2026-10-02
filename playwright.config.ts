@@ -1,5 +1,8 @@
 import { defineConfig } from "@playwright/test";
 
+// The production placeholder check is for real deployments; local/CI runs skip it.
+process.env.SKIP_ENV_VALIDATION ??= "true";
+
 const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://localhost:3000";
 
 export default defineConfig({
@@ -26,9 +29,16 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "pnpm start",
-    url: baseURL,
+    // Serve the already-built output; run `next build` first.
+    // Invoke the Node entry directly so it works cross-platform.
+    command: "node node_modules/next/dist/bin/next start -p 3000",
+    url: `${baseURL}/en`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
+    env: {
+      ...process.env,
+      SKIP_ENV_VALIDATION: "true",
+      NEXT_TELEMETRY_DISABLED: "1",
+    },
   },
 });
