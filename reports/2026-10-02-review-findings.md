@@ -23,6 +23,22 @@ This document records the state of the work as reviewed.
 
 The defect descriptions below are kept as written at review time.
 
+### Re-validation of `b4ee637` (this pass)
+
+Re-run on a clean tree at `b4ee637`: `tsc` and `eslint` exit 0, `vitest` 37/37,
+`validate-data` and `check-docs` pass, `next build` emits **71 static pages with 0
+errors / 0 warnings**, and `playwright` passes 10/10 against a fresh `:3100` server.
+The live pass (FR Paradise Valley page, locale switcher, booking submit) found no new
+defects; D6 (double-branded `/book` title) was reproduced live.
+
+**Coverage judgement — `confirmFlags` is intentionally not gated.** Every
+`content/fr/*` service carries a `confirmFlags` array byte-identical to its English
+counterpart (15/15). It is declared optional in `src/schemas/service.ts:170` and is
+**read nowhere** in `src/` — no route or component renders it, so it never reaches a
+visitor and is not a translation defect. `validateTranslation` is deliberately scoped
+to user-visible copy; widening it to this internal field would only manufacture
+noise. Left as-is, recorded here.
+
 ---
 
 ## 1. Gates
