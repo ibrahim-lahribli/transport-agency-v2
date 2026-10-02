@@ -88,3 +88,44 @@ test("/book is noindex and excluded from crawling", async ({ page, request }) =>
   expect(robotsTxt).toContain("/book");
   expect(robotsTxt).toContain("/sitemap.xml");
 });
+
+test("metadata routes are served without a locale redirect", async ({ request }) => {
+  // `/icon` sits at the app root and the share image inside the locale segment;
+  // neither may be 307-redirected by the intl middleware, which would leave the
+  // favicon and the Open Graph image unreachable to crawlers.
+  for (const path of ["/icon", "/en/opengraph-image", "/fr/opengraph-image"]) {
+    const response = await request.get(path, { maxRedirects: 0 });
+    expect(response.status(), `${path} status`).toBe(200);
+    expect(response.headers()["content-type"], `${path} content-type`).toContain("image/");
+  }
+});
+
+test("pages ship a shareable Open Graph and Twitter image that resolves", async ({
+  page,
+  request,
+}) => {
+  await page.goto("/en");
+
+  const ogImage = page.locator('meta[property="og:image"]');
+  await expect(ogImage, "og:image count").toHaveCount(1);
+  const ogUrl = await ogImage.getAttribute("content");
+  expect(ogUrl, "og:image is an absolute URL").toMatch(/^https?:\/\//);
+
+  const response = await request.get(new URL(ogUrl as string).pathname, { maxRedirects: 0 });
+  expect(response.status(), "og:image resolves").toBe(200);
+  expect(response.headers()["content-type"], "og:image content-type").toContain("image/");
+
+  await expect(page.locator('meta[name="twitter:image"]'), "twitter:image count").toHaveCount(1);
+});
+
+test("restrictions render once-punctuated, in both locales", async ({ page }) => {
+  for (const path of [
+    "/en/paradise-valley-day-trip-from-agadir",
+    "/fr/excursion-vallee-du-paradis-depuis-agadir",
+  ]) {
+    await page.goto(path);
+    const text = await page.getByTestId("restrictions-text").innerText();
+    expect(text.length, `${path} restrictions rendered`).toBeGreaterThan(0);
+    expect(text, `${path} restrictions punctuation`).not.toContain("..");
+  }
+});

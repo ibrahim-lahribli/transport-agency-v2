@@ -22,6 +22,20 @@ const HUB_HREF: Record<HubKey, "/excursions" | "/activities" | "/transfers"> = {
   transfers: "/transfers",
 };
 
+/**
+ * Joins sentence-like fragments into one paragraph. Catalogue entries already
+ * carry their own final punctuation, so joining with a period renders
+ * "sentence.. sentence"; this preserves an existing terminator and only adds one
+ * when a fragment is missing it.
+ */
+function joinSentences(parts: string[]): string {
+  return parts
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => (/[.!?]$/.test(part) ? part : `${part}.`))
+    .join(" ");
+}
+
 export function generateStaticParams() {
   const params: { locale: string; slug: string }[] = [];
   for (const locale of locales) {
@@ -280,7 +294,9 @@ export default async function ProductPage({
           {service.restrictions && service.restrictions.length > 0 && (
             <div className="rounded-lg border border-line bg-surface p-4">
               <p className="mb-1 font-bold text-ink">{t("restrictions")}</p>
-              <p className="text-ink-muted">{service.restrictions.join(". ")}</p>
+              <p data-testid="restrictions-text" className="text-ink-muted">
+                {joinSentences(service.restrictions)}
+              </p>
             </div>
           )}
           {service.suitableFor && service.suitableFor.length > 0 && (

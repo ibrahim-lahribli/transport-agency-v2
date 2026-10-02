@@ -28,6 +28,12 @@ exists** (transfers must omit it), and that the visible
 `[data-testid="quick-facts-price"]` contains the JSON-LD price **as a whole
 number token** (not a substring, so `5` cannot match `250`).
 
+The suite also guards the share-card surface: `/icon` and
+`/[locale]/opengraph-image` must return `200` with an image content type
+**without** a locale redirect, every page must expose an absolute `og:image` and
+a `twitter:image` that resolves, and the `[data-testid="restrictions-text"]`
+block must render without doubled periods in both locales.
+
 ## Writing tests
 
 - Prefer accessible queries (`getByRole`) over implementation details.
