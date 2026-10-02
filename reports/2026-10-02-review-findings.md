@@ -10,8 +10,18 @@ test against the production server.
 **Environment:** Node 24, Next.js 16.3.8, production build served on `:3100`,
 `SKIP_ENV_VALIDATION=true` (the local/CI escape hatch for the business-config guard).
 
-This document records the state of the work as reviewed. The defects below are
-**open** at the time of this commit; the fixes are a separate follow-up.
+This document records the state of the work as reviewed.
+
+## Status update
+
+- **D1, D2, D3 — fixed** in `e8ce860` ("fix(seo): ship a resolvable share card
+  and clean product punctuation"), with E2E assertions added.
+- **D4 — fixed.** Every French catalogue field is translated, the draft marker is
+  gone, `validateTranslation` now fails the build on English-in-a-French-field or
+  a shipped editorial marker, and an E2E test proves FR copy is not the EN text.
+- **D5–D9 — still open.** See §2 and §6.
+
+The defect descriptions below are kept as written at review time.
 
 ---
 

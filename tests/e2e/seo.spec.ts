@@ -118,6 +118,33 @@ test("pages ship a shareable Open Graph and Twitter image that resolves", async 
   await expect(page.locator('meta[name="twitter:image"]'), "twitter:image count").toHaveCount(1);
 });
 
+test("French product pages ship translated body copy", async ({ page }) => {
+  // The English and French slugs are deliberately different, so pair them up.
+  const pairs = [
+    ["/en/paradise-valley-day-trip-from-agadir", "/fr/excursion-vallee-du-paradis-depuis-agadir"],
+    ["/en/marrakech-day-trip-from-agadir", "/fr/excursion-marrakech-depuis-agadir"],
+  ];
+
+  for (const [enPath, frPath] of pairs) {
+    await page.goto(enPath);
+    const english = await page.getByTestId("restrictions-text").innerText();
+
+    await page.goto(frPath);
+    const french = await page.getByTestId("restrictions-text").innerText();
+
+    expect(french, `${frPath}: restrictions must not be the English text`).not.toBe(english);
+    expect(french, `${frPath}: restrictions must read as French`).toMatch(/[àâçéèêëîïôûùüœ]/i);
+    await expect(page.locator("body"), `${frPath}: no editorial draft marker`).not.toContainText(
+      "Draft for native review",
+    );
+    // The itinerary is the other field that shipped English; compare it too.
+    const frenchItinerary = await page.locator("ol li p").allInnerTexts();
+    expect(frenchItinerary.join(" "), `${frPath}: itinerary must read as French`).toMatch(
+      /[àâçéèêëîïôûùüœ]/i,
+    );
+  }
+});
+
 test("restrictions render once-punctuated, in both locales", async ({ page }) => {
   for (const path of [
     "/en/paradise-valley-day-trip-from-agadir",

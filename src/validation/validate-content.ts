@@ -95,6 +95,124 @@ export function validateParity(en: Service[], fr: Service[]): string[] {
   return problems;
 }
 
+/**
+ * Editorial markers that must never ship to a real visitor.
+ */
+const DRAFT_MARKER = /\(\s*draft for native review\.?\s*\)/i;
+
+/** Long-form fields whose text must differ between locales. */
+const TRANSLATABLE_SCALARS = [
+  "title",
+  "summary",
+  "days",
+  "availability",
+  "direction",
+  "pickupWindow",
+  "returnApprox",
+  "schedule",
+  "seasonalNotes",
+] as const;
+
+const TRANSLATABLE_ARRAYS = [
+  "itinerary",
+  "includedExtra",
+  "notIncluded",
+  "bring",
+  "suitableFor",
+  "restrictions",
+  "highlights",
+] as const;
+
+/** Shortest identical string treated as untranslated prose, to spare proper nouns. */
+const MIN_PROSE_LENGTH = 12;
+
+function readField(service: Service, key: string): unknown {
+  return (service as unknown as Record<string, unknown>)[key];
+}
+
+/**
+ * A non-English locale must not ship the English source verbatim, and no locale
+ * may ship an editorial draft marker. Only prose is compared: slugs, ids and
+ * place names (route `from`/`to`) are legitimately shared between locales, and
+ * the whole array is compared so a single shared word like "Couples" is fine.
+ */
+export function validateTranslation(
+  source: Service[],
+  translated: Service[],
+  locale: string,
+): string[] {
+  const problems: string[] = [];
+  const byId = new Map(source.map((service) => [service.id, service]));
+
+  for (const service of translated) {
+    const original = byId.get(service.id);
+    if (!original) continue;
+
+    if (DRAFT_MARKER.test(JSON.stringify(service))) {
+      problems.push(`[${locale}] ${service.id}: an editorial draft marker is present in shipped copy`);
+    }
+
+    for (const key of [...TRANSLATABLE_SCALARS, ...TRANSLATABLE_ARRAYS]) {
+      const value = readField(service, key);
+      const english = readField(original, key);
+      if (value == null || english == null) continue;
+
+      if (
+        typeof value === "string" &&
+        typeof english === "string" &&
+        value.length >= MIN_PROSE_LENGTH &&
+        value === english
+      ) {
+        problems.push(`[${locale}] ${service.id}: "${key}" is still the English text`);
+      } else if (
+        Array.isArray(value) &&
+        Array.isArray(english) &&
+        value.length > 0 &&
+        JSON.stringify(value) === JSON.stringify(english)
+      ) {
+        problems.push(`[${locale}] ${service.id}: "${key}" is still the English text`);
+      }
+    }
+
+    for (const key of ["title", "description"] as const) {
+      const value = service.seo[key];
+      if (value.length >= MIN_PROSE_LENGTH && value === original.seo[key]) {
+        problems.push(`[${locale}] ${service.id}: "seo.${key}" is still the English text`);
+      }
+    }
+
+    if (service.extras?.length && original.extras?.length) {
+      const labels = service.extras.map((extra) => extra.label);
+      const englishLabels = original.extras.map((extra) => extra.label);
+      if (JSON.stringify(labels) === JSON.stringify(englishLabels)) {
+        problems.push(`[${locale}] ${service.id}: "extras[].label" is still the English text`);
+      }
+    }
+
+    if (service.route && "legs" in service.route && original.route && "legs" in original.route) {
+      const notes = service.route.legs.map((leg) => leg.notes ?? "");
+      const englishNotes = original.route.legs.map((leg) => leg.notes ?? "");
+      if (notes.some(Boolean) && JSON.stringify(notes) === JSON.stringify(englishNotes)) {
+        problems.push(`[${locale}] ${service.id}: "route.legs[].notes" is still the English text`);
+      }
+    }
+
+    if (service.faq?.length && JSON.stringify(service.faq) === JSON.stringify(original.faq)) {
+      problems.push(`[${locale}] ${service.id}: "faq" is still the English text`);
+    }
+
+    if (
+      service.price.options?.length &&
+      JSON.stringify(service.price.options.map((o) => o.label)) ===
+        JSON.stringify(original.price.options?.map((o) => o.label))
+    ) {
+      problems.push(`[${locale}] ${service.id}: price option labels are still the English text`);
+    }
+  }
+
+  return problems;
+}
+
 /** Place hubs and guides must only reference services that exist. */
 export function validateLinks(): string[] {
   const problems: string[] = [];
@@ -125,6 +243,7 @@ export function runValidation(): string[] {
     ...validateLocale(enServices, "en"),
     ...validateLocale(frServices, "fr"),
     ...validateParity(enServices, frServices),
+    ...validateTranslation(enServices, frServices, "fr"),
     ...validateLinks(),
   ];
 }

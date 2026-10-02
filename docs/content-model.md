@@ -51,6 +51,12 @@ related services and the locale switcher. To take a service live, set
 5. Known `cancellationPolicy` / `host` / `privateRate` keys.
 6. Every price (and transfer extra) declares a unit.
 7. The word **"Sahara"** appears nowhere in copy.
+8. A non-English locale never ships the English source verbatim or an editorial
+   marker. Prose fields (`summary`, `days`, `itinerary`, `bring`, `restrictions`,
+   `faq`, `seo`, route notes, transfer extras, price option labels, …) must differ
+   from their English counterpart, and no shipped copy may contain
+   `(Draft for native review.)`. Short shared words such as "Couples" are fine —
+   the whole field is compared, not individual words.
 
 The zod schema also enforces the title/description lengths, the primary-keyword
 rule and the Sahara rule at type level.
