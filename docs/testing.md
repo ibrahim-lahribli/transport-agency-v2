@@ -17,7 +17,18 @@ corepack pnpm test            # unit (fast, no network)
 corepack pnpm test:e2e        # needs a production build first
 corepack pnpm validate:data   # content rules
 corepack pnpm lighthouse      # budgets (needs a running server)
+corepack pnpm gate            # the whole gate, one command (see below)
 ```
+
+### The full gate
+
+`pnpm gate` (`scripts/gate.mjs`) runs, in fail-fast order: **lint → typecheck →
+unit → validate:data → check:docs → build → e2e**, printing a PASS/FAIL summary
+and exiting non-zero at the first failure. It mirrors CI: it exports
+`SKIP_ENV_VALIDATION=true` and builds against `NEXT_PUBLIC_SITE_URL` (default
+`http://localhost:3000`), and Playwright starts and stops its own server. If that
+port is taken, override both: `PLAYWRIGHT_BASE_URL=http://localhost:3210
+NEXT_PUBLIC_SITE_URL=http://localhost:3210 pnpm gate`.
 
 ## What the E2E SEO suite asserts
 

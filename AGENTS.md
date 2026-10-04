@@ -18,6 +18,7 @@ pnpm test         # vitest run
 pnpm test:e2e     # playwright (needs a build first)
 pnpm validate:data  # content rules
 pnpm lighthouse   # lighthouse ci budgets
+pnpm gate         # full local gate: lint, typecheck, test, validate, docs, build, e2e
 ```
 
 Leave the tree green: `lint → typecheck → test → build`. Add `test:e2e` when
