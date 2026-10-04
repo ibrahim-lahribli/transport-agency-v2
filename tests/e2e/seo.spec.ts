@@ -156,3 +156,20 @@ test("restrictions render once-punctuated, in both locales", async ({ page }) =>
     expect(text, `${path} restrictions punctuation`).not.toContain("..");
   }
 });
+
+test("/book title carries the brand exactly once", async ({ page }) => {
+  await page.goto("/en/book");
+  await expect(page).toHaveTitle("Book a Tour or Private Transfer | Agadir Tourisme");
+  await page.goto("/fr/book");
+  await expect(page).toHaveTitle("Réserver une excursion ou un transfert | Agadir Tourisme");
+});
+
+test("sitemap lastmod is present only where a real date exists", async ({ request }) => {
+  const xml = await (await request.get("/sitemap.xml")).text();
+  const blocks = [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => m[1]);
+  expect(blocks.length).toBeGreaterThan(0);
+  for (const block of blocks) {
+    const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] ?? "";
+    expect(/<lastmod>/.test(block), `${loc} lastmod`).toBe(loc.includes("/guides/"));
+  }
+});
