@@ -26,6 +26,9 @@ export async function generateMetadata({
     enPath: "/en/book",
     frPath: "/fr/book",
     noindex: true,
+    // The title already ends with the brand; exempt it from the layout's
+    // `%s | Agadir Tourisme` template so it is not appended twice.
+    titleAbsolute: true,
   });
 }
 

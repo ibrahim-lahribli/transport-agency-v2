@@ -160,6 +160,12 @@ test("restrictions render once-punctuated, in both locales", async ({ page }) =>
 test("/book title carries the brand exactly once", async ({ page }) => {
   await page.goto("/en/book");
   await expect(page).toHaveTitle("Book a Tour or Private Transfer | Agadir Tourisme");
+  // OG/Twitter never pass through the layout template, so they must carry the
+  // brand from the message itself rather than lose it when the template is exempted.
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+    "content",
+    "Book a Tour or Private Transfer | Agadir Tourisme",
+  );
   await page.goto("/fr/book");
   await expect(page).toHaveTitle("Réserver une excursion ou un transfert | Agadir Tourisme");
 });

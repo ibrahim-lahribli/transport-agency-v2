@@ -21,6 +21,13 @@ canonical, the `hreflang` set, Open Graph and Twitter tags. Product pages pass
 the **translated** reciprocal slugs from `getReciprocalSlugs` so the French URL
 never carries an English slug.
 
+A page whose title already ends with the brand passes `titleAbsolute: true` (only
+`/book` today). The locale layout templates `<title>` as `%s | Agadir Tourisme`,
+so without the flag the brand is appended twice; and because the template does
+**not** touch `og:title`/`twitter:title`, stripping the brand from the message
+instead would silently drop it from the share card. The flag keeps all three
+titles carrying the brand exactly once.
+
 `SITE_URL` comes from `NEXT_PUBLIC_SITE_URL` (falls back to
 `http://localhost:3000`). All canonical/alternate URLs are absolute.
 
@@ -40,6 +47,9 @@ never carries an English slug.
 - `src/app/sitemap.ts` builds the sitemap from the **publish-gated** catalogue:
   home + hubs + (published services × 2) URLs, each with `xhtml:link` alternates
   (`en`, `fr`, `x-default`).
+- `lastModified` is a **real content date, never a build stamp**: guide URLs use
+  the guide's own ISO `date`; every other URL class **omits** `lastModified`
+  rather than claim the whole site changed on each deploy.
 - `src/app/robots.ts` allows crawling (including known AI crawlers), disallows
   `/book` and `/*/book`, and references the sitemap.
 - `public/llms.txt` is a best-effort summary for non-Google AI agents. Google

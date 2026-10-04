@@ -68,6 +68,20 @@ SKIP_ENV_VALIDATION=true NEXT_PUBLIC_SITE_URL=http://localhost:3100 \
 - Whether a service shows a variant selector, a route+vehicle selector, or just a
   party size is decided by `usesTieredPricing()` in `src/pricing/quote.ts`, shared
   with the quote engine so the form and the engine can't disagree.
+- A Vitest test that reads a repo file must anchor the path to `process.cwd()`
+  (`resolve(process.cwd(), "messages", ...)`); `new URL(..., import.meta.url)`
+  resolves to the drive root here (e.g. `C:\messages\fr.json`).
+- The locale layout templates `<title>` as `%s | Agadir Tourisme`, but that
+  template does **not** touch `og:title`/`twitter:title`. A title that already
+  ends with the brand must pass `titleAbsolute: true` to `buildPageMetadata`
+  (`/book` does) — stripping the brand from the message instead fixes `<title>`
+  but silently drops it from the share card.
+- `src/app/sitemap.ts` carries `lastModified` **only** on guide URLs (the guide's
+  own ISO `date`); every other URL omits it. Never reintroduce a build-time
+  `new Date()` stamp.
+- Cancellation windows are fixed by `data/source/services-report.md` §3.6
+  (transfer 12 h; excursion/adventure 24 h). `product.*Cancellation` and the FAQ
+  answer must agree across both locales, pinned by `src/i18n/messages.test.ts`.
 
 ## Where things live
 

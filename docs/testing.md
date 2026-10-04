@@ -4,7 +4,7 @@
 
 | Suite          | Tool                             | Location                                     | Covers                                                                   |
 | -------------- | -------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------ |
-| Unit/component | Vitest + Testing Library (jsdom) | `src/**/*.test.ts(x)`, `config/**/*.test.ts` | pricing engine, content validation (incl. translation completeness), business config |
+| Unit/component | Vitest + Testing Library (jsdom) | `src/**/*.test.ts(x)`, `config/**/*.test.ts` | pricing engine, content validation (incl. translation completeness), business config, sitemap `lastmod`, message-locale consistency |
 | End-to-end     | Playwright (375px mobile)        | `tests/e2e`                                  | home render, locale switching, booking form (selectors + field errors), and the SEO suite |
 | Content rules  | Node script                      | `scripts/validate-data.mjs`                  | catalogue validation (see [content-model.md](content-model.md))          |
 | Docs guard     | Node script                      | `scripts/check-docs.mjs`                     | skill frontmatter and Markdown links resolve                             |
@@ -35,6 +35,12 @@ a `twitter:image` that resolves, and the `[data-testid="restrictions-text"]`
 block must render without doubled periods in both locales. A French product page
 must additionally ship body copy that differs from its English source, so an
 untranslated field fails the build ([content-model.md](content-model.md), rule 8).
+
+Two more assertions guard metadata hygiene. The `/book` title (and its
+`og:title`) must carry the brand exactly once — the layout template appends it,
+so a message that already contains it would double it (see [seo.md](seo.md)). And
+in `sitemap.xml`, `<lastmod>` must appear **only** on guide URLs, which are the
+only entries with a real content date.
 
 ## What the E2E booking suite asserts
 

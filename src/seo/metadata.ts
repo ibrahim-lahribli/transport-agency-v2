@@ -35,6 +35,13 @@ export interface BuildMetadataOptions {
   enPath: string;
   frPath: string;
   noindex?: boolean;
+  /**
+   * Emit the title verbatim instead of letting the locale layout's
+   * `%s | Agadir Tourisme` template append the brand. Use when the title
+   * already contains the brand, so `<title>`, `og:title` and `twitter:title`
+   * all keep it exactly once instead of the template double-branding `<title>`.
+   */
+  titleAbsolute?: boolean;
 }
 
 /**
@@ -52,7 +59,7 @@ export function buildPageMetadata(opts: BuildMetadataOptions): Metadata {
   const ogAlternateLocale = opts.locale === "fr" ? ["en_US"] : ["fr_FR"];
 
   return {
-    title: opts.title,
+    title: opts.titleAbsolute ? { absolute: opts.title } : opts.title,
     description: opts.description,
     alternates: {
       canonical,
