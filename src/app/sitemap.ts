@@ -6,7 +6,6 @@ import { places } from "@/content/places";
 import { SITE_URL } from "@/seo/metadata";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
   const entries: MetadataRoute.Sitemap = [];
 
   const alternates = (en: string, fr: string) => ({
@@ -18,14 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const homeFr = `${SITE_URL}/fr`;
   entries.push({
     url: homeEn,
-    lastModified,
     changeFrequency: "weekly",
     priority: 1,
     alternates: alternates(homeEn, homeFr),
   });
   entries.push({
     url: homeFr,
-    lastModified,
     changeFrequency: "weekly",
     priority: 1,
     alternates: alternates(homeEn, homeFr),
@@ -37,14 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const hubFr = `${SITE_URL}/fr/${hub}`;
     entries.push({
       url: hubEn,
-      lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
       alternates: alternates(hubEn, hubFr),
     });
     entries.push({
       url: hubFr,
-      lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
       alternates: alternates(hubEn, hubFr),
@@ -56,14 +51,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const placesFr = `${SITE_URL}/fr/places`;
   entries.push({
     url: placesEn,
-    lastModified,
     changeFrequency: "weekly",
     priority: 0.8,
     alternates: alternates(placesEn, placesFr),
   });
   entries.push({
     url: placesFr,
-    lastModified,
     changeFrequency: "weekly",
     priority: 0.8,
     alternates: alternates(placesEn, placesFr),
@@ -73,33 +66,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const placeFr = `${SITE_URL}/fr/places/${place.slug.fr}`;
     entries.push({
       url: placeEn,
-      lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
       alternates: alternates(placeEn, placeFr),
     });
     entries.push({
       url: placeFr,
-      lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
       alternates: alternates(placeEn, placeFr),
     });
   }
 
-  // Editorial guides.
+  // Editorial guides. The guide's own ISO `date` is the only real content date
+  // available, so it is the only URL class that carries `lastModified`; every
+  // other page omits it rather than claim the whole site changed on each build.
   const guidesEn = `${SITE_URL}/en/guides`;
   const guidesFr = `${SITE_URL}/fr/guides`;
   entries.push({
     url: guidesEn,
-    lastModified,
     changeFrequency: "weekly",
     priority: 0.7,
     alternates: alternates(guidesEn, guidesFr),
   });
   entries.push({
     url: guidesFr,
-    lastModified,
     changeFrequency: "weekly",
     priority: 0.7,
     alternates: alternates(guidesEn, guidesFr),
@@ -109,14 +100,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const guideFr = `${SITE_URL}/fr/guides/${guide.slug.fr}`;
     entries.push({
       url: guideEn,
-      lastModified,
+      lastModified: new Date(guide.date),
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: alternates(guideEn, guideFr),
     });
     entries.push({
       url: guideFr,
-      lastModified,
+      lastModified: new Date(guide.date),
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: alternates(guideEn, guideFr),
@@ -134,14 +125,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     entries.push({
       url: enUrl,
-      lastModified,
       changeFrequency: "weekly",
       priority: 0.8,
       alternates: alternates(enUrl, frUrl),
     });
     entries.push({
       url: frUrl,
-      lastModified,
       changeFrequency: "weekly",
       priority: 0.8,
       alternates: alternates(enUrl, frUrl),
