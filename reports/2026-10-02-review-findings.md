@@ -32,7 +32,8 @@ This document records the state of the work as reviewed.
   `<select>` back to its first option while the quote still showed the old choice —
   a resubmit would then send the *default* option. The action now carries an
   `attempt` id and the form remounts on it, re-applying the visitor's values.
-- **D5, D6, D9 — still open.** See §2 and §6.
+- **D5, D6, D9 — fixed** in `8a738c4`, `037835e`, `0ef6e95`. See the fix-pass
+  re-validation below (and the corrected D9 note in §2).
 
 The defect descriptions below are kept as written at review time.
 
@@ -43,6 +44,21 @@ Re-run on a clean tree at `b4ee637`: `tsc` and `eslint` exit 0, `vitest` 37/37,
 errors / 0 warnings**, and `playwright` passes 10/10 against a fresh `:3100` server.
 The live pass (FR Paradise Valley page, locale switcher, booking submit) found no new
 defects; D6 (double-branded `/book` title) was reproduced live.
+
+### Re-validation of the fix pass (2026-10-04)
+
+Re-run after D5, D6 and D9 were fixed: `eslint .` and `tsc --noEmit` exit 0,
+`vitest` **60/60** across 10 files, `validate-data` and `check-docs` pass,
+`next build` succeeds, and `playwright` passes **19/19** (up from 10) against a
+fresh production server. The suite ran **headlessly** in this environment:
+`~/AppData/Local/ms-playwright` holds `chromium-1243` and
+`chromium_headless_shell-1243`, and a direct `chromium.launch({ headless: true })`
+succeeds. The earlier "Playwright could not be executed headlessly (missing
+browser)" limitation was **incorrect** — the browser is installed here; the only
+real obstacle was that another process still held `:3100`, so the suite was run
+against a fresh `:3200` server via `PLAYWRIGHT_BASE_URL`.
+
+D6 was reproduced live before the fix (`… | Agadir Tourisme | Agadir Tourisme`).
 
 **Coverage judgement — `confirmFlags` is intentionally not gated.** Every
 `content/fr/*` service carries a `confirmFlags` array byte-identical to its English
@@ -260,7 +276,10 @@ is the documented hatch and is wired into both `playwright.config.ts` and CI.
   `validate-content`).
 - **Impact:** `lastmod` is not a ranking factor but is a crawl-scheduling hint; a
   useless one is worse than none. The doc error misleads future contributors.
-- **Fix:** derive `lastmod` from real content dates, and correct the docs table.
+- **Fix:** derive `lastmod` from real content dates. Guides use their own ISO
+  `date`; every other URL omits `lastModified`. **The docs half was already
+  fixed** — `9ec2322` removed the "localized home page" row, so nothing further
+  was needed there.
 
 ---
 
