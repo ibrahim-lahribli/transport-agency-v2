@@ -72,17 +72,19 @@ noise. Left as-is, recorded here.
 
 ## 1. Gates
 
-Every documented gate passes on the reviewed work.
+Every documented gate passes on the reviewed work. The figures below are the
+current results (fix pass, 2026-10-04); they match the "Re-validation of the fix
+pass" section above.
 
 | Gate          | Command                     | Result                                       |
 | ------------- | --------------------------- | -------------------------------------------- |
 | Typecheck     | `node_modules/.bin/tsc --noEmit` | exit 0                                   |
 | Lint          | `node_modules/.bin/eslint .`     | exit 0                                   |
-| Unit          | `node_modules/.bin/vitest run`   | **34 passed** across 6 files             |
+| Unit          | `node_modules/.bin/vitest run`   | **60 passed** across 10 files            |
 | Content rules | `node scripts/validate-data.mjs` | `Content validation passed.`             |
-| Docs guard    | `node scripts/check-docs.mjs`    | `Docs check passed (32 files).`          |
-| Build         | `next build`                     | **72 static pages**, 0 errors             |
-| End-to-end    | `playwright test` (vs `:3100`)   | **6 passed**, all 56 sitemap URLs         |
+| Docs guard    | `node scripts/check-docs.mjs`    | `Docs check passed (33 files).`          |
+| Build         | `next build`                     | **71 static pages**, 0 errors             |
+| End-to-end    | `playwright test` (vs `:3200`)   | **19 passed**, all 56 sitemap URLs        |
 
 A production build **fails closed** while `.env.example` placeholder values are in
 place:
@@ -95,9 +97,11 @@ values: legalName, tradingName, ice, licence, insurance, whatsapp, email, addres
 That is by design ([config/business.ts](../config/business.ts)). `SKIP_ENV_VALIDATION`
 is the documented hatch and is wired into both `playwright.config.ts` and CI.
 
-> The green suite is the weakest evidence here, not the strongest: the unit and E2E
-> tests pass while the defects in §2 ship. None of them assert on `og:image`,
-> translation completeness, or the punctuation of the rendered restrictions.
+> At review time the green suite was the weakest evidence, not the strongest: the
+> unit and E2E tests passed while the defects in §2 shipped, because none of them
+> asserted on `og:image`, translation completeness, or the punctuation of the
+> rendered restrictions. Those gaps are now closed (§2) and the suite has grown
+> from 34 to 60 unit tests and from 6 to 19 E2E tests.
 
 ---
 
