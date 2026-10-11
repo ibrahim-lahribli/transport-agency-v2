@@ -29,8 +29,15 @@ config/business.ts (zod-validated env: legal + NAP)   config/site.ts (origin, lo
   (`json-ld.tsx`), display price (`price.ts`) and duration formatting
   (`duration.ts`). These are pure and reusable.
 - **`src/pricing`** — a pure quote engine (`quote.ts`), independent of React.
-- **`src/components`** — presentational building blocks: navigation, hub view,
-  JSON-LD, locale switcher, booking form.
+- **`src/components`** — presentational building blocks: `navigation.tsx`
+  (server `Header`/`Footer`, both fed translated labels and `getContact()`),
+  `header-chrome.tsx` (client header shell: mobile menu toggle, ≥44px targets,
+  Esc-to-close), `locale-switcher.tsx`, `ui.tsx` (agency-design-v2 primitives:
+  `ButtonLink`, `Button` class helper, `Eyebrow`, `SectionHeading`, `Tag`,
+  `PageIntro`, `Accordion`), `hub-page.tsx`, `service-card.tsx`,
+  `book-form.tsx` and `json-ld.tsx`. UI copy comes from `messages/{en,fr}.json`
+  — the chrome never hardcodes strings and never renders contact data other
+  than through `getContact()`.
 - **`src/content`** — hand-curated long-tail content: `places.ts` (place hubs)
   and `guides.ts` (editorial guides). Both reference service ids that the
   content validator checks.
