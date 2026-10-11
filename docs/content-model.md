@@ -61,6 +61,19 @@ related services and the locale switcher. To take a service live, set
 The zod schema also enforces the title/description lengths, the primary-keyword
 rule and the Sahara rule at type level.
 
+## Service images
+
+Every service has an image slot at `public/images/services/<id>.jpg`, resolved
+by [`src/content/images.ts`](../src/content/images.ts) (`getServiceImage` —
+pure; unknown ids fall back to a category artwork: transfers → `road`,
+activities → `beach`, excursions → `coast`). The seven generic artwork photos
+the design re-skin needs (hero/coast/beach/boats/city/cliffs/road) live at
+`public/images/<name>.jpg`; components reference them via
+`getServiceImage("artwork:<name>", kind)`. Slots are placeholder photography
+until the agency supplies real photos (a roadmap follow-up); Pexels/Unsplash
+sources and their license notes live in the design export's `src/App.tsx`.
+To replace a service photo, drop a `.jpg` at the path — no code change.
+
 ## Adding or changing a service
 
 Follow the [add-service skill](../.agents/skills/add-service/SKILL.md) and finish
