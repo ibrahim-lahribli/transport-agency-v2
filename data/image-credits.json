@@ -1,0 +1,178 @@
+{
+  "artwork:hero": {
+    "file": "public\\images\\hero.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Paradise Valley, Morocco (8629512444).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Paradise%20Valley%2C%20Morocco%20(8629512444).jpg",
+    "license": "CC BY 2.0",
+    "author": "Heather Cowper from Bristol, UK"
+  },
+  "artwork:coast": {
+    "file": "public\\images\\coast.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Panorama beach at Taghazout.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Panorama%20beach%20at%20Taghazout.jpg",
+    "license": "CC BY 2.0",
+    "author": "Heather Cowper from Bristol, UK"
+  },
+  "artwork:beach": {
+    "file": "public\\images\\beach.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Immouzzer cascade voile de la mariée.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Immouzzer%20cascade%20voile%20de%20la%20mari%C3%A9e.jpg",
+    "license": "Public domain",
+    "author": "TerrierMichel"
+  },
+  "artwork:boats": {
+    "file": "public\\images\\boats.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Fishing Port of Essaouira Morocco.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Fishing%20Port%20of%20Essaouira%20Morocco.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "CastlesCatalog"
+  },
+  "artwork:city": {
+    "file": "public\\images\\city.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Agadir from Agadir Oufella 01.06.2023.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Agadir%20from%20Agadir%20Oufella%2001.06.2023.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "AyourAchtouk"
+  },
+  "artwork:cliffs": {
+    "file": "public\\images\\cliffs.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Immouzzer cascade voile de la mariée.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Immouzzer%20cascade%20voile%20de%20la%20mari%C3%A9e.jpg",
+    "license": "Public domain",
+    "author": "TerrierMichel"
+  },
+  "artwork:road": {
+    "file": "public\\images\\road.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Panorama beach at Taghazout.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Panorama%20beach%20at%20Taghazout.jpg",
+    "license": "CC BY 2.0",
+    "author": "Heather Cowper from Bristol, UK"
+  },
+  "agadir-city-tour": {
+    "file": "public\\images\\services\\agadir-city-tour.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Agadir from Agadir Oufella 01.06.2023.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Agadir%20from%20Agadir%20Oufella%2001.06.2023.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "AyourAchtouk"
+  },
+  "airport-agadir": {
+    "file": "public\\images\\services\\airport-agadir.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Agadir Airport 2.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Agadir%20Airport%202.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "Mmichaal"
+  },
+  "airport-taghazout": {
+    "file": "public\\images\\services\\airport-taghazout.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Agadir Airport 2.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Agadir%20Airport%202.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "Mmichaal"
+  },
+  "boat-cruise": {
+    "file": "public\\images\\services\\boat-cruise.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Fishing Port of Essaouira Morocco.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Fishing%20Port%20of%20Essaouira%20Morocco.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "CastlesCatalog"
+  },
+  "crocoparc": {
+    "file": "public\\images\\services\\crocoparc.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Crocodile du Nil à Crocoparc Agadir.jpeg",
+    "page": "https://commons.wikimedia.org/wiki/File:Crocodile%20du%20Nil%20%C3%A0%20Crocoparc%20Agadir.jpeg",
+    "license": "CC BY-SA 4.0",
+    "author": "DomiMacMan"
+  },
+  "essaouira": {
+    "file": "public\\images\\services\\essaouira.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Fishing Port of Essaouira Morocco.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Fishing%20Port%20of%20Essaouira%20Morocco.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "CastlesCatalog"
+  },
+  "horse-riding-souss": {
+    "file": "public\\images\\services\\horse-riding-souss.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Essaouira Beach, Morocco - panoramio (4).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Essaouira%20Beach%2C%20Morocco%20-%20panoramio%20(4).jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "Patrick Nouhailler's…"
+  },
+  "marrakech": {
+    "file": "public\\images\\services\\marrakech.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Koutoubia mosque of Marrakech.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Koutoubia%20mosque%20of%20Marrakech.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "Shimi Yosr"
+  },
+  "massa-tiznit": {
+    "file": "public\\images\\services\\massa-tiznit.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Taroudant City Walls 2011.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Taroudant%20City%20Walls%202011.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "Bjørn Christian Tørrissen"
+  },
+  "moroccan-evening": {
+    "file": "public\\images\\services\\moroccan-evening.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Tajine and grilled sardines.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Tajine%20and%20grilled%20sardines.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "Wimmiden"
+  },
+  "paradise-valley": {
+    "file": "public\\images\\services\\paradise-valley.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Paradise Valley, Morocco (8629512444).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Paradise%20Valley%2C%20Morocco%20(8629512444).jpg",
+    "license": "CC BY 2.0",
+    "author": "Heather Cowper from Bristol, UK"
+  },
+  "private-transfers-tourist-transport": {
+    "file": "public\\images\\services\\private-transfers-tourist-transport.jpg",
+    "source": "Wikimedia Commons",
+    "title": "TRANSPORT TOURISTIQUES MERCEDES MINIBUS IN THE ATLAS MOUNTAINS MOROCCO APRIL 2013 (8740040573).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:TRANSPORT%20TOURISTIQUES%20MERCEDES%20MINIBUS%20IN%20THE%20ATLAS%20MOUNTAINS%20MOROCCO%20APRIL%202013%20(8740040573).jpg",
+    "license": "CC BY-SA 2.0",
+    "author": "calflier001"
+  },
+  "quad-buggy-forest": {
+    "file": "public\\images\\services\\quad-buggy-forest.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Elenika - panoramio.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Elenika%20-%20panoramio.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "Pedro Madrid"
+  },
+  "taroudant-tiout": {
+    "file": "public\\images\\services\\taroudant-tiout.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Taroudant City Walls 2011.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Taroudant%20City%20Walls%202011.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "Bjørn Christian Tørrissen"
+  },
+  "timlalin-dunes": {
+    "file": "public\\images\\services\\timlalin-dunes.jpg",
+    "source": "Wikimedia Commons",
+    "title": "Vacations - Camel ride in Sahara Desert (Morroco).jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Vacations%20-%20Camel%20ride%20in%20Sahara%20Desert%20(Morroco).jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "Fbrandao.1963"
+  }
+}

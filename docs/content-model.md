@@ -66,13 +66,18 @@ rule and the Sahara rule at type level.
 Every service has an image slot at `public/images/services/<id>.jpg`, resolved
 by [`src/content/images.ts`](../src/content/images.ts) (`getServiceImage` —
 pure; unknown ids fall back to a category artwork: transfers → `road`,
-activities → `beach`, excursions → `coast`). The seven generic artwork photos
+activities → `beach`, excursions → `coast`). Slots may deliberately share one
+artwork photo (design placeholders; a one-unique-photo-per-service pass is a
+polish task). The seven generic artwork photos
 the design re-skin needs (hero/coast/beach/boats/city/cliffs/road) live at
 `public/images/<name>.jpg`; components reference them via
-`getServiceImage("artwork:<name>", kind)`. Slots are placeholder photography
-until the agency supplies real photos (a roadmap follow-up); Pexels/Unsplash
-sources and their license notes live in the design export's `src/App.tsx`.
-To replace a service photo, drop a `.jpg` at the path — no code change.
+`getServiceImage("artwork:<name>", kind)`. Photography is sourced from freely
+licensed Wikimedia Commons files; per-slot titles, license and author are
+recorded in [`data/image-credits.json`](../data/image-credits.json) and the
+mapping that produced them in [`data/image-sources.json`](../data/image-sources.json)
+(regenerate with `node scripts/fetch-images.mjs`). Client-supplied real photos
+remain a roadmap follow-up; to replace any slot, drop a properly licensed
+`.jpg` at the path and update the credits manifest — no code change.
 
 ## Adding or changing a service
 

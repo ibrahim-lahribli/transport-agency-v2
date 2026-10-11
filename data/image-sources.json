@@ -1,0 +1,28 @@
+{
+  "userAgent": "TourismeAgencySiteBuild/1.0 (https://agadirtourisme.example; webmaster@agadirtourisme.ma) codebuff-image-fetch",
+  "apiEndpoint": "https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=1400&titles=<titles-pipe-joined-with-File%3A-prefixes>",
+  "slots": {
+    "artwork:hero": "Paradise Valley, Morocco (8629512444).jpg",
+    "artwork:coast": "Panorama beach at Taghazout.jpg",
+    "artwork:beach": "Immouzzer cascade voile de la mariée.jpg",
+    "artwork:boats": "Fishing Port of Essaouira Morocco.jpg",
+    "artwork:city": "Agadir from Agadir Oufella 01.06.2023.jpg",
+    "artwork:cliffs": "Immouzzer cascade voile de la mariée.jpg",
+    "artwork:road": "Panorama beach at Taghazout.jpg",
+    "agadir-city-tour": "Agadir from Agadir Oufella 01.06.2023.jpg",
+    "airport-agadir": "Agadir Airport 2.jpg",
+    "airport-taghazout": "Agadir Airport 2.jpg",
+    "boat-cruise": "Fishing Port of Essaouira Morocco.jpg",
+    "crocoparc": "Crocodile du Nil à Crocoparc Agadir.jpeg",
+    "essaouira": "Fishing Port of Essaouira Morocco.jpg",
+    "horse-riding-souss": "Essaouira Beach, Morocco - panoramio (4).jpg",
+    "marrakech": "Koutoubia mosque of Marrakech.jpg",
+    "massa-tiznit": "Taroudant City Walls 2011.jpg",
+    "moroccan-evening": "Tajine and grilled sardines.jpg",
+    "paradise-valley": "Paradise Valley, Morocco (8629512444).jpg",
+    "private-transfers-tourist-transport": "TRANSPORT TOURISTIQUES MERCEDES MINIBUS IN THE ATLAS MOUNTAINS MOROCCO APRIL 2013 (8740040573).jpg",
+    "quad-buggy-forest": "Elenika - panoramio.jpg",
+    "taroudant-tiout": "Taroudant City Walls 2011.jpg",
+    "timlalin-dunes": "Vacations - Camel ride in Sahara Desert (Morroco).jpg"
+  }
+}
