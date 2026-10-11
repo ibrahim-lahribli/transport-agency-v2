@@ -17,16 +17,21 @@
 
 ## CSS
 
-- Tailwind CSS v4 with the design tokens in `src/app/globals.css` (warm neutral
-  ramp + a single terracotta accent, light default, dark via
-  `prefers-color-scheme`). Use token utilities: `bg-canvas`, `bg-surface`,
-  `text-ink`, `text-ink-muted`, `border-line`, `bg-accent`, `text-on-accent`.
+- Tailwind CSS v4 with the design tokens in `src/app/globals.css` (the
+  agency-design-v2 identity: cream/sand/paper surfaces, deep green-black ink,
+  one terracotta accent, olive for trust marks; **light-only**). Use token
+  utilities: `bg-canvas`, `bg-surface`, `text-ink`, `text-ink-muted`,
+  `border-line`, `bg-accent`, `text-on-accent`, `text-olive`, `text-error`.
+- Type: Playfair Display (`--font-serif`, headings) + DM Sans (`--font-sans`,
+  body), loaded with `next/font/google` in the locale layout. Display sizes
+  use the clamped `text-display` / `text-2xl` / `text-xl` scale.
 - **CSS logical properties only.** Use `ms/me/ps/pe`, `start/end`, `inset-bs/be`,
   `text-start/end`. Never `ml/mr/pl/pr`, `left/right`, `text-left/right`.
   Symmetric shorthands (`mx/my/px/py`) are fine.
 - Mobile-first at a **375px** baseline; scale up with `sm:`/`md:`/`lg:`.
-- Keep the design minimalist: borders, spacing and one accent — no shadows,
-  gradients or animation libraries beyond simple `transition-*`.
+- The design uses `shadow-card` on floating cards and directional gradient
+  overlays on photos; both are part of the identity. Still no animation
+  libraries beyond simple `transition-*`.
 
 ## Components
 
@@ -34,7 +39,9 @@
   switcher, the live quote, the booking form).
 - Accessibility: one `<h1>` per page, `aria-current` on breadcrumbs, real
   `<button>`/`<a>` elements, and visible focus styles.
-- Reuse the shared building blocks rather than re-implementing layout.
+- Reuse the shared building blocks (`src/components/ui.tsx`: `ButtonLink`,
+  `Eyebrow`, `SectionHeading`, `Tag`, `PageIntro`, `Accordion`) rather than
+  re-implementing layout.
 
 ## Commits
 

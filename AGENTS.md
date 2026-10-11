@@ -42,7 +42,8 @@ SKIP_ENV_VALIDATION=true NEXT_PUBLIC_SITE_URL=http://localhost:3100 \
 - ⚠️ Ask first: adding a dependency, changing the content schema, changing CI.
 - 🚫 Never: commit secrets, invent a price or duration, bypass the publish gate,
   commit/push/open a PR unless asked.
-- Design: the current palette/type identity is a deliberate keep — don't re-theme;
+- Design: the agency-design-v2 identity (cream/ink/terracotta, Playfair Display
+  + DM Sans, light-only) is a deliberate keep — don't re-theme away from it;
   only low-risk consistency/a11y polish is in scope unless asked.
 
 ## Non-obvious gotchas

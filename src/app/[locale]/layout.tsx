@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { DM_Sans, Playfair_Display } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
@@ -12,14 +13,26 @@ import { Footer, Header } from "@/components/navigation";
 
 import "../globals.css";
 
+const dmSans = DM_Sans({
+  subsets: ["latin", "latin-ext"],
+  weight: "variable",
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin", "latin-ext"],
+  weight: "variable",
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fbf7f2" },
-    { media: "(prefers-color-scheme: dark)", color: "#17130f" },
-  ],
+  themeColor: "#f7f2e8",
 };
 
 export const metadata: Metadata = {
@@ -53,7 +66,7 @@ export default async function LocaleLayout({
   const slugAlternates = getSlugAlternates();
 
   return (
-    <html lang={locale} dir={dir}>
+    <html lang={locale} dir={dir} className={`${dmSans.variable} ${playfair.variable}`}>
       <head>
         <TravelAgencyJsonLd />
       </head>
