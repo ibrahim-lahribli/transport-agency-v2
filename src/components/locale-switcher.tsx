@@ -34,9 +34,10 @@ export function LocaleSwitcher({ locale, label, ariaLabel, slugAlternates }: Loc
       href={href}
       hrefLang={other}
       aria-label={ariaLabel}
-      className="inline-flex min-h-[40px] items-center rounded-md border border-line px-3 py-1.5 text-sm font-semibold text-ink hover:border-accent hover:text-accent-strong"
+      className="inline-flex min-h-11 items-center gap-2 rounded-sm border border-transparent px-3 font-semibold text-ink hover:border-line hover:text-accent-strong"
     >
       {label}
+      <span aria-hidden="true" className="mt-1 block size-2 rotate-45 border-b border-e border-current" />
     </a>
   );
 }

@@ -2,17 +2,22 @@
   "nav": {
     "homeAria": "Agadir Tourisme - Home",
     "mainNavigation": "Main navigation",
+    "mobileMenu": "Menu",
+    "closeMenu": "Close menu",
     "excursions": "Excursions",
     "activities": "Activities",
     "transfers": "Transfers",
     "book": "Book",
+    "bookCta": "Plan my trip",
     "skipToContent": "Skip to content",
     "switchLocale": "FR",
     "switchLocaleAria": "Passer au français"
   },
   "footer": {
-    "tagline": "Licensed local travel and tourist transport agency in Agadir, Souss-Massa.",
+    "tagline": "Licensed local travel and tourist transport agency in Agadir, Souss-Massa. Thoughtful days around Agadir, planned by people who live here.",
     "experiences": "Experiences",
+    "explore": "Explore",
+    "knowUs": "Know us",
     "excursions": "Excursions from Agadir",
     "activities": "Activities & Adventures",
     "transfers": "Airport & Intercity Transfers",

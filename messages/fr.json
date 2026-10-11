@@ -2,17 +2,22 @@
   "nav": {
     "homeAria": "Agadir Tourisme - Accueil",
     "mainNavigation": "Navigation principale",
+    "mobileMenu": "Menu",
+    "closeMenu": "Fermer le menu",
     "excursions": "Excursions",
     "activities": "Activités",
     "transfers": "Transferts",
     "book": "Réserver",
+    "bookCta": "Préparer mon voyage",
     "skipToContent": "Aller au contenu",
     "switchLocale": "EN",
     "switchLocaleAria": "Switch to English"
   },
   "footer": {
-    "tagline": "Agence de voyages et de transport touristique locale agréée à Agadir, Souss-Massa.",
+    "tagline": "Agence de voyages et de transport touristique locale agréée à Agadir, Souss-Massa. Des journées réfléchies autour d'Agadir, préparées par des gens d'ici.",
     "experiences": "Catalogue",
+    "explore": "Explorer",
+    "knowUs": "Nous connaître",
     "excursions": "Excursions au départ d'Agadir",
     "activities": "Activités et aventures",
     "transfers": "Transferts aéroport & interurbains",
