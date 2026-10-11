@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
 import { getServicesByCategory, hubToCategory, type HubKey } from "@/catalogue";
+import { PageIntro } from "./ui";
 import { ServiceCard } from "./service-card";
 
 export async function HubPage({ hub, locale }: { hub: HubKey; locale: string }) {
@@ -9,20 +10,25 @@ export async function HubPage({ hub, locale }: { hub: HubKey; locale: string }) 
   const services = category ? getServicesByCategory(category, locale) : [];
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:py-14">
-      <p className="text-sm font-bold uppercase tracking-wide text-accent-strong">
-        {t(`${hub}.badge`)}
-      </p>
-      <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-        {t(`${hub}.title`)}
-      </h1>
-      <p className="mt-4 max-w-3xl text-base text-ink-muted leading-relaxed">{t(`${hub}.intro`)}</p>
+    <>
+      <PageIntro eyebrow={t(`${hub}.badge`)} title={t(`${hub}.title`)} body={t(`${hub}.intro`)} />
 
-      <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => (
-          <ServiceCard key={service.id} service={service} locale={locale} />
-        ))}
-      </div>
-    </div>
+      <section className="py-10 md:py-14" aria-label={t(`${hub}.title`)}>
+        <div className="shell">
+          {/* Count line: real number, real unit noun — the design's listing
+              tools minus the placeholder disclaimer. No filter chips: they are
+              omitted rather than rendered as fake affordances (sprint rules). */}
+          <p className="mb-8 text-sm text-ink-muted">
+            <strong className="font-semibold text-ink">{services.length}</strong>{" "}
+            {t(`${hub}.countNoun`)}
+          </p>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:row-gap-10 lg:grid-cols-3">
+            {services.map((service) => (
+              <ServiceCard key={service.id} service={service} locale={locale} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

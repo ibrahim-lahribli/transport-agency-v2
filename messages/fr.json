@@ -44,9 +44,12 @@
     "details": "Détails →",
     "viewAll": "Tout voir →",
     "view": "Voir →",
+    "viewTrip": "Voir l'offre →",
     "guest": "personne",
     "guests": "personnes",
-    "serviceItem": "Service"
+    "serviceItem": "Service",
+    "factsPickup": "Prise en charge à l'hôtel",
+    "factsCancellation": "Annulation gratuite"
   },
   "home": {
     "kicker": "Agence de transport et tourisme à Agadir",
@@ -80,21 +83,24 @@
       "seoTitle": "Excursions au départ d'Agadir : Journées & Visites Guidées",
       "seoDescription": "Découvrez nos excursions guidées au départ d'Agadir : Vallée du Paradis, Massa, Essaouira, Marrakech. Chauffeurs professionnels et guides locaux.",
       "intro": "Partez à la découverte des paysages du sud marocain. Toutes nos excursions incluent le transport climatisé, la prise en charge à votre hôtel à Agadir et un chauffeur-guide d'expérience.",
-      "badge": "Circuits & Journées Guidées"
+      "badge": "Circuits & Journées Guidées",
+      "countNoun": "journées"
     },
     "activities": {
       "title": "Activités & Aventures à Agadir",
       "seoTitle": "Activités à Agadir : Bateau, Quad, Dromadaire",
       "seoDescription": "Les meilleures activités à Agadir : sorties en bateau avec barbecue de poisson, quad dans les dunes côtières, balades en dromadaire et soirées fantasia.",
       "intro": "De l'océan Atlantique aux dunes de sable du Souss, vivez des moments uniques grâce à notre sélection d'activités de plein air et de soirées traditionnelles.",
-      "badge": "Plein Air & Expériences"
+      "badge": "Plein Air & Expériences",
+      "countNoun": "expériences"
     },
     "transfers": {
       "title": "Transferts privés & Transport touristique",
       "seoTitle": "Transferts Privés Agadir : Aéroport & Transport Touristique",
       "seoDescription": "Transferts privés fiables depuis l'aéroport Agadir-Al Massira vers Agadir et Taghazout. Transport touristique interurbain et mise à disposition.",
       "intro": "Navettes aéroport privées et véhicules avec chauffeur agréé à la journée. Tarifs fixes par véhicule avec suivi des vols et accueil dans le terminal.",
-      "badge": "Chauffeur Privé & Navettes"
+      "badge": "Chauffeur Privé & Navettes",
+      "countNoun": "transferts"
     }
   },
   "hub": {
@@ -133,6 +139,8 @@
     "readyTitle": "Prêt à réserver cette expérience ?",
     "readyBody": "Indiquez votre date et le nombre de passagers. Notre équipe locale confirme la disponibilité sous 30 minutes.",
     "requestBooking": "Demander une réservation",
+    "whatsappAsk": "Poser une question rapide sur WhatsApp",
+    "noPaymentNow": "Aucun paiement maintenant",
     "related": "Autres expériences recommandées",
     "includedDefault1": "Prise en charge et retour à l'hôtel à Agadir",
     "includedDefault2": "Véhicule climatisé avec chauffeur professionnel agréé",

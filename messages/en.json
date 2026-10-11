@@ -44,9 +44,12 @@
     "details": "Details →",
     "viewAll": "View all →",
     "view": "View →",
+    "viewTrip": "View trip →",
     "guest": "guest",
     "guests": "guests",
-    "serviceItem": "Experience"
+    "serviceItem": "Experience",
+    "factsPickup": "Hotel pickup",
+    "factsCancellation": "Free cancellation"
   },
   "home": {
     "kicker": "Local Souss-Massa Tour Operator",
@@ -80,21 +83,24 @@
       "seoTitle": "Excursions from Agadir: Day Trips & Guided Tours",
       "seoDescription": "Discover guided day trips from Agadir to Paradise Valley, Massa & Tiznit, Taroudant, Essaouira and Marrakech. Professional drivers and licensed local guides.",
       "intro": "Explore southern Morocco beyond the beach. All day excursions include air-conditioned vehicle transport, hotel pickup and drop-off in Agadir, and experienced local driver-guides.",
-      "badge": "Guided Day Trips"
+      "badge": "Guided Day Trips",
+      "countNoun": "day trips"
     },
     "activities": {
       "title": "Activities & Adventures in Agadir",
       "seoTitle": "Agadir Activities & Outdoor Adventures",
       "seoDescription": "Experience top outdoor activities in Agadir: Atlantic boat cruises with fish barbecue, sand dune quad biking, camel rides, horse riding and fantasia dinner shows.",
       "intro": "From the Atlantic ocean to the Souss valley sand dunes, make your holiday unforgettable with our curated half-day outdoor and cultural experiences.",
-      "badge": "Outdoor & Cultural Experiences"
+      "badge": "Outdoor & Cultural Experiences",
+      "countNoun": "experiences"
     },
     "transfers": {
       "title": "Private Transfers & Tourist Transport",
       "seoTitle": "Agadir Private Transfers: Airport & Intercity Transport",
       "seoDescription": "Reliable, private airport transfers between Agadir-Al Massira Airport, Taghazout and Agadir hotels. Also offering intercity tourist transport with private driver.",
       "intro": "Punctual, private airport shuttles and day hire vehicles with licensed professional drivers. Fixed prices per vehicle with flight tracking and direct terminal greeting.",
-      "badge": "Private Chauffeur Service"
+      "badge": "Private Chauffeur Service",
+      "countNoun": "transfer services"
     }
   },
   "hub": {
@@ -133,7 +139,9 @@
     "readyTitle": "Ready to Book This Experience?",
     "readyBody": "Specify your dates and party size. Our local dispatch team confirms availability within 30 minutes.",
     "requestBooking": "Request Booking",
-    "related": "Related Experiences",
+    "whatsappAsk": "Ask a quick question on WhatsApp",
+    "noPaymentNow": "No payment now",
+    "readyTitle": "Ready to Book This Experience?",
     "includedDefault1": "Hotel pickup and return transfer in Agadir",
     "includedDefault2": "Air-conditioned tourist vehicle with licensed driver",
     "notIncludedDefault1": "Personal expenses and tips",
