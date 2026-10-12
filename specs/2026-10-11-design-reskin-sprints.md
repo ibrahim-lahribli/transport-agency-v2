@@ -66,7 +66,7 @@ export — visuals only, its copy/prices/photos are placeholders).
 | 5 | Home page | 5–7 | ✅ done (commit `ad7b699`) |
 | 6 | Booking: form fields | 10 (part) | ✅ done (commit `e6aef69`) |
 | 7 | Booking: estimate/success/mobile bar | 10 (part) | ✅ done (commit `2fd7f51`) |
-| 8 | Secondary pages | 11 | ☐ |
+| 8 | Secondary pages | 11 | ✅ done (commit `68f4669`) |
 | 9 | Transfer tool | 12 | ☐ |
 | 10 | System page + hardening + docs | 13–15 | ☐ |
 
