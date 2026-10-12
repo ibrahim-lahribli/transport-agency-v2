@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+import { getContact } from "../../../../config/site";
 import { isAppLocale } from "@/i18n/locales";
 import { buildPageMetadata, SITE_URL } from "@/seo/metadata";
 import { BreadcrumbJsonLd, FAQPageJsonLd } from "@/components/json-ld";
+import { Accordion, PageIntro, buttonClass } from "@/components/ui";
 
 interface FaqItem {
   q: string;
@@ -35,11 +37,13 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "faq" });
+  const tProduct = await getTranslations({ locale, namespace: "product" });
   const tc = await getTranslations({ locale, namespace: "common" });
   const items = t.raw("items") as FaqItem[];
+  const contact = getContact();
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:py-14">
+    <div>
       <BreadcrumbJsonLd
         items={[
           { name: tc("home"), url: `${SITE_URL}/${locale}` },
@@ -47,24 +51,24 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
         ]}
       />
       <FAQPageJsonLd items={items} />
-      <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{t("title")}</h1>
-      <p className="mt-3 text-base text-ink-muted">{t("lead")}</p>
+      <PageIntro eyebrow={t("eyebrow")} title={t("title")} body={t("lead")} compact />
 
-      <div className="mt-8 divide-y divide-line border-y border-line">
-        {items.map((item, index) => (
-          <details key={index} className="group py-4 text-start">
-            <summary className="flex cursor-pointer list-none items-center justify-between py-1 text-sm font-semibold text-ink hover:text-accent">
-              <span>{item.q}</span>
-              <span aria-hidden="true" className="ms-2 font-bold text-accent-strong">
-                ▾
-              </span>
-            </summary>
-            <div className="mt-3 text-sm leading-relaxed text-ink-muted">
-              <p>{item.a}</p>
-            </div>
-          </details>
-        ))}
-      </div>
+      <section className="shell grid grid-cols-1 gap-10 py-12 md:grid-cols-[18rem_1fr] md:py-16">
+        <aside className="order-2 h-fit self-start rounded-md bg-surface-muted p-5 md:order-1">
+          <p className="mb-4 text-lg text-ink">{t("stillQuestion")}</p>
+          <a
+            href={`https://wa.me/${contact.whatsappDigits}`}
+            className={buttonClass("secondary")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {tProduct("whatsappAsk")}
+          </a>
+        </aside>
+        <div className="order-1 md:order-2">
+          <Accordion items={items.map((item) => ({ title: item.q, body: item.a }))} openFirst />
+        </div>
+      </section>
     </div>
   );
 }

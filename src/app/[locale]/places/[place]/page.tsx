@@ -4,9 +4,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { getServiceById } from "@/catalogue";
 import { getPlaceBySlug, places } from "@/content/places";
+import { getServiceImage } from "@/content/images";
 import { isAppLocale, locales } from "@/i18n/locales";
 import { buildPageMetadata, SITE_URL } from "@/seo/metadata";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
+import { Eyebrow } from "@/components/ui";
 import { ServiceCard } from "@/components/service-card";
 
 export function generateStaticParams() {
@@ -58,7 +60,7 @@ export default async function PlacePage({
     .filter((service): service is NonNullable<typeof service> => Boolean(service));
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:py-14">
+    <div>
       <BreadcrumbJsonLd
         items={[
           { name: tc("home"), url: `${SITE_URL}/${locale}` },
@@ -67,19 +69,40 @@ export default async function PlacePage({
         ]}
       />
 
-      <p className="text-sm font-bold uppercase tracking-wide text-accent-strong">
-        {place.name[locale]}
-      </p>
-      <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-        {place.seo[locale].title}
-      </h1>
-      <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink-muted">{place.intro[locale]}</p>
+      {/*
+       * Design: directional photo hat over an ink gradient, with the page's
+       * single `<h1>` in the overlay, then the plain lede band.
+       */}
+      <section className="relative">
+        {/* eslint-disable-next-line @next/next/no-img-element -- static artwork slots, no optimizer needed */}
+        <img
+          src={getServiceImage(place.id, "hero")}
+          alt=""
+          className="h-56 w-full object-cover sm:h-72"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent"
+        />
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="shell pb-8">
+            <Eyebrow tone="light">{t("title")}</Eyebrow>
+            <h1 className="max-w-[30ch] text-xl text-canvas sm:text-2xl">
+              {place.seo[locale].title}
+            </h1>
+          </div>
+        </div>
+      </section>
 
-      <section className="mt-10">
-        <h2 className="text-xl font-bold text-ink">
+      <section className="shell pb-12 pt-10 md:pb-16">
+        <p className="max-w-[42rem] text-lg text-ink-muted">{place.intro[locale]}</p>
+      </section>
+
+      <section className="shell py-12 md:py-16">
+        <h2 className="mb-8 text-2xl">
           {t("related")} {place.name[locale]}
         </h2>
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <ServiceCard key={service.id} service={service} locale={locale} />
           ))}

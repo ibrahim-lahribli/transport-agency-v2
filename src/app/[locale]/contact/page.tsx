@@ -7,6 +7,7 @@ import { Link } from "@/i18n/routing";
 import { getContact } from "../../../../config/site";
 import { buildPageMetadata, SITE_URL } from "@/seo/metadata";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
+import { PageIntro, buttonClass } from "@/components/ui";
 
 export async function generateMetadata({
   params,
@@ -43,51 +44,52 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       external: true,
     },
     { label: t("emailLabel"), value: contact.email, href: `mailto:${contact.email}` },
-    { label: t("addressLabel"), value: contact.address },
-    { label: t("hoursLabel"), value: t("hours") },
+    { label: t("addressLabel"), value: contact.address, href: null },
+    { label: t("hoursLabel"), value: t("hours"), href: null },
   ];
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:py-14">
+    <div>
       <BreadcrumbJsonLd
         items={[
           { name: tc("home"), url: `${SITE_URL}/${locale}` },
           { name: t("title"), url: `${SITE_URL}/${locale}/contact` },
         ]}
       />
-      <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{t("title")}</h1>
-      <p className="mt-3 text-base text-ink-muted">{t("lead")}</p>
+      <PageIntro eyebrow={t("eyebrow")} title={t("title")} body={t("lead")} compact />
 
-      <dl className="mt-8 divide-y divide-line rounded-xl border border-line bg-surface">
-        {rows.map((row) => (
-          <div key={row.label} className="flex flex-col gap-1 p-5 sm:flex-row sm:justify-between">
-            <dt className="text-sm font-semibold text-ink">{row.label}</dt>
-            <dd className="text-sm text-ink-muted">
-              {row.href ? (
-                <a
-                  href={row.href}
-                  className="hover:text-accent-strong"
-                  {...(row.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                >
-                  {row.value}
-                </a>
-              ) : (
-                row.value
-              )}
-            </dd>
-          </div>
-        ))}
-      </dl>
+      <section className="shell grid grid-cols-1 gap-10 py-12 md:grid-cols-2 md:py-16">
+        {/* Contact details, the design's ruled list with serif values. */}
+        <div>
+          {rows.map((row) => (
+            <div key={row.label} className="border-t border-line py-5 first-of-type:border-t-0 first-of-type:pt-0">
+              <span className="text-sm text-ink-muted">{row.label}</span>
+              <div className="mt-1 font-serif text-xl text-ink">
+                {row.href ? (
+                  <a
+                    href={row.href}
+                    className="hover:text-accent-strong"
+                    {...(row.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  >
+                    {row.value}
+                  </a>
+                ) : (
+                  row.value
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
 
-      <section className="mt-12 rounded-xl border border-line bg-surface p-6">
-        <h2 className="text-base font-bold text-ink">{t("ctaTitle")}</h2>
-        <p className="mt-1 text-sm text-ink-muted">{t("ctaBody")}</p>
-        <Link
-          href="/book"
-          className="mt-4 inline-flex min-h-[44px] items-center rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-on-accent hover:bg-accent-strong"
-        >
-          {tc("details")}
-        </Link>
+        {/* The design's right-hand panel: booking is the real conversion path. */}
+        <div className="h-fit rounded-md bg-surface p-6 shadow-card">
+          <h2 className="mb-1 text-xl">{t("ctaTitle")}</h2>
+          <p className="text-ink-muted">{t("ctaBody")}</p>
+          <Link href="/book" className={`${buttonClass("primary")} mt-5`}>
+            {tc("details")}
+          </Link>
+          <p className="mt-4 text-sm text-ink-muted">{t("responseNote")}</p>
+        </div>
       </section>
     </div>
   );

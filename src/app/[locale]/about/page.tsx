@@ -5,7 +5,9 @@ import { notFound } from "next/navigation";
 import { isAppLocale } from "@/i18n/locales";
 import { Link } from "@/i18n/routing";
 import { buildPageMetadata, SITE_URL } from "@/seo/metadata";
+import { buttonClass } from "@/components/ui";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
+import { Eyebrow } from "@/components/ui";
 
 export async function generateMetadata({
   params,
@@ -40,46 +42,70 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   ];
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:py-14">
+    <div>
       <BreadcrumbJsonLd
         items={[
           { name: tc("home"), url: `${SITE_URL}/${locale}` },
           { name: t("title"), url: `${SITE_URL}/${locale}/about` },
         ]}
       />
-      <p className="text-sm font-bold uppercase tracking-wide text-accent-strong">{t("kicker")}</p>
-      <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-        {t("title")}
-      </h1>
-      <p className="mt-4 text-base leading-relaxed text-ink-muted sm:text-lg">{t("lead")}</p>
+      <header className="shell border-b border-line pb-8 pt-12 md:pt-16">
+        <Eyebrow>{t("kicker")}</Eyebrow>
+        <h1 className="max-w-[30ch] text-display">{t("title")}</h1>
+        <p className="mt-4 max-w-[42rem] text-lg text-ink-muted">{t("lead")}</p>
+      </header>
 
-      <div className="mt-8 space-y-4 text-sm leading-relaxed text-ink-muted">
-        <p>{t("story1")}</p>
-        <p>{t("story2")}</p>
-        <p>{t("story3")}</p>
-      </div>
+      {/* Story band: prose beside the local hero photo (design's .story). */}
+      <section className="shell grid grid-cols-1 items-center gap-10 py-12 md:grid-cols-2 md:py-16">
+        <div>
+          <Eyebrow>{t("storyTitle")}</Eyebrow>
+          <div className="space-y-4 text-lg leading-relaxed text-ink-muted">
+            <p>{t("story1")}</p>
+            <p>{t("story2")}</p>
+            <p>{t("story3")}</p>
+          </div>
+        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element -- static artwork slots, no optimizer needed */}
+        <img
+          src="/images/hero.jpg"
+          alt=""
+          className="aspect-[3/4] w-full rounded-md object-cover shadow-card md:aspect-auto md:h-[34rem]"
+        />
+      </section>
 
-      <section className="mt-12">
-        <h2 className="text-xl font-bold text-ink">{t("valuesTitle")}</h2>
-        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {values.map((value) => (
-            <div key={value.title} className="rounded-lg border border-line bg-surface p-5">
-              <h3 className="text-sm font-bold text-ink">{value.title}</h3>
-              <p className="mt-1 text-sm text-ink-muted">{value.body}</p>
-            </div>
-          ))}
+      {/* Values as the design's numbered rows (01/02/03) — no licence numbers,
+          team names or response times invented. */}
+      <section className="bg-surface-muted">
+        <div className="shell grid grid-cols-1 gap-10 py-12 md:grid-cols-[1fr_1.5fr] md:py-16">
+          <h2 className="text-2xl">{t("valuesTitle")}</h2>
+          <div>
+            {values.map((value, index) => (
+              <article
+                key={value.title}
+                className="grid grid-cols-[2.5rem_1fr] gap-x-4 border-t border-line py-5 first-of-type:border-t-0 first-of-type:pt-0"
+              >
+                <span aria-hidden="true" className="pt-1 font-serif text-lg text-accent-strong">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="mb-1 text-lg">{value.title}</h3>
+                  <p className="text-ink-muted">{value.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="mt-12 rounded-xl bg-accent-strong p-8 text-center">
-        <h2 className="text-xl font-extrabold text-on-accent">{t("ctaTitle")}</h2>
-        <p className="mx-auto mt-2 max-w-lg text-sm text-on-accent">{t("ctaBody")}</p>
-        <Link
-          href="/book"
-          className="mt-6 inline-flex min-h-[44px] items-center rounded-md bg-surface px-6 py-3 text-sm font-bold text-ink hover:bg-surface-muted"
-        >
-          {tc("details")}
-        </Link>
+      {/* Terracotta closing CTA, mirroring home's band. */}
+      <section className="bg-accent text-on-accent">
+        <div className="shell py-14 text-center md:py-16">
+          <h2 className="mx-auto max-w-[24ch] text-2xl text-on-accent">{t("ctaTitle")}</h2>
+          <p className="mx-auto mt-2 max-w-lg text-on-accent">{t("ctaBody")}</p>
+          <Link href="/book" className={`${buttonClass("light")} mt-6`}>
+            {tc("details")}
+          </Link>
+        </div>
       </section>
     </div>
   );

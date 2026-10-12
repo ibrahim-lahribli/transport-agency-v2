@@ -7,6 +7,7 @@ import { getGuideBySlug, guides } from "@/content/guides";
 import { isAppLocale, locales } from "@/i18n/locales";
 import { buildPageMetadata, SITE_URL } from "@/seo/metadata";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/json-ld";
+import { Eyebrow } from "@/components/ui";
 import { ServiceCard } from "@/components/service-card";
 
 export function generateStaticParams() {
@@ -58,8 +59,10 @@ export default async function GuidePage({
     .map((id) => getServiceById(id, locale))
     .filter((service): service is NonNullable<typeof service> => Boolean(service));
 
+  const dateFormatter = new Intl.DateTimeFormat(locale, { dateStyle: "long" });
+
   return (
-    <article className="mx-auto max-w-3xl px-4 py-10 sm:py-14">
+    <article>
       <BreadcrumbJsonLd
         items={[
           { name: tc("home"), url: `${SITE_URL}/${locale}` },
@@ -75,38 +78,43 @@ export default async function GuidePage({
         locale={locale}
       />
 
-      <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-        {guide.title[locale]}
-      </h1>
-      <p className="mt-4 text-base leading-relaxed text-ink-muted">{guide.description[locale]}</p>
-      <p className="mt-3 text-xs text-ink-muted">
-        {t("published")} {new Date(guide.date).toLocaleDateString(locale)} · {guide.readingMinutes}{" "}
-        {t("minutes")}
-      </p>
+      {/* Editorial article header: lede in the ink band, single serif H1. */}
+      <header className="shell border-b border-line pb-10 pt-12 md:pt-16">
+        <Eyebrow>
+          {t("featured")} · {guide.readingMinutes} {t("minutes")}
+        </Eyebrow>
+        <h1 className="max-w-[28ch] text-display">{guide.title[locale]}</h1>
+        <p className="mt-4 max-w-[42rem] text-lg text-ink-muted">{guide.description[locale]}</p>
+        <p className="mt-6 text-sm text-ink-muted">
+          {t("published")} {dateFormatter.format(new Date(guide.date))}
+        </p>
+      </header>
 
-      <div className="mt-10 space-y-8">
-        {guide.sections.map((section, index) => (
-          <section key={index}>
-            <h2 className="text-xl font-bold text-ink">{section.heading[locale]}</h2>
-            <div className="mt-3 space-y-3 text-sm leading-relaxed text-ink-muted">
-              {section.body[locale].map((paragraph, pIndex) => (
-                <p key={pIndex}>{paragraph}</p>
+      <div className="shell py-10 md:py-12">
+        <div className="max-w-[46rem]">
+          {guide.sections.map((section, index) => (
+            <section key={index} className="mb-10">
+              <h2 className="mb-3 text-xl">{section.heading[locale]}</h2>
+              <div className="space-y-3 text-base leading-relaxed text-ink-muted">
+                {section.body[locale].map((paragraph, pIndex) => (
+                  <p key={pIndex}>{paragraph}</p>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+
+        {services.length > 0 && (
+          <section className="mt-12">
+            <h2 className="mb-8 text-2xl">{t("related")}</h2>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {services.map((service) => (
+                <ServiceCard key={service.id} service={service} locale={locale} />
               ))}
             </div>
           </section>
-        ))}
+        )}
       </div>
-
-      {services.length > 0 && (
-        <section className="mt-14">
-          <h2 className="mb-6 text-xl font-bold text-ink">{t("related")}</h2>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            {services.map((service) => (
-              <ServiceCard key={service.id} service={service} locale={locale} />
-            ))}
-          </div>
-        </section>
-      )}
     </article>
   );
 }

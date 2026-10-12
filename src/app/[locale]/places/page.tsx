@@ -3,10 +3,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { places } from "@/content/places";
+import { getServiceImage } from "@/content/images";
 import { isAppLocale } from "@/i18n/locales";
 import { Link } from "@/i18n/routing";
 import { buildPageMetadata, SITE_URL } from "@/seo/metadata";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
+import { ArrowLink, PageIntro } from "@/components/ui";
 
 export async function generateMetadata({
   params,
@@ -35,40 +37,46 @@ export default async function PlacesPage({ params }: { params: Promise<{ locale:
   const tc = await getTranslations({ locale, namespace: "common" });
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-10 sm:py-14">
+    <div>
       <BreadcrumbJsonLd
         items={[
           { name: tc("home"), url: `${SITE_URL}/${locale}` },
           { name: t("title"), url: `${SITE_URL}/${locale}/places` },
         ]}
       />
-      <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{t("title")}</h1>
-      <p className="mt-4 max-w-2xl text-base text-ink-muted">{t("lead")}</p>
+      <PageIntro eyebrow={t("eyebrow")} title={t("title")} body={t("lead")} />
 
-      <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+      <section className="shell grid grid-cols-1 gap-8 py-12 md:grid-cols-2 md:py-16">
         {places.map((place) => (
           <article
             key={place.id}
-            className="rounded-lg border border-line bg-surface p-5 transition-colors hover:border-accent"
+            className="grid min-h-[16rem] grid-cols-1 overflow-hidden rounded-md bg-surface shadow-card sm:grid-cols-2"
           >
-            <h2 className="text-base font-bold text-ink">
-              <Link
-                href={{ pathname: "/places/[place]", params: { place: place.slug[locale] } }}
-                className="hover:text-accent-strong"
-              >
-                {place.name[locale]}
-              </Link>
-            </h2>
-            <p className="mt-2 text-sm text-ink-muted">{place.intro[locale]}</p>
-            <Link
-              href={{ pathname: "/places/[place]", params: { place: place.slug[locale] } }}
-              className="mt-3 inline-block text-sm font-semibold text-accent-strong hover:underline"
-            >
-              {t("browse")}
-            </Link>
+            <div className="relative aspect-[3/2] sm:aspect-auto sm:h-full">
+              {/* eslint-disable-next-line @next/next/no-img-element -- static artwork slots, no optimizer needed */}
+              <img
+                src={getServiceImage(place.id, "card")}
+                alt=""
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col items-start justify-center p-6">
+              <h2 className="font-serif text-2xl leading-tight text-ink">
+                <Link
+                  href={{ pathname: "/places/[place]", params: { place: place.slug[locale] } }}
+                  className="hover:text-accent-strong"
+                >
+                  {place.name[locale]}
+                </Link>
+              </h2>
+              <p className="mt-2 line-clamp-3 text-sm text-ink-muted">{place.intro[locale]}</p>
+              <ArrowLink href={{ pathname: "/places/[place]", params: { place: place.slug[locale] } }}>
+                {t("browse")}
+              </ArrowLink>
+            </div>
           </article>
         ))}
-      </div>
+      </section>
     </div>
   );
 }

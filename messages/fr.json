@@ -234,25 +234,29 @@
   "guides": {
     "metaTitle": "Guides de voyage pour Agadir et le Souss-Massa",
     "metaDescription": "Guides de première main d'une agence locale à Agadir : quand venir, quoi emporter et comment planifier excursions, activités et transferts.",
+    "eyebrow": "Notes locales",
+    "featured": "Guide à la une",
     "title": "Guides de voyage",
     "lead": "Des conseils pratiques et vécus, écrits par ceux qui organisent ces sorties, pas recopiés d'une brochure.",
     "minutes": "min de lecture",
     "related": "Expériences citées dans ce guide",
     "published": "Publié le",
-    "read": "Lire le guide →"
+    "read": "Lire le guide"
   },
   "places": {
     "metaTitle": "Les lieux que nous desservons au Souss-Massa",
     "metaDescription": "Découvrez Agadir, Taghazout, Tiznit, Taroudant et Essaouira avec une agence locale agréée : excursions, activités et transferts privés.",
+    "eyebrow": "Lieux et alentours",
     "title": "Les lieux que nous desservons",
     "lead": "Depuis notre base à Agadir, nous organisons excursions, activités et transferts privés dans tout le Souss-Massa et au-delà.",
     "related": "Excursions, activités et transferts pour",
-    "browse": "Voir le lieu →"
+    "browse": "Voir le lieu"
   },
   "about": {
     "metaTitle": "À propos de notre agence de voyages à Agadir",
     "metaDescription": "Agence locale agréée à Agadir, plus de 20 ans dans la région du Souss-Massa : notre histoire, nos chauffeurs et nos engagements de prix et d'honnêteté.",
     "kicker": "Locaux depuis toujours",
+    "storyTitle": "Notre histoire",
     "title": "Une agence du Souss-Massa, animée par des gens d'ici",
     "lead": "Nous sommes une agence de voyages et de transport touristique agréée à Agadir. Depuis plus de vingt ans, nous parcourons cette côte — de Taghazout à Tiznit, de la vallée du Souss aux dunes au nord de Tamri — et nous planifions encore chaque itinéraire nous-mêmes.",
     "story1": "Notre fondateur a commencé avec un seul véhicule et un téléphone. Saison après saison, les voyageurs sont revenus et ont redemandé le même chauffeur, le même conseil honnête sur la période où les bassins de la Vallée du Paradis sont à sec, ou sur les matins où la houle garde les bateaux à la marina. C'est encore notre façon de travailler : une petite équipe locale, pas un centre d'appels.",
@@ -279,11 +283,15 @@
     "hoursLabel": "Horaires",
     "hours": "08h00 à 22h00 tous les jours ; WhatsApp suivi 24h/24 pour les transferts",
     "ctaTitle": "Vous préférez réserver directement ?",
-    "ctaBody": "Envoyez une demande de réservation et obtenez une estimation instantanée avant de valider."
+    "ctaBody": "Envoyez une demande de réservation et obtenez une estimation instantanée avant de valider.",
+    "eyebrow": "Contact",
+    "responseNote": "Nous répondons en personne, par email ou WhatsApp."
   },
   "faq": {
     "metaTitle": "Questions fréquentes",
     "metaDescription": "Réponses sur la réservation, les prix, le paiement, la prise en charge et l'annulation pour les excursions, activités et transferts de notre agence à Agadir.",
+    "eyebrow": "Questions fréquentes",
+    "stillQuestion": "Encore une question ?",
     "title": "Questions fréquentes",
     "lead": "Les questions qu'on nous pose le plus, expliquées simplement. Si la vôtre n'y figure pas, écrivez-nous sur WhatsApp.",
     "items": [
