@@ -91,6 +91,15 @@ export function servicePath(localeDir: LocaleDir, service: CatalogueService): st
 }
 
 /**
+ * The `/book?service=<id>` href for a service. The booking form selects by
+ * **id**, never slug (see AGENTS.md); one builder here keeps every flow test
+ * (and Task 3/4 helpers) from re-deriving the contract.
+ */
+export function BOOK_BY_ID(id: string): string {
+  return `/book?service=${id}`;
+}
+
+/**
  * The service-card / gallery primary image href, mirroring
  * `getServiceImage(id, kind)`'s two-shape contract from `src/content/images.ts`:
  * configured ids map to `public/images/services/<id>.jpg`; anything else
