@@ -1,0 +1,10 @@
+{
+  "description": "Enables tourists to explore and request bookings for guided trips, activities, and transfers in Agadir with easy WhatsApp contact and no advance payment.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
