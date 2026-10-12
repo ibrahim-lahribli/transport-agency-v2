@@ -41,7 +41,8 @@ test("invalid input surfaces a localized, per-field error", async ({ page }) => 
   await page.locator("#name").fill("A"); // too short for the server rule
   await page.locator("#email").fill("ada@example.com");
   await page.locator("#phone").fill("0612345678");
-  await page.getByRole("button", { name: /submit booking inquiry/i }).click();
+  // The sticky mobile bar adds a second submit button; scope to the form.
+  await page.locator("#booking-form").getByRole("button", { name: /submit booking inquiry/i }).click();
 
   await expect(page.getByText("Please enter your full name.")).toBeVisible();
   await expect(page.locator("#name")).toHaveAttribute("aria-invalid", "true");
@@ -53,7 +54,7 @@ test("a validation error preserves the visitor's input and selection", async ({ 
   await page.locator("#name").fill("A"); // too short for the server rule
   await page.locator("#email").fill("ada@example.com");
   await page.locator("#phone").fill("0612345678");
-  await page.getByRole("button", { name: /submit booking inquiry/i }).click();
+  await page.locator("#booking-form").getByRole("button", { name: /submit booking inquiry/i }).click();
   await expect(page.getByText("Please enter your full name.")).toBeVisible();
 
   // React resets a form after its action: the fix must re-apply the visitor's
@@ -69,7 +70,7 @@ test("the French form localizes the same field errors", async ({ page }) => {
   await page.locator("#name").fill("A");
   await page.locator("#email").fill("ada@example.com");
   await page.locator("#phone").fill("0612345678");
-  await page.getByRole("button", { name: /envoyer ma demande/i }).click();
+  await page.locator("#booking-form").getByRole("button", { name: /envoyer ma demande/i }).click();
 
   await expect(page.getByText("Veuillez saisir votre nom complet.")).toBeVisible();
 });
@@ -79,7 +80,7 @@ test("a valid inquiry submits and the selection is accepted", async ({ page }) =
   await page.locator("#name").fill("Ada Lovelace");
   await page.locator("#email").fill("ada@example.com");
   await page.locator("#phone").fill("0612345678");
-  await page.getByRole("button", { name: /submit booking inquiry/i }).click();
+  await page.locator("#booking-form").getByRole("button", { name: /submit booking inquiry/i }).click();
 
   await expect(page.getByText("Request received")).toBeVisible();
 });

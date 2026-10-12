@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useMemo, useState } from "react";
+import { useActionState, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
 import { quote, usesTieredPricing } from "@/pricing/quote";
@@ -10,6 +10,7 @@ import type { BookingServiceOption } from "@/booking/types";
 import { HONEYPOT_FIELD, type InquiryState } from "@/booking/types";
 import type { submitInquiry } from "@/booking/actions";
 import { buttonClass, Eyebrow } from "@/components/ui";
+import { MobileBar } from "@/components/mobile-bar";
 
 const initialState: InquiryState = { status: "idle" };
 
@@ -186,19 +187,52 @@ export function BookForm({
     setTexts((prev) => ({ ...prev, [key]: value }));
   }
 
+  // The sticky mobile bar watches the first legend leaving the viewport.
+  const introRef = useRef<HTMLDivElement>(null);
+
   if (state.status === "success") {
     return (
       <div className="rounded-md bg-surface p-8 text-center shadow-card">
-        <h2 className="text-xl text-ink">{t("successTitle")}</h2>
-        <p className="mt-2 text-sm text-ink-muted">{state.message}</p>
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${buttonClass("primary")} mt-6`}
+        {/* The design's success mark: olive disc with the check. */}
+        <div
+          aria-hidden="true"
+          className="mx-auto mb-6 grid size-16 place-items-center rounded-full bg-olive text-xl text-on-accent"
         >
-          {t("whatsappTitle")}
-        </a>
+          ✓
+        </div>
+        <h2 className="text-xl text-ink">{t("successTitle")}</h2>
+        <p className="mx-auto mt-2 max-w-[36rem] text-lg text-ink-muted">{state.message}</p>
+        <div className="mx-auto mt-6 max-w-[36rem] rounded-md bg-surface-muted p-6 text-start">
+          <h3 className="text-lg text-ink">{t("nextStepsTitle")}</h3>
+          <ol>
+            {[
+              { title: t("nextStep1Title"), body: t("nextStep1Body") },
+              { title: t("nextStep2Title"), body: t("nextStep2Body") },
+              { title: t("nextStep3Title"), body: t("nextStep3Body") },
+            ].map((step, index) => (
+              <li
+                key={step.title}
+                className="flex gap-4 border-t border-line py-4 first:border-t-0 [&>span]:grid [&>span]:size-11 [&>span]:flex-none [&>span]:place-items-center [&>span]:rounded-full [&>span]:border [&>span]:border-line"
+              >
+                <span aria-hidden="true">{index + 1}</span>
+                <div>
+                  <strong className="text-ink">{step.title}</strong>
+                  <p className="mt-1 text-sm text-ink-muted">{step.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonClass("primary")}
+          >
+            {t("whatsappTitle")}
+          </a>
+        </div>
       </div>
     );
   }
@@ -210,11 +244,13 @@ export function BookForm({
   ];
 
   return (
-    <form
-      key={formKey}
-      action={formAction}
-      className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-10"
-    >
+    <>
+      <form
+        id="booking-form"
+        key={formKey}
+        action={formAction}
+        className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-10"
+      >
       <input type="hidden" name="locale" value={locale} />
       {/* Honeypot: hidden from humans, tempting for bots. */}
       <div aria-hidden="true" className="hidden">
@@ -231,7 +267,11 @@ export function BookForm({
 
         {/* 01 — Choose the details. */}
         <fieldset className="border-t border-line pt-8">
-          <StepLegend step="01" label={t("sectionDetails")} />
+          {/* The bar watches this legend: when it leaves the viewport, the sticky
+              estimate bar slides up. */}
+          <div ref={introRef}>
+            <StepLegend step="01" label={t("sectionDetails")} />
+          </div>
 
           <div className="mt-6 grid grid-cols-1 gap-5">
             <SelectField
@@ -529,6 +569,8 @@ export function BookForm({
         </button>
         <p className="mt-4 text-xs text-ink-muted">{t("paymentNote")}</p>
       </aside>
-    </form>
+      </form>
+      <MobileBar introRef={introRef} formId="booking-form" totalEur={liveQuote?.valid ? liveQuote.totalEur : null} />
+    </>
   );
 }

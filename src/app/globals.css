@@ -121,4 +121,80 @@
       width: min(calc(100% - 4rem), 80rem);
     }
   }
+
+  /*
+   * Sticky mobile submit bar from the design's `.mobile-bar--booking`:
+   * hidden above 48rem, translated off-canvas until the form intro leaves
+   * the viewport (the visible class is toggled by the MobileBar observer).
+   */
+  .mobile-bar {
+    display: none;
+  }
+
+  @media (max-width: 47.99rem) {
+    .mobile-bar {
+      position: fixed;
+      inset-block-end: 0;
+      inset-inline: 0;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      align-items: center;
+      gap: 0.5rem;
+      border-top: 0.0625rem solid var(--line);
+      padding: 0.5rem 0.75rem;
+      background: var(--surface);
+      box-shadow: 0 -0.5rem 2rem rgb(29 40 35 / 12%);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(110%);
+      transition:
+        opacity 200ms ease,
+        transform 200ms ease;
+    }
+
+    .mobile-bar--visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+
+    .mobile-bar--booking > div {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .mobile-bar--booking small {
+      color: var(--ink-muted);
+    }
+
+    .mobile-bar--booking strong {
+      font-family: var(--font-serif);
+      font-size: var(--text-xl);
+      font-weight: 500;
+    }
+
+    .mobile-bar--booking em {
+      margin-block-start: 0.25rem;
+      color: var(--ink);
+      font-size: 0.625rem;
+      font-style: normal;
+      white-space: nowrap;
+    }
+
+    .mobile-bar--booking > button {
+      min-height: 2.75rem;
+      border: 0;
+      border-radius: 0.25rem;
+      background: var(--accent);
+      color: var(--on-accent);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .mobile-bar--booking > button:hover {
+      background: var(--accent-strong);
+    }
+  }
 }
