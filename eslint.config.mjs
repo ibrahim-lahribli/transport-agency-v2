@@ -19,6 +19,8 @@ const eslintConfig = defineConfig([
     "blob-report/**",
     ".lighthouseci/**",
     "next-env.d.ts",
+    // Untracked Figma design export kept on disk as a visual reference.
+    "agency-design-v2/**",
   ]),
 ]);
 
