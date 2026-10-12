@@ -68,7 +68,7 @@ export — visuals only, its copy/prices/photos are placeholders).
 | 7 | Booking: estimate/success/mobile bar | 10 (part) | ✅ done (commit `2fd7f51`) |
 | 8 | Secondary pages | 11 | ✅ done (commit `68f4669`) |
 | 9 | Transfer tool | 12 | ✅ done (commit `6513e45`) |
-| 10 | System page + hardening + docs | 13–15 | ☐ |
+| 10 | System page + hardening + docs | 13–15 | ✅ done (commit `3c0ecd0`, task-13 completion + gate + docs to follow) |
 
 ---
 
@@ -434,14 +434,14 @@ the knowledge base matches reality.
 
 ### Definition of done
 
-- [ ] `/design-system` renders all tokens + component states, is `noindex`,
+- [x] `/design-system` renders all tokens + component states, is `noindex`,
       and absent from `sitemap.xml`.
-- [ ] `pnpm gate` passes end-to-end (lint, typecheck, test, validate, docs,
+- [x] `pnpm gate` passes end-to-end (lint, typecheck, test, validate, docs,
       build, e2e).
-- [ ] RTL and placeholder grep gates return zero matches.
-- [ ] Full visual journey matches the design in both locales; keyboard-only
+- [x] RTL and placeholder grep gates return zero matches.
+- [x] Full visual journey matches the design in both locales; keyboard-only
       completion possible for the booking journey.
-- [ ] Docs describe the shipped system (no stale palette/CSS guidance).
+- [x] Docs describe the shipped system (no stale palette/CSS guidance).
 
 ### Test process
 

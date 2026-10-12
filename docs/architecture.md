@@ -43,7 +43,10 @@ config/business.ts (zod-validated env: legal + NAP)   config/site.ts (origin, lo
   than through `getContact()`.
 - **`src/content`** — hand-curated long-tail content: `places.ts` (place hubs)
   and `guides.ts` (editorial guides). Both reference service ids that the
-  content validator checks.
+  content validator checks. Also the typed non-content data mirrors:
+  `images.ts` (service id → local image slot with a category fallback) and
+  `design-tokens.ts` (the design palette + `contrastRatio()`, pinned to
+  `globals.css` by unit test and consumed by `/design-system`).
 - **`src/app`** — routes, layouts, `sitemap.ts`, `robots.ts`, `llms.txt`.
 - **`config`** — business profile (env-validated) and site settings.
 
@@ -56,7 +59,9 @@ config/business.ts (zod-validated env: legal + NAP)   config/site.ts (origin, lo
   `/[locale]/places` + `/[locale]/places/[place]` (long-tail place hubs, from
   `src/content/places.ts`); `/[locale]/guides` + `/[locale]/guides/[guide]`
   (editorial `Article` hub, from `src/content/guides.ts`); `about`, `contact`,
-  `faq`; category alias redirects `/[locale]/{hub}/[slug]` → `/[locale]/[slug]`.
+  `faq`; `design-system` (the living token/component reference, `noindex`,
+  **absent from the sitemap**); category alias redirects
+  `/[locale]/{hub}/[slug]` → `/[locale]/[slug]`.
 - `src/proxy.ts` (next-intl; the Next 16 `middleware` successor) prefixes and
   validates locales; `localePrefix` is `always` and `localeDetection` is off.
 

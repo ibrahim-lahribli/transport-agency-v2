@@ -28,6 +28,15 @@ Ship `ar`: add `LOCALES`, `messages/ar.json`, service copy, an Arabic-capable
 font, and a `dir="rtl"` test. **Value:** new market. **Touches:** `src/i18n`,
 `messages`, `content`, layout.
 
+## 4b. Design re-skin (agency-design-v2) — ✅ done
+
+All ten sprints of
+[2026-10-11-design-reskin-sprints.md](2026-10-11-design-reskin-sprints.md)
+shipped: token foundation, local image assets, chrome, catalogue, home,
+booking (fields + estimate/success/mobile bar), secondary pages, transfer
+tool, and the `/design-system` living reference (noindex). Follow-ups retired
+to the list below: real photography replacements and a dark-mode revisit.
+
 ## 5. Unify booking notification providers
 
 Extract the notification adapter so email/WhatsApp providers can be swapped by
@@ -43,3 +52,7 @@ required fields, or if docs links rot. **Value:** stops silent regressions.
 
 - Richer Open Graph type per product and video schema when assets exist.
 - Split the sitemap into a sitemap index as the catalogue grows.
+- Replace the re-skin's local placeholder photography with licensed agency
+  photos (the `public/images/` slots and `getServiceImage` mapping stay).
+- Revisit dark mode for the v2 identity (currently deliberately light-only;
+  `design-system` is the token sheet to branch from).
