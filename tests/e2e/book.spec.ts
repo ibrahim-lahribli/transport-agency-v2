@@ -23,7 +23,9 @@ test("a transfer exposes its route and vehicle, and re-quotes on selection", asy
   await page.locator("#routeIndex").selectOption("1"); // AGA -> Anza
   await expect(page.getByTestId("quote-total")).toHaveText("25 €");
 
-  await page.locator("#vehicle").selectOption("minibus");
+  // The design's vehicle radio card replaces the old select; the assertion
+  // (re-quote for a minibus) is unchanged.
+  await page.locator("#vehicle-minibus").check();
   await expect(page.getByTestId("quote-total")).toHaveText("55 €");
 });
 

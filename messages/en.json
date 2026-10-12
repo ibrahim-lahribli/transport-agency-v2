@@ -162,9 +162,6 @@
     "requestBooking": "Request Booking",
     "whatsappAsk": "Ask a quick question on WhatsApp",
     "noPaymentNow": "No payment now",
-    "readyTitle": "Ready to Book This Experience?",
-    "readyBody": "Specify your dates and party size. Our local dispatch team confirms availability within 30 minutes.",
-    "requestBooking": "Request Booking",
     "relatedEyebrow": "You might also like",
     "related": "Related Experiences",
     "includedDefault1": "Hotel pickup and return transfer in Agadir",
@@ -174,6 +171,8 @@
   },
   "book": {
     "breadcrumb": "Booking",
+    "sectionDetails": "Choose the details",
+    "sectionContact": "Contact details",
     "title": "Book Your Tour or Transfer",
     "subtitle": "Submit your request without advance payment. Our local team verifies availability and confirms your reservation within 30 minutes.",
     "whatsappTitle": "Need immediate assistance?",
@@ -219,7 +218,9 @@
     "errRoute": "Please choose a valid route.",
     "errVehicle": "Please choose a valid vehicle.",
     "metaTitle": "Book a Tour or Private Transfer | Agadir Tourisme",
-    "metaDescription": "Direct booking request with our local Agadir travel agency. Fast confirmation and 7/7 assistance."
+    "metaDescription": "Direct booking request with our local Agadir travel agency. Fast confirmation and 7/7 assistance.",
+    "sectionDetails": "Choose the details",
+    "sectionContact": "Contact details"
   },
   "guides": {
     "metaTitle": "Travel Guides for Agadir and Souss-Massa",

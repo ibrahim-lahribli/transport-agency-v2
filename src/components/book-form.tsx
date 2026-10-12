@@ -9,12 +9,22 @@ import { selectBaseOption } from "@/seo/price";
 import type { BookingServiceOption } from "@/booking/types";
 import { HONEYPOT_FIELD, type InquiryState } from "@/booking/types";
 import type { submitInquiry } from "@/booking/actions";
+import { buttonClass, Eyebrow } from "@/components/ui";
 
 const initialState: InquiryState = { status: "idle" };
 
+/*
+ * Field language from the design: paper-surface inputs with ≥2.75rem targets,
+ * serif fieldset legends numbered 01/02, − value + steppers for party size and
+ * radio cards for vehicles. All styling stays inside the design tokens.
+ */
 const inputClass =
-  "mt-1 w-full rounded-md border border-line bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-accent";
-const labelClass = "block text-sm font-semibold text-ink";
+  "min-h-11 w-full rounded-sm border border-accent/60 bg-surface px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-accent";
+const labelClass = "flex flex-col gap-2 text-sm font-semibold text-ink";
+const selectShell = "relative";
+const selectClass = `${inputClass} appearance-none pe-10`;
+const chevronClass =
+  "pointer-events-none absolute inset-y-0 end-4 flex items-center text-xs text-ink-muted";
 
 const VEHICLE_LABEL_KEY: Record<VehicleClass, "vehicleSedan" | "vehicleVan" | "vehicleMinibus"> = {
   sedan: "vehicleSedan",
@@ -33,10 +43,64 @@ const EMPTY_TEXTS = {
 
 function FieldError({ id, message }: { id: string; message?: string }) {
   if (!message) return null;
+  return <p id={id} className="text-xs font-medium text-error">{message}</p>;
+}
+
+/** Serif legend with the design's terracotta step number. */
+function StepLegend({ step, label }: { step: "01" | "02"; label: string }) {
   return (
-    <p id={id} className="mt-1 text-xs font-medium text-accent-strong">
-      {message}
-    </p>
+    <legend className="flex items-center gap-3 text-xl text-ink">
+      <span aria-hidden="true" className="font-sans text-sm font-semibold text-accent-strong">
+        {step}
+      </span>
+      {label}
+    </legend>
+  );
+}
+
+/** A select field with the design's decorative chevron (label wraps the field). */
+function SelectField({
+  id,
+  name,
+  value,
+  label,
+  invalid,
+  errorId,
+  error,
+  onChange,
+  children,
+}: {
+  id: string;
+  name: string;
+  value: string | number;
+  label: string;
+  invalid: boolean;
+  errorId: string;
+  error?: string;
+  onChange: (value: string) => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <label className={labelClass} htmlFor={id}>
+      {label}
+      <div className={selectShell}>
+        <select
+          id={id}
+          name={name}
+          value={value}
+          aria-invalid={invalid}
+          aria-describedby={error ? errorId : undefined}
+          onChange={(event) => onChange(event.target.value)}
+          className={selectClass}
+        >
+          {children}
+        </select>
+        <span aria-hidden="true" className={chevronClass}>
+          ▾
+        </span>
+      </div>
+      <FieldError id={errorId} message={error} />
+    </label>
   );
 }
 
@@ -124,14 +188,14 @@ export function BookForm({
 
   if (state.status === "success") {
     return (
-      <div className="rounded-xl border border-line bg-surface p-6 text-center">
-        <h2 className="text-xl font-bold text-ink">{t("successTitle")}</h2>
+      <div className="rounded-md bg-surface p-8 text-center shadow-card">
+        <h2 className="text-xl text-ink">{t("successTitle")}</h2>
         <p className="mt-2 text-sm text-ink-muted">{state.message}</p>
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-flex min-h-[44px] items-center rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-on-accent hover:bg-accent-strong"
+          className={`${buttonClass("primary")} mt-6`}
         >
           {t("whatsappTitle")}
         </a>
@@ -139,11 +203,17 @@ export function BookForm({
     );
   }
 
+  // Party size steppers: one definition, the design's − value + look.
+  const steppers = [
+    { id: "adults" as const, label: t("adultsLabel"), value: adults, set: setAdults, min: 1, error: fieldErrors.adults },
+    { id: "children" as const, label: t("childrenLabel"), value: children, set: setChildren, min: 0, error: fieldErrors.children },
+  ];
+
   return (
     <form
       key={formKey}
       action={formAction}
-      className="grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]"
+      className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-10"
     >
       <input type="hidden" name="locale" value={locale} />
       {/* Honeypot: hidden from humans, tempting for bots. */}
@@ -152,252 +222,272 @@ export function BookForm({
         <input id={HONEYPOT_FIELD} name={HONEYPOT_FIELD} tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-10">
         {state.status === "error" && (
-          <p role="alert" className="rounded-md border border-accent bg-surface-muted p-3 text-sm text-ink">
+          <p role="alert" className="rounded-sm border border-error bg-surface p-4 text-sm font-medium text-ink">
             {state.message}
           </p>
         )}
 
-        <div>
-          <label className={labelClass} htmlFor="serviceId">
-            {t("serviceLabel")}
-          </label>
-          <select
-            id="serviceId"
-            name="serviceId"
-            value={serviceId}
-            aria-invalid={Boolean(fieldErrors.serviceId)}
-            aria-describedby={fieldErrors.serviceId ? "serviceId-error" : undefined}
-            onChange={(event) => onServiceChange(event.target.value)}
-            className={inputClass}
-          >
-            <option value="" disabled>
-              {t("servicePlaceholder")}
-            </option>
-            {services.map((service) => (
-              <option key={service.id} value={service.id}>
-                {service.title}
-              </option>
-            ))}
-          </select>
-          <FieldError id="serviceId-error" message={fieldErrors.serviceId} />
-        </div>
+        {/* 01 — Choose the details. */}
+        <fieldset className="border-t border-line pt-8">
+          <StepLegend step="01" label={t("sectionDetails")} />
 
-        {variantOptions.length > 0 && (
-          <div>
-            <label className={labelClass} htmlFor="optionLabel">
-              {t("variantLabel")}
-            </label>
-            <select
-              id="optionLabel"
-              name="optionLabel"
-              value={effectiveOptionLabel}
-              aria-invalid={Boolean(fieldErrors.optionLabel)}
-              aria-describedby={fieldErrors.optionLabel ? "optionLabel-error" : undefined}
-              onChange={(event) => setOptionLabel(event.target.value)}
-              className={inputClass}
+          <div className="mt-6 grid grid-cols-1 gap-5">
+            <SelectField
+              id="serviceId"
+              name="serviceId"
+              value={serviceId}
+              label={t("serviceLabel")}
+              invalid={Boolean(fieldErrors.serviceId)}
+              errorId="serviceId-error"
+              error={fieldErrors.serviceId}
+              onChange={onServiceChange}
             >
-              {variantOptions.map((option) => (
-                <option key={option.label} value={option.label}>
-                  {option.label} — {option.amount} €
+              <option value="" disabled>
+                {t("servicePlaceholder")}
+              </option>
+              {services.map((service) => (
+                <option key={service.id} value={service.id}>
+                  {service.title}
                 </option>
               ))}
-            </select>
-            <FieldError id="optionLabel-error" message={fieldErrors.optionLabel} />
-          </div>
-        )}
+            </SelectField>
 
-        {routes.length > 0 && (
-          <>
-            {routes.length > 1 ? (
-              <div>
-                <label className={labelClass} htmlFor="routeIndex">
-                  {t("routeLabel")}
-                </label>
-                <select
-                  id="routeIndex"
-                  name="routeIndex"
-                  value={effectiveRouteIndex}
-                  aria-invalid={Boolean(fieldErrors.routeIndex)}
-                  aria-describedby={fieldErrors.routeIndex ? "routeIndex-error" : undefined}
-                  onChange={(event) => setRouteIndex(Number(event.target.value))}
-                  className={inputClass}
-                >
-                  {routes.map((route, index) => (
-                    <option key={`${route.from}-${route.to}`} value={index}>
-                      {route.from} → {route.to}
-                    </option>
-                  ))}
-                </select>
-                <FieldError id="routeIndex-error" message={fieldErrors.routeIndex} />
-              </div>
-            ) : (
-              <input type="hidden" name="routeIndex" value={0} />
-            )}
-
-            <div>
-              <label className={labelClass} htmlFor="vehicle">
-                {t("vehicleLabel")}
-              </label>
-              <select
-                id="vehicle"
-                name="vehicle"
-                value={effectiveVehicle ?? ""}
-                aria-invalid={Boolean(fieldErrors.vehicle)}
-                aria-describedby={fieldErrors.vehicle ? "vehicle-error" : undefined}
-                onChange={(event) => setVehicle(event.target.value as VehicleClass | "")}
-                className={inputClass}
+            {variantOptions.length > 0 && (
+              <SelectField
+                id="optionLabel"
+                name="optionLabel"
+                value={effectiveOptionLabel ?? ""}
+                label={t("variantLabel")}
+                invalid={Boolean(fieldErrors.optionLabel)}
+                errorId="optionLabel-error"
+                error={fieldErrors.optionLabel}
+                onChange={setOptionLabel}
               >
-                <option value="">{t("vehicleAuto")}</option>
-                {vehicleChoices.map((choice) => (
-                  <option key={choice} value={choice}>
-                    {t(VEHICLE_LABEL_KEY[choice])}
+                {variantOptions.map((option) => (
+                  <option key={option.label} value={option.label}>
+                    {option.label} — {option.amount} €
                   </option>
                 ))}
-              </select>
-              <FieldError id="vehicle-error" message={fieldErrors.vehicle} />
+              </SelectField>
+            )}
+
+            {routes.length > 0 && (
+              <>
+                {routes.length > 1 ? (
+                  <SelectField
+                    id="routeIndex"
+                    name="routeIndex"
+                    value={effectiveRouteIndex}
+                    label={t("routeLabel")}
+                    invalid={Boolean(fieldErrors.routeIndex)}
+                    errorId="routeIndex-error"
+                    error={fieldErrors.routeIndex}
+                    onChange={(value) => setRouteIndex(Number(value))}
+                  >
+                    {routes.map((route, index) => (
+                      <option key={`${route.from}-${route.to}`} value={index}>
+                        {route.from} → {route.to}
+                      </option>
+                    ))}
+                  </SelectField>
+                ) : (
+                  <input type="hidden" name="routeIndex" value={0} />
+                )}
+
+                {/* Vehicle: radio cards, terracotta outline when selected. */}
+                <fieldset>
+                  <legend className="text-sm font-semibold text-ink">{t("vehicleLabel")}</legend>
+                  {fieldErrors.vehicle ? (
+                    <FieldError id="vehicle-error" message={fieldErrors.vehicle} />
+                  ) : null}
+                  <div
+                    role="radiogroup"
+                    aria-label={t("vehicleLabel")}
+                    aria-describedby={fieldErrors.vehicle ? "vehicle-error" : undefined}
+                    className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-3"
+                  >
+                    {vehicleChoices.map((choice) => {
+                      const active = effectiveVehicle === choice;
+                      return (
+                        <label
+                          key={choice}
+                          className={`flex min-h-11 cursor-pointer items-center gap-3 rounded-md border bg-surface p-4 text-sm text-ink transition-colors ${
+                            active
+                              ? "border-accent border-2 p-[calc(1rem-0.0625rem)]"
+                              : "border-accent/60 hover:bg-surface-muted"
+                          }`}
+                        >
+                          <input
+                            id={`vehicle-${choice}`}
+                            type="radio"
+                            name="vehicle"
+                            value={choice}
+                            checked={active}
+                            onChange={(event) =>
+                              setVehicle(
+                                event.target.checked ? (event.target.value as VehicleClass) : "",
+                              )
+                            }
+                            className="size-4 accent-accent"
+                          />
+                          <span className="font-semibold">{t(VEHICLE_LABEL_KEY[choice])}</span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+              </>
+            )}
+
+            {/* Party size: the design's − value + steppers. */}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              {steppers.map((row) => (
+                <div key={row.id} className={labelClass}>
+                  <span>{row.label}</span>
+                  <div
+                    data-testid={`${row.id}-stepper`}
+                    className="grid min-h-11 grid-cols-[2.75rem_1fr_2.75rem] items-center overflow-hidden rounded-sm border border-accent/60 bg-surface text-center"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => row.set(Math.max(row.min, row.value - 1))}
+                      aria-label={`− ${row.label}`}
+                      className="flex min-h-11 items-center justify-center text-lg text-ink transition-colors hover:bg-surface-muted"
+                    >
+                      −
+                    </button>
+                    <input
+                      name={row.id}
+                      type="number"
+                      min={row.min}
+                      value={row.value}
+                      aria-invalid={Boolean(row.error)}
+                      aria-describedby={row.error ? `${row.id}-error` : undefined}
+                      onChange={(event) => row.set(Number(event.target.value) || row.min)}
+                      className="h-full w-full border-0 bg-transparent text-center text-sm text-ink outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => row.set(row.value + 1)}
+                      aria-label={`+ ${row.label}`}
+                      className="flex min-h-11 items-center justify-center text-lg text-ink transition-colors hover:bg-surface-muted"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <FieldError
+                    id={`${row.id}-error`}
+                    message={row.error as string | undefined}
+                  />
+                </div>
+              ))}
             </div>
-          </>
-        )}
+          </div>
+        </fieldset>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
-            <label className={labelClass} htmlFor="name">
-              {t("nameLabel")}
-            </label>
-            <input
-              id="name"
-              name="name"
-              required
-              value={texts.name}
-              onChange={(event) => onTextChange("name", event.target.value)}
-              aria-invalid={Boolean(fieldErrors.name)}
-              aria-describedby={fieldErrors.name ? "name-error" : undefined}
-              className={inputClass}
-              placeholder={t("namePlaceholder")}
-            />
-            <FieldError id="name-error" message={fieldErrors.name} />
-          </div>
-          <div>
-            <label className={labelClass} htmlFor="email">
-              {t("emailLabel")}
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              value={texts.email}
-              onChange={(event) => onTextChange("email", event.target.value)}
-              aria-invalid={Boolean(fieldErrors.email)}
-              aria-describedby={fieldErrors.email ? "email-error" : undefined}
-              className={inputClass}
-            />
-            <FieldError id="email-error" message={fieldErrors.email} />
-          </div>
-          <div>
-            <label className={labelClass} htmlFor="phone">
-              {t("phoneLabel")}
-            </label>
-            <input
-              id="phone"
-              name="phone"
-              required
-              value={texts.phone}
-              onChange={(event) => onTextChange("phone", event.target.value)}
-              aria-invalid={Boolean(fieldErrors.phone)}
-              aria-describedby={fieldErrors.phone ? "phone-error" : undefined}
-              className={inputClass}
-            />
-            <FieldError id="phone-error" message={fieldErrors.phone} />
-          </div>
-          <div>
-            <label className={labelClass} htmlFor="date">
-              {t("dateLabel")}
-            </label>
-            <input
-              id="date"
-              name="date"
-              type="date"
-              value={texts.date}
-              onChange={(event) => onTextChange("date", event.target.value)}
-              className={inputClass}
-            />
-          </div>
-          <div>
-            <label className={labelClass} htmlFor="adults">
-              {t("adultsLabel")}
-            </label>
-            <input
-              id="adults"
-              name="adults"
-              type="number"
-              min={1}
-              value={adults}
-              aria-invalid={Boolean(fieldErrors.adults)}
-              aria-describedby={fieldErrors.adults ? "adults-error" : undefined}
-              onChange={(event) => setAdults(Number(event.target.value))}
-              className={inputClass}
-            />
-            <FieldError id="adults-error" message={fieldErrors.adults} />
-          </div>
-          <div>
-            <label className={labelClass} htmlFor="children">
-              {t("childrenLabel")}
-            </label>
-            <input
-              id="children"
-              name="children"
-              type="number"
-              min={0}
-              value={children}
-              aria-invalid={Boolean(fieldErrors.children)}
-              aria-describedby={fieldErrors.children ? "children-error" : undefined}
-              onChange={(event) => setChildren(Number(event.target.value))}
-              className={inputClass}
-            />
-            <FieldError id="children-error" message={fieldErrors.children} />
-          </div>
-        </div>
+        {/* 02 — Contact details. */}
+        <fieldset className="border-t border-line pt-8">
+          <StepLegend step="02" label={t("sectionContact")} />
 
-        <div>
-          <label className={labelClass} htmlFor="hotel">
-            {t("hotelLabel")}
-          </label>
-          <input
-            id="hotel"
-            name="hotel"
-            value={texts.hotel}
-            onChange={(event) => onTextChange("hotel", event.target.value)}
-            className={inputClass}
-            placeholder={t("hotelPlaceholder")}
-          />
-        </div>
+          <div className="mt-6 grid grid-cols-1 gap-5">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <label className={labelClass}>
+                {t("nameLabel")}
+                <input
+                  id="name"
+                  name="name"
+                  required
+                  value={texts.name}
+                  onChange={(event) => onTextChange("name", event.target.value)}
+                  aria-invalid={Boolean(fieldErrors.name)}
+                  aria-describedby={fieldErrors.name ? "name-error" : undefined}
+                  className={inputClass}
+                  placeholder={t("namePlaceholder")}
+                />
+                <FieldError id="name-error" message={fieldErrors.name} />
+              </label>
+              <label className={labelClass}>
+                {t("emailLabel")}
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  value={texts.email}
+                  onChange={(event) => onTextChange("email", event.target.value)}
+                  aria-invalid={Boolean(fieldErrors.email)}
+                  aria-describedby={fieldErrors.email ? "email-error" : undefined}
+                  className={inputClass}
+                />
+                <FieldError id="email-error" message={fieldErrors.email} />
+              </label>
+              <label className={labelClass}>
+                {t("phoneLabel")}
+                <input
+                  id="phone"
+                  name="phone"
+                  required
+                  value={texts.phone}
+                  onChange={(event) => onTextChange("phone", event.target.value)}
+                  aria-invalid={Boolean(fieldErrors.phone)}
+                  aria-describedby={fieldErrors.phone ? "phone-error" : undefined}
+                  className={inputClass}
+                />
+                <FieldError id="phone-error" message={fieldErrors.phone} />
+              </label>
+              <label className={labelClass}>
+                {t("dateLabel")}
+                <input
+                  id="date"
+                  name="date"
+                  type="date"
+                  value={texts.date}
+                  onChange={(event) => onTextChange("date", event.target.value)}
+                  className={inputClass}
+                />
+              </label>
+            </div>
 
-        <div>
-          <label className={labelClass} htmlFor="notes">
-            {t("notesLabel")}
-          </label>
-          <textarea
-            id="notes"
-            name="notes"
-            rows={3}
-            value={texts.notes}
-            onChange={(event) => onTextChange("notes", event.target.value)}
-            className={inputClass}
-            placeholder={t("notesPlaceholder")}
-          />
-        </div>
+            <label className={labelClass}>
+              {t("hotelLabel")}
+              <input
+                id="hotel"
+                name="hotel"
+                value={texts.hotel}
+                onChange={(event) => onTextChange("hotel", event.target.value)}
+                className={inputClass}
+                placeholder={t("hotelPlaceholder")}
+              />
+            </label>
+
+            <label className={labelClass}>
+              {t("notesLabel")}
+              <textarea
+                id="notes"
+                name="notes"
+                rows={3}
+                value={texts.notes}
+                onChange={(event) => onTextChange("notes", event.target.value)}
+                className={inputClass}
+                placeholder={t("notesPlaceholder")}
+              />
+            </label>
+          </div>
+        </fieldset>
       </div>
 
-      <aside className="h-fit rounded-xl border border-line bg-surface p-6 lg:sticky lg:top-6">
-        <h2 className="text-base font-bold text-ink">{t("quoteTitle")}</h2>
+      <aside className="h-fit rounded-md bg-surface p-6 shadow-card lg:sticky lg:top-6">
+        <Eyebrow>{t("quoteTitle")}</Eyebrow>
         {liveQuote && liveQuote.valid ? (
           <>
             <ul className="mt-4 space-y-2 text-sm text-ink-muted">
               {liveQuote.breakdown.map((line, index) => (
-                <li key={index} className="flex justify-between gap-3">
+                <li
+                  key={index}
+                  className="flex items-baseline justify-between gap-3 border-b border-line pb-2"
+                >
                   <span>
                     {line.label}
                     {line.quantity > 1 ? ` × ${line.quantity}` : ""}
@@ -407,9 +497,11 @@ export function BookForm({
               ))}
             </ul>
             <div className="mt-4 border-t border-line pt-4">
-              <div className="flex justify-between text-sm font-bold text-ink">
-                <span>{t("quoteTotal")}</span>
-                <span data-testid="quote-total">{liveQuote.totalEur} €</span>
+              <div className="flex items-baseline justify-between gap-3">
+                <span className="text-sm font-semibold text-ink">{t("quoteTotal")}</span>
+                <span data-testid="quote-total" className="font-serif text-xl text-ink">
+                  {liveQuote.totalEur} €
+                </span>
               </div>
               <div className="mt-1 flex justify-between text-xs text-ink-muted">
                 <span>{t("indicativeMad")}</span>
@@ -431,7 +523,7 @@ export function BookForm({
         <button
           type="submit"
           disabled={pending}
-          className="mt-6 inline-flex min-h-[44px] w-full items-center justify-center rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-on-accent hover:bg-accent-strong disabled:opacity-60"
+          className={`${buttonClass("primary")} mt-6 w-full disabled:opacity-60`}
         >
           {pending ? t("sending") : t("submit")}
         </button>
