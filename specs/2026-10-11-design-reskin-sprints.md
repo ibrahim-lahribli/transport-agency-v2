@@ -61,7 +61,7 @@ dependencies.
 | 2 | Image assets | 5 (asset half) | ✅ done (commit `a62aa2c`) |
 | 3 | Site chrome | 3–4 | ✅ done (commits `b141dd3`, `968bd5b`) |
 | 4 | Catalogue browsing | 8–9 | ✅ done (commits `a945dce`, `1ea44df`) |
-| 5 | Home page | 5–7 | ☐ |
+| 5 | Home page | 5–7 | ✅ done (commit `ad7b699`) |
 | 6 | Booking: form fields | 10 (part) | ☐ |
 | 7 | Booking: estimate/success/mobile bar | 10 (part) | ☐ |
 | 8 | Secondary pages | 11 | ☐ |

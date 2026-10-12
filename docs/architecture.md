@@ -32,7 +32,8 @@ config/business.ts (zod-validated env: legal + NAP)   config/site.ts (origin, lo
 - **`src/components`** — presentational building blocks: `navigation.tsx`
   (server `Header`/`Footer`, both fed translated labels and `getContact()`),
   `header-chrome.tsx` (client header shell: mobile menu toggle, ≥44px targets,
-  Esc-to-close), `locale-switcher.tsx`, `ui.tsx` (agency-design-v2 primitives:
+  Esc-to-close), `locale-switcher.tsx`, `mood-carousel.tsx` (client scroll-snap mood
+  picker used on home), `ui.tsx` (agency-design-v2 primitives:
   `ButtonLink`, `Button` class helper, `Eyebrow`, `SectionHeading`, `Tag`,
   `PageIntro`, `Accordion`), `hub-page.tsx`, `service-card.tsx`,
   `book-form.tsx` and `json-ld.tsx`. UI copy comes from `messages/{en,fr}.json`
