@@ -75,8 +75,12 @@ export function TransferTool({
   };
 
   return (
-    <div>
-      <div className="grid gap-5 sm:grid-cols-[1fr_1.4fr_0.8fr]">
+    /* The design's `.transfer-tool` paper card: radius-md, 16px padding at
+       375px, 24px from 48rem, shadow — F2 in the visual review report. */
+    <div className="rounded-md bg-surface p-4 shadow-card sm:p-6">
+      {/* Design `.widget-grid` ratio 1fr 1.2fr 1fr — F3 in the visual review
+          report. */}
+      <div className="grid gap-5 sm:grid-cols-[1fr_1.2fr_1fr]">
         {/* From is fixed by the data the hub passes in (airport/hotel legs). */}
         <label className={labelClass}>
           <span>{tBook("routeLabel")}</span>
@@ -125,7 +129,7 @@ export function TransferTool({
       </div>
 
       {/* Indicative total, straight from the tested pure function. */}
-      <div className="mt-6 flex flex-col justify-between gap-5 rounded-sm bg-ink p-5 text-canvas sm:flex-row sm:items-center">
+      <div className="mt-5 flex flex-col justify-between gap-5 rounded-sm bg-ink p-5 text-canvas sm:flex-row sm:items-center">
         {result.valid ? (
           <div className="leading-tight">
             <small className="block text-xs uppercase tracking-[0.14em] text-canvas/80">
@@ -152,7 +156,7 @@ export function TransferTool({
       {/* Vehicle cards: seat ladder the engine quotes with; selecting one
           overrides the recommendation. Recommended card derives from the
           party size, never from stale state. */}
-      <fieldset className="mt-8">
+      <fieldset className="mt-7">
         <legend className="mb-4 text-sm font-semibold text-ink">{t("vehicleLegend")}</legend>
         <div
           role="radiogroup"
