@@ -57,11 +57,33 @@ export function getServiceImage(
   if (SERVICE_IMAGE_IDS.some((s) => s === id)) {
     return `/images/services/${id}.jpg`;
   }
+  // Sprint-4 review D5: gallery support shots (`<id>-b` / `<id>-c`) must not
+  // all collapse into one identical fallback photo — distribute the category
+  // artwork across the suffixes deterministically.
+  const supportSlot = /^.*-([bc])$/.exec(id)?.[1];
+  if (supportSlot === "b" || supportSlot === "c") {
+    const artwork = fallbackArtwork(hub, kind === "hero", supportSlot);
+    return `/images/${artwork}.jpg`;
+  }
   const artwork = fallbackArtwork(hub, kind === "hero");
   return `/images/${artwork}.jpg`;
 }
 
-function fallbackArtwork(hub?: string, hero?: boolean): string {
+function fallbackArtwork(hub?: string, hero?: boolean, slot?: "b" | "c"): string {
+  // Slot rotation for gallery support shots: two distinct supporting images
+  // per category, leaving the primary artwork (the no-slot fallback) aside.
+  if (slot) {
+    switch (hub) {
+      case "transfers":
+      case "transfer":
+        return slot === "b" ? "city" : "coast";
+      case "activities":
+      case "activity":
+        return slot === "b" ? "boats" : "cliffs";
+      default:
+        return slot === "b" ? "beach" : "boats";
+    }
+  }
   switch (hub) {
     case "transfers":
     case "transfer":

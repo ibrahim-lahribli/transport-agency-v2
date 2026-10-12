@@ -22,7 +22,7 @@ export async function HubPage({ hub, locale }: { hub: HubKey; locale: string }) 
             <strong className="font-semibold text-ink">{services.length}</strong>{" "}
             {t(`${hub}.countNoun`)}
           </p>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:row-gap-10 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-y-10 lg:grid-cols-3">
             {services.map((service) => (
               <ServiceCard key={service.id} service={service} locale={locale} />
             ))}

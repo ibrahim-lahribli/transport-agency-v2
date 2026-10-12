@@ -192,7 +192,7 @@ export function BookForm({
 
   if (state.status === "success") {
     return (
-      <div className="rounded-md bg-surface p-8 text-center shadow-card">
+      <div className="mx-auto max-w-[46rem] rounded-md bg-surface p-8 text-center shadow-card">
         {/* The design's success mark: olive disc with the check. */}
         <div
           aria-hidden="true"
@@ -200,7 +200,9 @@ export function BookForm({
         >
           ✓
         </div>
-        <h2 className="text-xl text-ink">{t("successTitle")}</h2>
+        {/* The form's exercise H1 unmounted with it; the design's success
+            page carries the heading as an H1 (one H1 per view, not per page). */}
+        <h1 className="text-xl text-ink">{t("successTitle")}</h1>
         <p className="mx-auto mt-2 max-w-[36rem] text-lg text-ink-muted">{state.message}</p>
         <div className="mx-auto mt-6 max-w-[36rem] rounded-md bg-surface-muted p-6 text-start">
           <h3 className="text-lg text-ink">{t("nextStepsTitle")}</h3>
@@ -539,7 +541,7 @@ export function BookForm({
             <div className="mt-4 border-t border-line pt-4">
               <div className="flex items-baseline justify-between gap-3">
                 <span className="text-sm font-semibold text-ink">{t("quoteTotal")}</span>
-                <span data-testid="quote-total" className="font-serif text-xl text-ink">
+                <span data-testid="quote-total" className="font-serif text-2xl text-ink">
                   {liveQuote.totalEur} €
                 </span>
               </div>

@@ -155,7 +155,8 @@
       align-items: center;
       gap: 0.5rem;
       border-top: 0.0625rem solid var(--line);
-      padding: 0.5rem 0.75rem;
+      /* Clear the home indicator / gesture bar on notched devices. */
+      padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom, 0rem));
       background: var(--surface);
       box-shadow: 0 -0.5rem 2rem rgb(29 40 35 / 12%);
       opacity: 0;
@@ -193,7 +194,11 @@
       color: var(--ink);
       font-size: 0.625rem;
       font-style: normal;
+      /* Keep the note on one line, but shrink gracefully instead of clipping
+         when the long FR string meets a narrow/zoomed viewport. */
       white-space: nowrap;
+      transition: font-size 100ms ease;
+      text-wrap: nowrap;
     }
 
     .mobile-bar--booking > button {

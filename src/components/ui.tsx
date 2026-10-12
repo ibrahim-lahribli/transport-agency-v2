@@ -157,7 +157,11 @@ export function Accordion({
               <span className="absolute h-0.5 w-4 rotate-90 bg-current transition-opacity group-open:opacity-0" />
             </span>
           </summary>
-          <p className="max-w-[42rem] pb-6 pe-12 text-ink-muted">{item.body}</p>
+          {/* `div`, not `p`: bodies are frequently block content (ItineraryList
+              `<ol>`, `<div>` grids, FAQ `<dl>`) and `<p>` may not contain
+              block elements — the HTML parser would auto-close it and client
+              React would hydrate-mismatch (error #418). */}
+          <div className="max-w-[42rem] pb-6 pe-12 text-ink-muted">{item.body}</div>
         </details>
       ))}
     </div>

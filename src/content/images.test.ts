@@ -31,6 +31,26 @@ describe("getServiceImage: fallback for unknown ids", () => {
     expect(getServiceImage("~missing~", "card")).toBe("/images/coast.jpg");
     expect(getServiceImage("~missing~", "hero")).toBe("/images/hero.jpg");
   });
+
+  it("gives gallery support shots distinct artwork (review D5)", () => {
+    const hub = "excursions";
+    const shots = [
+      getServiceImage("paradise-valley-b", "gallery", hub),
+      getServiceImage("paradise-valley-c", "gallery", hub),
+    ];
+    expect(new Set(shots).size).toBe(2);
+    expect(getServiceImage("paradise-valley-b", "gallery", hub)).toBe("/images/beach.jpg");
+    expect(getServiceImage("paradise-valley-c", "gallery", hub)).toBe("/images/boats.jpg");
+    // Transfers support shots differ from the transfers primary fallback.
+    expect(getServiceImage("x-b", "gallery", "transfers")).toBe("/images/city.jpg");
+    expect(getServiceImage("x-c", "gallery", "transfers")).toBe("/images/coast.jpg");
+  });
+
+  it("treats a real service name ending in -b/-c with care", () => {
+    // No catalogue service id ends with -b or -c (verified below), but the
+    // suffix rule must not hijack an exact known id.
+    expect(SERVICE_IMAGE_IDS.some((id) => /-[bc]$/.test(id))).toBe(false);
+  });
 });
 
 describe("getServiceImage: design artwork slots", () => {

@@ -87,6 +87,7 @@ export default async function ProductPage({
   const t = await getTranslations({ locale, namespace: "product" });
   const tc = await getTranslations({ locale, namespace: "common" });
   const tHubs = await getTranslations({ locale, namespace: "hubs" });
+  const tb = await getTranslations({ locale, namespace: "book" });
 
   const hub = categoryToHub(service.category);
   const hubHref = HUB_HREF[hub];
@@ -129,14 +130,12 @@ export default async function ProductPage({
     label: t("fromPrice"),
     value: displayPrice.formatted[locale as "en" | "fr"],
   });
-  const pickupText = service.pickupWindow ?? service.availability;
-  if (pickupText) {
-    factTiles.push({ label: t("pickup"), value: pickupText });
-  }
-  if (service.capacity?.sharedMax) {
+  const pickupText = service.pickupWindow ?? service.availability ?? t("defaultPickup");
+  factTiles.push({ label: t("pickup"), value: pickupText });
+  if (service.capacity) {
     factTiles.push({
       label: t("minGroup"),
-      value: `${t("defaultPickup")} · ≤ ${service.capacity.sharedMax} ${tc("guests")}`,
+      value: `${service.capacity.min} ${tc("guests")}`,
     });
   }
   factTiles.push({ label: t("languages"), value: service.languages.join(", ") });
@@ -157,6 +156,59 @@ export default async function ProductPage({
             </li>
           ))}
         </ol>
+      ),
+    });
+  }
+  // Sprint-4 review D3: the transfer routes section was silently dropped in
+  // the re-skin. Restore it as an accordion section, prices straight from the
+  // catalogue object — never literals (only for routes that carry prices).
+  const transferRoutes =
+    service.category === "transfer" &&
+    service.routes &&
+    service.routes.length > 0
+      ? service.routes.filter((r) => Object.values(r.prices).some((p) => p > 0))
+      : [];
+  if (transferRoutes.length > 0) {
+    accordions.push({
+      title: t("routesPrices"),
+      body: (
+        <div className="grid gap-4">
+          {transferRoutes.map((route, index) => (
+            <div key={index} className="rounded-md border border-line bg-surface p-4">
+              <p className="font-semibold text-ink">
+                {route.from} → {route.to}
+              </p>
+              <p className="text-sm text-ink-muted">
+                {route.distanceKm !== undefined ? `${route.distanceKm} km · ` : ""}
+                {route.minutes === 0 || route.minutes
+                  ? `${route.minutes} min`
+                  : ""}
+              </p>
+              <table className="mt-3 w-full max-w-[26rem] text-sm">
+                <tbody>
+                  {(
+                    [
+                      ["sedan", tb("vehicleSedan")],
+                      ["van", tb("vehicleVan")],
+                      ["minibus", tb("vehicleMinibus")],
+                    ] as const
+                  )
+                    .filter(([vehicle]) => (route.prices[vehicle] ?? 0) > 0)
+                    .map(([vehicle, vehicleLabel]) => (
+                      <tr key={vehicle} className="border-t border-line">
+                        <th scope="row" className="py-1.5 text-start font-normal text-ink-muted">
+                          {vehicleLabel}
+                        </th>
+                        <td className="py-1.5 text-end font-semibold text-ink">
+                          {route.prices[vehicle]} €
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
       ),
     });
   }
@@ -362,7 +414,7 @@ export default async function ProductPage({
             <h2 className="mb-10 text-2xl md:text-[clamp(2rem,5vw,4.5rem)] md:leading-[1.05]">
               {t("related")}
             </h2>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:row-gap-10 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-y-10 lg:grid-cols-3">
               {related.map((item) => (
                 <ServiceCard key={item.id} service={item} locale={locale} />
               ))}
