@@ -40,8 +40,12 @@
 - Accessibility: one `<h1>` per page, `aria-current` on breadcrumbs, real
   `<button>`/`<a>` elements, and visible focus styles.
 - Reuse the shared building blocks (`src/components/ui.tsx`: `ButtonLink`,
-  `Eyebrow`, `SectionHeading`, `Tag`, `PageIntro`, `Accordion`) rather than
-  re-implementing layout.
+  `Eyebrow`, `SectionHeading`, `Tag`, `PageIntro`, `Accordion`). Accordion
+  bodies wrap in a `<div>`, never a `<p>`: bodies are frequently block
+  content (`<ol>`, `<div>` grids, `<dl>`), a `<p>` auto-closes during SSR,
+  and client React then hydrates with error #418. Respect
+  `prefers-reduced-motion` in CSS-only animation; the global guard lives in
+  `globals.css`. Use these blocks rather than re-implementing layout.
 
 ## Commits
 

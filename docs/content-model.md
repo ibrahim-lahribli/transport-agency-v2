@@ -66,7 +66,10 @@ rule and the Sahara rule at type level.
 Every service has an image slot at `public/images/services/<id>.jpg`, resolved
 by [`src/content/images.ts`](../src/content/images.ts) (`getServiceImage` —
 pure; unknown ids fall back to a category artwork: transfers → `road`,
-activities → `beach`, excursions → `coast`). Slots may deliberately share one
+activities → `beach`, excursions → `coast`). Gallery support-shot ids with a
+`-b`/`-c` suffix rotate through two distinct artworks per category (excursions:
+`beach`/`boats`; transfers: `city`/`coast`) so support slots never repeat the
+primary fallback photo. Slots may deliberately share one
 artwork photo (design placeholders; a one-unique-photo-per-service pass is a
 polish task). The seven generic artwork photos
 the design re-skin needs (hero/coast/beach/boats/city/cliffs/road) live at
