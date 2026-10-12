@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+import { DESIGN_TOKENS, contrastRatio } from "@/content/design-tokens";
 import { isAppLocale } from "@/i18n/locales";
 import { buildPageMetadata } from "@/seo/metadata";
+import { tokenHex } from "@/content/design-tokens";
 import {
   Accordion,
   Eyebrow,
@@ -49,37 +51,73 @@ export default async function DesignSystemPage({
 
   const t = await getTranslations("designSystem");
 
-  // Palette with the raw hex from globals.css; contrast ratios are the
-  // WCAG-documented pairs we actually use on surfaces below.
-  const swatches: { name: string; className: string; value: string }[] = [
-    { name: t("canvas"), className: "bg-canvas", value: "#f7f2e8" },
-    { name: t("surface"), className: "bg-surface", value: "#fffdf8" },
-    { name: t("surfaceMuted"), className: "bg-surface-muted", value: "#ece2d1" },
-    { name: t("ink"), className: "bg-ink", value: "#1d2823" },
-    { name: t("inkMuted"), className: "bg-ink-muted", value: "#5e655f" },
-    { name: t("line"), className: "bg-line", value: "#bbb4a7" },
-    { name: t("accent"), className: "bg-accent", value: "#ad482f" },
-    { name: t("accentStrong"), className: "bg-accent-strong", value: "#873520" },
-    { name: t("olive"), className: "bg-olive", value: "#4f5d45" },
-    { name: t("error"), className: "bg-error", value: "#a83232" },
-  ];
-
-  const typeSamples: { label: string; className: string }[] = [
-    { label: "text-display", className: "text-display" },
-    { label: "text-2xl", className: "text-2xl" },
-    { label: "text-xl", className: "text-xl" },
-    { label: "text-lg", className: "text-lg" },
-    { label: "text-base", className: "text-base" },
-    { label: "text-sm", className: "text-sm" },
-  ];
-  const TYPE_TEXT: Record<string, string> = {
-    "text-display": "La baie d'Agadir",
-    "text-2xl": "Day trips from Agadir",
-    "text-xl": "Paradise Valley",
-    "text-lg": "Guided day trips and transfers",
-    "text-base": "Hotel pickup is included in every price.",
-    "text-sm": "Free cancellation up to 24 h before departure.",
+  // Palette from the typed token mirror (pinned to globals.css by test) —
+  // never re-typed here. Each swatch shows its WCAG contrast ratio against
+  // the pairing the system actually uses: ink text on light surfaces, white
+  // on dark ones, and accent on the on-accent (white) button label.
+  const TOKEN_MESSAGE_KEY: Record<string, string> = {
+    canvas: "canvas",
+    surface: "surface",
+    "surface-muted": "surfaceMuted",
+    ink: "ink",
+    "ink-muted": "inkMuted",
+    line: "line",
+    accent: "accent",
+    "accent-strong": "accentStrong",
+    "on-accent": "onAccent",
+    olive: "olive",
+    error: "error",
   };
+  // Keep literal Tailwind classes in a static map so the scanner sees them.
+  const TOKEN_BG_CLASS: Record<string, string> = {
+    canvas: "bg-canvas",
+    surface: "bg-surface",
+    "surface-muted": "bg-surface-muted",
+    ink: "bg-ink",
+    "ink-muted": "bg-ink-muted",
+    line: "bg-line",
+    accent: "bg-accent",
+    "accent-strong": "bg-accent-strong",
+    "on-accent": "bg-on-accent",
+    olive: "bg-olive",
+    error: "bg-error",
+  };
+  const DARK_TOKENS = new Set([
+    "ink",
+    "ink-muted",
+    "accent",
+    "accent-strong",
+    "olive",
+    "error",
+  ]);
+
+  const swatches = DESIGN_TOKENS.map((color) => {
+    const pairToken =
+      color.token === "on-accent"
+        ? "accent" // the button's accent fill sits on the white label color
+        : DARK_TOKENS.has(color.token)
+          ? "white"
+          : "ink";
+    const pairHex = pairToken === "white" ? "#ffffff" : tokenHex(pairToken);
+    return {
+      name: t(TOKEN_MESSAGE_KEY[color.token]),
+      className: TOKEN_BG_CLASS[color.token],
+      value: color.hex,
+      contrast: t("contrast", {
+        pair: pairToken === "white" ? t("white") : t(TOKEN_MESSAGE_KEY[pairToken]),
+        ratio: contrastRatio(color.hex, pairHex),
+      }),
+    };
+  });
+
+  const typeSamples: { label: string; className: string; text: string }[] = [
+    { label: "text-display", className: "text-display", text: t("typeDisplay") },
+    { label: "text-2xl", className: "text-2xl", text: t("type2xl") },
+    { label: "text-xl", className: "text-xl", text: t("typeXl") },
+    { label: "text-lg", className: "text-lg", text: t("typeLg") },
+    { label: "text-base", className: "text-base", text: t("typeBase") },
+    { label: "text-sm", className: "text-sm", text: t("typeSm") },
+  ];
 
   return (
     <main id="main" className="pb-20">
@@ -96,6 +134,7 @@ export default async function DesignSystemPage({
               <span aria-hidden="true" className={`block h-16 rounded-sm ${swatch.className}`} />
               <span className="mt-2 block text-sm font-semibold text-ink">{swatch.name}</span>
               <span className="block font-mono text-xs text-ink-muted">{swatch.value}</span>
+              <span className="mt-1 block text-xs text-ink-muted">{swatch.contrast}</span>
             </li>
           ))}
         </ul>
@@ -109,9 +148,7 @@ export default async function DesignSystemPage({
                 {sample.label}
               </span>
               {/* Real Playfair for h-class sizes; DM Sans body serifless jars. */}
-              <p className={`${sample.className} font-serif`}>
-                {TYPE_TEXT[sample.label]}
-              </p>
+              <p className={`${sample.className} font-serif`}>{sample.text}</p>
             </div>
           ))}
           <div className="border-b border-line pb-6">
@@ -124,7 +161,7 @@ export default async function DesignSystemPage({
 
         {/* Spacing scale */}
         <SectionHeading eyebrow={t("spacingEyebrow")} title={t("spacingTitle")} />
-        <ul className="mb-16 grid gap-3 border-t border-line pt-8 text-sm text-ink-muted">
+        <ul className="mb-16 grid grid-cols-[minmax(0,1fr)] gap-3 border-t border-line pt-8 text-sm text-ink-muted">
           {[
             [t("space1"), "h-1"],
             [t("space2"), "h-2"],
@@ -139,9 +176,9 @@ export default async function DesignSystemPage({
               <span aria-hidden="true" className={`block flex-1 bg-accent ${barClass}`} />
             </li>
           ))}
-          <li className="flex items-center gap-4">
+          <li className="flex flex-wrap items-center gap-4">
             <span className="w-32 shrink-0 font-mono text-xs">{t("radius")}</span>
-            <span className="flex gap-3">
+            <span className="flex min-w-0 flex-wrap gap-3">
               <span aria-hidden="true" className="h-8 w-16 rounded-sm border border-line bg-surface" />
               <span aria-hidden="true" className="h-8 w-16 rounded-md border border-line bg-surface" />
               <span aria-hidden="true" className="h-8 w-16 rounded-lg border border-line bg-surface" />

@@ -98,10 +98,23 @@
       scroll-behavior: auto;
     }
   }
-}
+}  /*
+   * Respect prefers-reduced-motion everywhere: CSS-only animation (the
+   * accordion's transform, hover scale) must not run for users who opt out.
+   * JS-driven smooth scrolling is handled separately (mood-carousel).
+   */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      transition-property: none !important;
+    }
+  }
 
-/* Focus ring stays unlayered so it is never swallowed by utilities. */
-:focus-visible {
+  /* Focus ring stays unlayered so it is never swallowed by utilities. */
+  :focus-visible {
   outline: 0.125rem solid var(--accent);
   outline-offset: 0.125rem;
 }
