@@ -30,6 +30,36 @@ and exiting non-zero at the first failure. It mirrors CI: it exports
 port is taken, override both: `PLAYWRIGHT_BASE_URL=http://localhost:3210
 NEXT_PUBLIC_SITE_URL=http://localhost:3210 pnpm gate`.
 
+### Driving a local production server
+
+The documented hatch for a manual production build/start:
+
+```bash
+SKIP_ENV_VALIDATION=true NEXT_PUBLIC_SITE_URL=http://localhost:3100 \
+  node_modules/.bin/next build && \
+SKIP_ENV_VALIDATION=true NEXT_PUBLIC_SITE_URL=http://localhost:3100 \
+  node_modules/.bin/next start -p 3100
+```
+
+Two traps to avoid when verifying against it:
+
+- **Stale server on the port.** A `next start` from an earlier session keeps
+  serving the build it started with. Confirm which process owns the port before
+  trusting a response — on Windows:
+  `netstat -ano | grep ":3100.*LISTEN"` then
+  `powershell -Command "(Get-CimInstance Win32_Process -Filter \"ProcessId=<pid>\").CommandLine"`.
+  Never diagnose off a response from a process you have not identified.
+- **Stale ISR cache after an in-place rebuild.** Re-running `next build` over an
+  existing `.next` can leave the freshly started server replaying the
+  **previous build's** prerendered pages out of the persistent cache
+  `x-nextjs-cache: HIT` in the response headers serves old markup even though
+  `.next/server/app/**.html` on disk holds the new one — observed on this
+  Windows host for a prerendered `/en/places` page). The fix is the hard
+  rebuild: stop the server, `rm -rf .next`, `next build` again, then start.
+  Grep the served HTML for a string unique to the new markup (e.g. a new
+  message key) rather than judging by BUILD_ID dates, and only then run
+  Playwright against the port.
+
 ## What the E2E SEO suite asserts
 
 For every URL in `sitemap.xml`: exactly one `<h1>`, exactly one canonical, the
