@@ -19,8 +19,10 @@ Tailwind CSS v4, `next/font/google` (Playfair Display + DM Sans). No new npm
 dependencies.
 
 **Spec:** [2026-10-11-design-reskin.md](2026-10-11-design-reskin.md)
-(implements); visual source of truth: `C:\projects\design\agency-design-v2`
-(external Figma export — visuals only, its copy/prices/photos are placeholders).
+(implements); visual source of truth: the **untracked, git-ignored**
+`agency-design-v2/` directory (kept on disk only after commit `e760997` —
+the vendored Figma export had broken production lint; an external Figma
+export — visuals only, its copy/prices/photos are placeholders).
 
 ## Sprint rules
 
@@ -62,8 +64,8 @@ dependencies.
 | 3 | Site chrome | 3–4 | ✅ done (commits `b141dd3`, `968bd5b`) |
 | 4 | Catalogue browsing | 8–9 | ✅ done (commits `a945dce`, `1ea44df`) |
 | 5 | Home page | 5–7 | ✅ done (commit `ad7b699`) |
-| 6 | Booking: form fields | 10 (part) | ☐ |
-| 7 | Booking: estimate/success/mobile bar | 10 (part) | ☐ |
+| 6 | Booking: form fields | 10 (part) | ✅ done (commit `e6aef69`) |
+| 7 | Booking: estimate/success/mobile bar | 10 (part) | ✅ done (commit `2fd7f51`) |
 | 8 | Secondary pages | 11 | ☐ |
 | 9 | Transfer tool | 12 | ☐ |
 | 10 | System page + hardening + docs | 13–15 | ☐ |

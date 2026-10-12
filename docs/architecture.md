@@ -35,8 +35,10 @@ config/business.ts (zod-validated env: legal + NAP)   config/site.ts (origin, lo
   Esc-to-close), `locale-switcher.tsx`, `mood-carousel.tsx` (client scroll-snap mood
   picker used on home), `ui.tsx` (agency-design-v2 primitives:
   `ButtonLink`, `Button` class helper, `Eyebrow`, `SectionHeading`, `Tag`,
-  `PageIntro`, `Accordion`), `hub-page.tsx`, `service-card.tsx`,
-  `book-form.tsx` and `json-ld.tsx`. UI copy comes from `messages/{en,fr}.json`
+  `PageIntro`, `Accordion`),  `hub-page.tsx`, `service-card.tsx`, `book-form.tsx` (fields stay controlled
+  and the form is keyed on `InquiryState.attempt`), `mobile-bar.tsx` (client
+  sticky mobile submit bar driven by an IntersectionObserver) and
+  `json-ld.tsx`. UI copy comes from `messages/{en,fr}.json`
   — the chrome never hardcodes strings and never renders contact data other
   than through `getContact()`.
 - **`src/content`** — hand-curated long-tail content: `places.ts` (place hubs)
