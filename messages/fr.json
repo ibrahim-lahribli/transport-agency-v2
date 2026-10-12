@@ -231,6 +231,18 @@
     "sectionDetails": "Votre excursion",
     "sectionContact": "Vos coordonnées"
   },
+  "tool": {
+    "toLabel": "Destination",
+    "passengersLabel": "Voyageurs",
+    "indicativeTotal": "Total indicatif",
+    "perVehicle": "véhicule",
+    "basisNote": "Base tarifaire : {basis}. Confirmé avec votre demande.",
+    "basisCatalogue": "catalogue",
+    "basisEstimate": "estimation",
+    "request": "Demander ce transfert",
+    "vehicleLegend": "Votre véhicule",
+    "caveat": "Prix indicatifs par véhicule en EUR, avec l'équivalent MAD indicatif confirmé avec votre demande. Les majorations de nuit et les arrêts supplémentaires figurent sur la page de chaque transfert."
+  },
   "guides": {
     "metaTitle": "Guides de voyage pour Agadir et le Souss-Massa",
     "metaDescription": "Guides de première main d'une agence locale à Agadir : quand venir, quoi emporter et comment planifier excursions, activités et transferts.",

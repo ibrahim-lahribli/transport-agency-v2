@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { getServiceById } from "@/catalogue";
 import type { Service } from "@/schemas/service";
 
-import { quote, usesTieredPricing, vehicleForParty } from "./quote";
+import { quote, transferToolQuote, usesTieredPricing, vehicleForParty } from "./quote";
 
 function service(id: string, locale = "en"): Service {
   const found = getServiceById(id, locale);
@@ -78,6 +78,69 @@ describe("quote", () => {
     });
     expect(result.valid).toBe(true);
     expect(result.totalEur).toBe(80);
+  });
+});
+
+describe("transferToolQuote", () => {
+  it("recommends the seat-correct vehicle and prices the cheapest route for a small party", () => {
+    // 2 passengers → sedan; the airport→city sedan price is 20 (catalogue).
+    const result = transferToolQuote({ routes: service("airport-agadir").routes ?? [], adults: 2, children: 0 });
+    expect(result.valid).toBe(true);
+    expect(result.routeIndex).toBe(0);
+    expect(result.vehicleClass).toBe("sedan");
+    expect(result.recommendedVehicle).toBe(true);
+    expect(result.totalEur).toBe(20);
+  });
+
+  it("prices airport→Taghazout (35 € sedan) and flags estimate-basis routes", () => {
+    // The tool aggregates the transfer routes across the catalogue; airport-
+    // Taghazout comes from the airport-taghazout service at 35 € (sedan).
+    const routes = [
+      ...(service("airport-agadir").routes ?? []),
+      ...(service("airport-taghazout").routes ?? []),
+      ...(service("private-transfers-tourist-transport").routes ?? []),
+    ];
+    const index = routes.findIndex((r) => r.to.includes("Taghazout"));
+    expect(index).toBeGreaterThanOrEqual(0);
+
+    const result = transferToolQuote({ routes, adults: 2, children: 0, routeIndex: index });
+    expect(result.vehicleClass).toBe("sedan");
+    expect(result.totalEur).toBe(35);
+    // The airport→Taghazout route declares `basis: "catalogue"` in the content
+    // source; the tool must report the route's own basis, not hardcode one.
+    expect(result.basis).toBe("catalogue");
+  });
+
+  it("steps up to a van at 4 passengers and a minibus at 8, re-quoting the same route", () => {
+    const routes = service("airport-agadir").routes ?? [];
+    expect(transferToolQuote({ routes, adults: 4, children: 0 }).totalEur).toBe(30);
+    expect(transferToolQuote({ routes, adults: 8, children: 0 }).totalEur).toBe(50);
+    expect(transferToolQuote({ routes, adults: 4, children: 0, routeIndex: 1 }).totalEur).toBe(35);
+  });
+
+  it("respects an explicit vehicle override and reports recommendedVehicle=false", () => {
+    const routes = service("airport-agadir").routes ?? [];
+    const result = transferToolQuote({ routes, adults: 2, children: 0, vehicle: "minibus" });
+    expect(result.vehicleClass).toBe("minibus");
+    expect(result.recommendedVehicle).toBe(false);
+    expect(result.totalEur).toBe(50);
+  });
+
+  it("carries the catalogue basis when the route price is confirmed", () => {
+    const routes = service("airport-agadir").routes ?? [];
+    // Route 0 is basis: "catalogue" in the content source.
+    expect(transferToolQuote({ routes, adults: 2, children: 0 }).basis).toBe("catalogue");
+  });
+
+  it("rejects an empty party", () => {
+    const result = transferToolQuote({ routes: service("airport-agadir").routes ?? [], adults: 0, children: 0 });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBeTruthy();
+  });
+
+  it("converts to an indicative MAD total", () => {
+    const result = transferToolQuote({ routes: service("airport-agadir").routes ?? [], adults: 2, children: 0 });
+    expect(result.indicativeMad).toBeCloseTo(result.totalEur * result.exchangeRate, 2);
   });
 });
 

@@ -1,4 +1,5 @@
 import { selectBaseOption } from "@/seo/price";
+import type { TransferRouteItem } from "@/schemas/service";
 
 import { EUR_TO_MAD_RATE } from "./rate";
 import type {
@@ -73,6 +74,78 @@ export function usesTieredPricing(service: QuoteService): boolean {
   if (!options || options.length === 0) return false;
   const base = service.price.unit ?? "person";
   return Boolean(findAdultOption(options) && findChildOption(options) && base === "person");
+}
+
+/** Seat ladder label for the transfer-tool vehicle cards. */
+export const VEHICLE_CLASS_LABELS: Record<VehicleClass, string> = {
+  sedan: "sedan",
+  van: "van",
+  minibus: "minibus",
+};
+
+/**
+ * The pure calculation behind the transfers hub's indicative-pricing widget.
+ * Route + party → seat-correct vehicle (unless overridden) and the per-vehicle
+ * total for that route, plus the route's declared pricing basis so the UI can
+ * show "catalogue" vs "estimate" wording without hard-coding either. Import
+ * rules and rounding stay identical to `quote`.
+ */
+export interface TransferToolInput {
+  routes: TransferRouteItem[];
+  adults: number;
+  children: number;
+  /** Index into `routes`; defaults to 0, clamped exactly like `quote`. */
+  routeIndex?: number;
+  /** Explicit vehicle choice from the vehicle cards; omits recommendation. */
+  vehicle?: VehicleClass;
+}
+
+export interface TransferToolResult {
+  valid: boolean;
+  error?: string;
+  routeIndex: number;
+  vehicleClass: VehicleClass;
+  /** True when `vehicleClass` came from the party-size ladder, not an override. */
+  recommendedVehicle: boolean;
+  totalEur: number;
+  indicativeMad: number;
+  exchangeRate: number;
+  /** The route's own declared basis; `undefined` when the route omits it. */
+  basis?: string;
+}
+
+export function transferToolQuote(input: TransferToolInput): TransferToolResult {
+  const { adults, children, routes } = input;
+
+  const partyError = validateParty({ adults, children });
+  if (partyError || routes.length === 0) {
+    return {
+      valid: false,
+      error: partyError ?? "No routes available.",
+      routeIndex: 0,
+      vehicleClass: "sedan",
+      recommendedVehicle: true,
+      totalEur: 0,
+      indicativeMad: 0,
+      exchangeRate: EUR_TO_MAD_RATE,
+    };
+  }
+
+  const routeIndex = Math.min(Math.max(input.routeIndex ?? 0, 0), routes.length - 1);
+  const route = routes[routeIndex];
+  const vehicleClass = input.vehicle ?? vehicleForParty(adults + children);
+  const totalEur = round2(route.prices[vehicleClass]);
+
+  return {
+    valid: true,
+    routeIndex,
+    vehicleClass,
+    recommendedVehicle: input.vehicle === undefined,
+    totalEur,
+    indicativeMad: round2(totalEur * EUR_TO_MAD_RATE),
+    exchangeRate: EUR_TO_MAD_RATE,
+    basis: route.basis,
+  };
 }
 
 /**

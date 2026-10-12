@@ -231,6 +231,18 @@
     "sectionDetails": "Choose the details",
     "sectionContact": "Contact details"
   },
+  "tool": {
+    "toLabel": "To",
+    "passengersLabel": "Passengers",
+    "indicativeTotal": "Indicative total",
+    "perVehicle": "vehicle",
+    "basisNote": "Price basis: {basis}. Confirmed with your request.",
+    "basisCatalogue": "catalogue",
+    "basisEstimate": "estimate",
+    "request": "Request transfer",
+    "vehicleLegend": "Your ride",
+    "caveat": "Indicative per-vehicle prices in EUR, with the indicative MAD amount confirmed with your request. Night surcharges and extra stops are listed on each transfer service page."
+  },
   "guides": {
     "metaTitle": "Travel Guides for Agadir and Souss-Massa",
     "metaDescription": "First-hand guides from a local Agadir agency: when to visit, what to pack, and how to plan excursions, activities and transfers.",
