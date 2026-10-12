@@ -43,11 +43,44 @@ export function ButtonLink({
   );
 }
 
-export function Eyebrow({ children }: { children: ReactNode }) {
+export function Eyebrow({
+  children,
+  tone = "accent",
+}: {
+  children: ReactNode;
+  /** `light` for dark/photographic backgrounds (hero, ink bands, accent CTA). */
+  tone?: "accent" | "light";
+}) {
   return (
-    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-accent-strong">
+    <p
+      className={`mb-4 text-xs font-semibold uppercase tracking-[0.14em] ${
+        tone === "light" ? "text-canvas" : "text-accent-strong"
+      }`}
+    >
       {children}
     </p>
+  );
+}
+
+/**
+ * Inline "… →" link used for section footers (team band, FAQ preview). The
+ * arrow is decorative; the label carries the meaning.
+ */
+export function ArrowLink({
+  href,
+  children,
+}: {
+  href: ComponentProps<typeof Link>["href"];
+  children: ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className="inline-flex min-h-11 items-center gap-2 font-semibold text-accent-strong hover:underline"
+    >
+      {children}
+      <span aria-hidden="true">→</span>
+    </Link>
   );
 }
 

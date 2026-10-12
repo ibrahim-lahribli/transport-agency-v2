@@ -19,9 +19,18 @@ export async function ServiceCard({
   locale: string;
 }) {
   const t = await getTranslations({ locale, namespace: "common" });
+  const tProduct = await getTranslations({ locale, namespace: "product" });
   const price = getServiceDisplayPrice(service);
   const unitLabel = price.unitLabel[locale as "en" | "fr"];
   const image = getServiceImage(service.id, "card");
+
+  // Facts row from real catalogue fields only: the service's own pickup window
+  // (or availability) when it exists, plus hour-count-free cancellation
+  // wording (type-correct per-service wording lives on the service page).
+  const pickupText = service.pickupWindow ?? service.availability;
+  const facts = [pickupText ? `${tProduct("pickup")} ${pickupText}` : null, t("factsCancellation")].filter(
+    (fact): fact is string => Boolean(fact),
+  );
 
   const tagText = service.durationHours
     ? `${service.durationHours} ${t("hoursLabel")}`
@@ -50,9 +59,17 @@ export async function ServiceCard({
             {service.title}
           </h3>
           <p className="line-clamp-3 min-h-[3.6rem] text-sm text-ink-muted">{service.summary}</p>
-          <div className="mt-auto border-t border-line pt-3 text-sm text-ink">
-            {t("factsPickup")} <span aria-hidden="true" className="mx-1">·</span>{" "}
-            {t("factsCancellation")}
+          <div className="mt-auto border-t border-line pt-3 text-sm text-ink-muted">
+            {facts.map((fact, index) => (
+              <span key={fact}>
+                {index > 0 ? (
+                  <span aria-hidden="true" className="mx-1">
+                    ·
+                  </span>
+                ) : null}
+                {fact}
+              </span>
+            ))}
           </div>
           <div className="mt-4 flex items-center justify-between gap-3">
             <strong className="text-base text-ink">
